@@ -5,6 +5,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { UserService } from './shared/user.service';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule} from'@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 
@@ -59,6 +60,7 @@ import { HomeComponent } from './views/home/home.component';
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    ToastrModule.forRoot(),
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,

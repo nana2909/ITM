@@ -9,6 +9,9 @@
     "paths": {
       "@angular/*": [
         "../node_modules/@angular/*"
+      ],
+      "@coreui/*":[
+        "../node_modules/@coreui/*"
       ]
     }
   },

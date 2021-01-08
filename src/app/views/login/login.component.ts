@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserService } from './../../shared/user.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class LoginComponent implements OnInit {
     UserName:'',
     Password:''
   }
-    constructor(public service:UserService,private router:Router) { }
+    constructor(public service:UserService,private router:Router,private toastr:ToastrService) { }
   
     ngOnInit() {
       if (localStorage.getItem('token')!=null)
@@ -26,8 +27,7 @@ export class LoginComponent implements OnInit {
         },
         err=>{
           if(err.status == 400)
-          console.log("hello");
-           // this.toastr.error('Incorrect username or password.','Login failed.');
+            this.toastr.error('Incorrect username or password.','Login failed.');
           else
             console.log(err);
         }
