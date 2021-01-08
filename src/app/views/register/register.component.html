@@ -1,0 +1,67 @@
+<div class="app-body">
+  <main class="main d-flex align-items-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card mx-4">
+            <div class="card-body p-4">
+              <form [formGroup]="service.userModel" autocomplete="off" (submit)="onSubmit()">
+                <h1>Register</h1>
+                <p class="text-muted">Create your account</p>
+                <div class="form-group input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                  </div>
+                  <input class="form-control" formControlName="UserName" required >
+                  <label class="text-danger" *ngIf="service.userModel.get('UserName')?.touched && service.userModel.get('UserName')?.errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">@</span>
+                  </div>
+                  <input class="form-control" formControlName="Email">
+                  <label class="text-danger" *ngIf="service.userModel.get('Email')?.touched && service.userModel.get('Email')?.errors?.email">Invalid email address!</label>
+                </div>
+                <div class="form-group input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-user"></i></span>
+                  </div>
+                  <input class="form-control" formControlName="FullName">
+                </div>
+                <div formGroupName="Passwords" >
+                <div class="form-group input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                  </div>
+                  <input type="password" class="form-control" formControlName="Password">
+                  <label class="text-danger" *ngIf="service.userModel.get('Passwords.Password')?.touched && service.userModel.get('Passwords.Password')?.errors?.required">This field is mandatory.</label>
+                  <label class="text-danger" *ngIf="service.userModel.get('Passwords.Password')?.touched && service.userModel.get('Passwords.Password')?.errors?.minlength">Minimum 4 characters required.</label>
+                </div>
+                <div class="form-group input-group mb-4">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                  </div>
+                  <input type="password" class="form-control" formControlName="ConfirmPassword">
+                  <label class="text-danger" *ngIf="service.userModel.get('Passwords.ConfirmPassword')?.touched && service.userModel.get('Passwords.ConfirmPassword')?.errors?.required">This field is mandatory.</label>
+                  <label class="text-danger" *ngIf="service.userModel.get('Passwords.ConfirmPassword')?.touched && service.userModel.get('Passwords.ConfirmPassword')?.errors?.passwordMismatch">Confirm Password not match.</label>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-lg mx-auto d-block" [disabled]="!service.userModel.valid">SIGN UP</button>
+              </form>
+            </div>
+            <div class="card-footer p-4">
+              <div class="row">
+                <div class="col-6">
+                  <button class="btn btn-block btn-facebook" type="button"><span>Home</span></button>
+                </div>
+                <div class="col-6">
+                  <button class="btn btn-block btn-twitter" type="button"><span>Check Field</span></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
