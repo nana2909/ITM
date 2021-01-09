@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITMCollege\\ApiServer\\APIServer.csproj": {}
+    "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITM\\ApiServer\\APIServer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITMCollege\\ApiServer\\APIServer.csproj": {
+    "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITM\\ApiServer\\APIServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITMCollege\\ApiServer\\APIServer.csproj",
+        "projectUniqueName": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITM\\ApiServer\\APIServer.csproj",
         "projectName": "APIServer",
-        "projectPath": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITMCollege\\ApiServer\\APIServer.csproj",
+        "projectPath": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITM\\ApiServer\\APIServer.csproj",
         "packagesPath": "C:\\Users\\NANA\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITMCollege\\ApiServer\\obj\\",
+        "outputPath": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITM\\ApiServer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\NANA\\AppData\\Roaming\\NuGet\\NuGet.Config",

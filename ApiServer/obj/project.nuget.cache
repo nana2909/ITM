@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "tvGFe3n1LomOWE+HLnd7FgvHFgmnEgkN9BVGMx01J8HInUkhvRDwkqJl5mu4/S9rnQB61UBiReQWq8UAWSA4LA==",
+  "dgSpecHash": "IF/bc7o8NsRSHHCgQmt/WN5YYkWGYt8fEot4ewF2B3nhXLcRDwwgd/ckTPUlu2iM75sqhZQbsNLc2Uk+jacLtA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITMCollege\\ApiServer\\APIServer.csproj",
+  "projectFilePath": "C:\\Users\\NANA\\Desktop\\Project-Sem3\\ITM\\ApiServer\\APIServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\NANA\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\NANA\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.1\\microsoft.aspnetcore.authentication.jwtbearer.5.0.1.nupkg.sha512",

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using APIServer.Models.User;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIServer.Controllers
 {
@@ -15,9 +16,11 @@ namespace APIServer.Controllers
     public class UserDetailController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
-        public UserDetailController(UserManager<ApplicationUser> userManager)
+        private IPasswordHasher<ApplicationUser> _passwordHasher;
+        public UserDetailController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher)
         {
             _userManager = userManager;
+            _passwordHasher = passwordHasher;
         }
         [HttpGet]
         [Authorize]
@@ -36,10 +39,28 @@ namespace APIServer.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
-        [Route("ForAdmin")]
-        public string GetForAdmin()
+        [Route("ListUsers")]
+        public async Task<List<ApplicationUser>> ListUsers()
         {
-            return "Web method for Admin";
+            return await _userManager.Users.ToListAsync();
+        }
+        [HttpGet]
+       // [Authorize(Roles ="Admin")]
+        [Route("EditUser/{userName}")]
+        public async Task<IActionResult> UpdateUser(string userName)
+        {
+            ApplicationUser model = await _userManager.FindByNameAsync(userName);
+            return Ok(model);
+        }
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [Route("EditUser/{userName}")]
+        public async Task<Object> UpdateUser(User user,string userName)
+        {
+            var model = await _userManager.FindByNameAsync(userName);
+            model.Email = user.Email;
+            model.FullName = user.FullName;         
+            return await _userManager.UpdateAsync(model);
         }
 
         [HttpGet]
@@ -51,11 +72,29 @@ namespace APIServer.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin,Student")]
-        [Route("general")]
-        public string GetForAdminOrStudent()
+        [Authorize]
+        [Route("UpdateUserDetail")]
+        public async Task<Object> UpdateUserDetail()
         {
-            return "Web method for Admin or Student";
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            return Ok(user);
+        }
+        [HttpPost]
+        [Authorize]
+        [Route("UpdateUserDetail")]
+        public async Task<Object> UpdateUserDetail(User model)
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (ModelState.IsValid)
+            {
+                user.Email = model.Email;
+                user.FullName = model.FullName;
+                user.PasswordHash = _passwordHasher.HashPassword(user, model.Password); 
+            }
+            IdentityResult result = await _userManager.UpdateAsync(user);
+            return Ok(result);
         }
     }
 }
