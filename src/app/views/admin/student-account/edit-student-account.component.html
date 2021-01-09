@@ -1,0 +1,19 @@
+<h4 class="display-4">Edit Account</h4>
+<hr>
+<form action="ngForm" autocomplete="off">
+    <div class="form-group">
+        <label>UserName</label>
+        <input name="UserName" #UserName="ngModel" [(ngModel)]="formData.UserName" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>FullName</label>
+        <input name="FullName" #FullName="ngModel" [(ngModel)]="formData.FullName" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input name="Email" #Email="ngModel" [(ngModel)]="formData.Email" class="form-control">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-dark" type="submit"><i class="fa fa-database">Submit</i></button>
+    </div>
+</form>

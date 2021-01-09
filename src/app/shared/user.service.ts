@@ -9,7 +9,7 @@ export class UserService {
   readonly BaseURI='http://localhost:51373/api';
   userModel = this.fb.group({
     UserName : ['',Validators.required],
-    Email : ['',Validators.email],
+    Email : ['',Validators.required,Validators.email],
     FullName : [''],
     Passwords:this.fb.group({
       Password : ['',[Validators.required,Validators.minLength(4)]],
@@ -47,6 +47,12 @@ export class UserService {
         passWord: this.loginForm.value.passWord,
       }
     return this.http.post(this.BaseURI+'/User/Login',body);
+  }
+  getUserList(){
+    return this.http.get(this.BaseURI+'/UserDetail/ListUsers').toPromise();
+  }
+  getUserByUserName(userName:string){
+    return this.http.get(this.BaseURI+'/UserDetail/EditUser/'+userName).toPromise();
   }
 
   getUserProfile(){

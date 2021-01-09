@@ -1,0 +1,5 @@
+.image{
+    height:200%; background-size:cover; width:auto;
+    background-image:url('../../../assets/img/bg/bg2.jpg');
+    background-position:50% 50%;
+  }

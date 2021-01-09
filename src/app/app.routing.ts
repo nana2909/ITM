@@ -68,15 +68,6 @@ export const routes: Routes = [
       path:'admin',
       loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
       }
-
-      // {
-        // path: 'buttons',
-        // loadChildren: () => import('./views/buttons/buttons.module').then(m => m.ButtonsModule)
-      // },
-      // {
-        // path: 'charts',
-        // loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
-      // },
     ]
   },
   { path: '**', component: P404Component }

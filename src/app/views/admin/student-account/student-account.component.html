@@ -1,1 +1,48 @@
-<p>student-account works!</p>
+
+<div class="animated fadeIn">         
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-user"></i> User
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered table-striped table-sm">
+            <thead>
+                <th>UserAccount</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Key Register</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of userDetails">
+                    <td>{{item.userName}}</td>
+                    <td>{{item.fullName}}</td>
+                    <td>{{item.email}}</td>
+                    <td>key</td>
+                    <td>
+                       <a class="btn text-primary" (click)="openForEdit(item,item.userName)"><i class="fa fa-edit fa-lg"></i></a>
+                      <a class="btn text-danger"><i class="fa fa-trash fa-lg"></i></a>       
+                    </td>
+                  </tr>
+            </tbody>
+          </table>
+          <nav>
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+              <li class="page-item active">
+                <a class="page-link" href="#">1</a>
+              </li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">4</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+</div>
