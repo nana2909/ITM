@@ -1,4 +1,3 @@
-import { EditStudentAccountComponent } from './views/admin/student-account/edit-student-account.component';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -9,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule} from'@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule} from '@angular/material/dialog';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';

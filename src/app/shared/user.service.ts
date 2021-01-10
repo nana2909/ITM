@@ -7,6 +7,9 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 export class UserService {
   constructor(private fb:FormBuilder, private http:HttpClient) { }
   readonly BaseURI='http://localhost:51373/api';
+
+//Register
+// Create Register Model
   userModel = this.fb.group({
     UserName : ['',Validators.required],
     Email : ['',Validators.required,Validators.email],
@@ -27,7 +30,6 @@ export class UserService {
         confirmPwdMismatch?.setErrors(null);
     }
   }
-
   register(){
     var body = {
       UserName:this.userModel.value.UserName,
@@ -37,6 +39,9 @@ export class UserService {
     };
     return this.http.post(this.BaseURI+'/User/Register',body);
   }
+
+//Login 
+  // Method Login
   loginForm = this.fb.group({
     userName: ['', Validators.required],
     passWord: ['', Validators.required]
@@ -48,16 +53,8 @@ export class UserService {
       }
     return this.http.post(this.BaseURI+'/User/Login',body);
   }
-  getUserList(){
-    return this.http.get(this.BaseURI+'/UserDetail/ListUsers').toPromise();
-  }
-  getUserByUserName(userName:string){
-    return this.http.get(this.BaseURI+'/UserDetail/EditUser/'+userName).toPromise();
-  }
 
-  getUserProfile(){
-    return this.http.get(this.BaseURI+'/UserDetail');
-  }
+ //Check Admin Role
   roleMatch(allowedRoles: any[]): boolean {
     var isMatch = false;
     var showToken = localStorage.getItem('token')?.split('.')[1] ;
@@ -75,6 +72,10 @@ export class UserService {
     return isMatch;
   }
 
+//User
+  getUserProfile(){
+    return this.http.get(this.BaseURI+'/UserDetail');
+  }
 }
 
   

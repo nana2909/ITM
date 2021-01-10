@@ -1,19 +1,25 @@
 <h4 class="display-4">Edit Account</h4>
+<!-- <div class="example-loading-shade" -->
+       <!-- *ngIf="isLoadingResults"> -->
+    <!-- <label *ngIf="isLoadingResults">a</label> -->
+  <!-- </div> -->
 <hr>
-<form action="ngForm" autocomplete="off">
-    <div class="form-group">
-        <label>UserName</label>
-        <input name="UserName" #UserName="ngModel" [(ngModel)]="formData.UserName" class="form-control">
+<form [formGroup]="editStudentForm"  *ngIf="editStudentForm" (ngSubmit)="onSubmit()" >
+    <div class="form-group hidden">
+        <input  class="form-control" formControlName="userName" name="userName" hidden>
     </div>
     <div class="form-group">
         <label>FullName</label>
-        <input name="FullName" #FullName="ngModel" [(ngModel)]="formData.FullName" class="form-control">
+        <input class="form-control"  formControlName="FullName" name="FullName" required>
+        <label class="text-danger" *ngIf="editStudentForm.get('FullName')?.touched && editStudentForm.get('FullName')?.errors?.required">This field is mandatory.</label>
     </div>
     <div class="form-group">
         <label>Email</label>
-        <input name="Email" #Email="ngModel" [(ngModel)]="formData.Email" class="form-control">
+        <input class="form-control" formControlName="Email" name="Email" required>
+        <label class="text-danger" *ngIf="editStudentForm.get('Email')?.touched && editStudentForm.get('Email')?.errors?.required">This field is mandatory.</label>
+        <label class="text-danger" *ngIf="editStudentForm.get('Email')?.touched && editStudentForm.get('Email')?.errors?.email">Invalid email address!</label>
     </div>
     <div class="form-group">
-        <button class="btn btn-dark" type="submit"><i class="fa fa-database">Submit</i></button>
+        <button  type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!editStudentForm.valid" style="letter-spacing:3px;"><i class="fa fa-pencil"> Submit</i></button>
     </div>
 </form>

@@ -10,15 +10,16 @@ import { CoursesComponent } from './courses/courses.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { MatDialogModule} from '@angular/material/dialog';
+import { EditStudentAccountComponent } from './student-account/edit-student-account.component';
+
 // Angular
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
-import { EditStudentAccountComponent } from './student-account/edit-student-account.component';
 
 @NgModule({
   imports: [
@@ -26,6 +27,7 @@ import { EditStudentAccountComponent } from './student-account/edit-student-acco
     FormsModule,
     AdminRoutingModule,
     MatDialogModule,
+    ReactiveFormsModule
   ],
   declarations: [
     AdmissionComponent,

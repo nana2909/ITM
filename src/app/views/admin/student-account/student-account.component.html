@@ -22,8 +22,8 @@
                     <td>{{item.email}}</td>
                     <td>key</td>
                     <td>
-                       <a class="btn text-primary" (click)="openForEdit(item,item.userName)"><i class="fa fa-edit fa-lg"></i></a>
-                      <a class="btn text-danger"><i class="fa fa-trash fa-lg"></i></a>       
+                       <a class="btn text-primary" (click)="openForEdit(item.userName)"><i class="fa fa-edit fa-lg"></i></a>
+                      <a class="btn text-danger" (click)="onDelete(item.userName)"><i class="fa fa-trash fa-lg"></i></a>       
                     </td>
                   </tr>
             </tbody>

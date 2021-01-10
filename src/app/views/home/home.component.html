@@ -2,7 +2,10 @@
     <a class="navbar-brand text-white">User Details</a>
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" routerLink="./../AdminRole">Admin Panel</a>
+        <!-- <div *ngIf="services.roleMatch(true)"> -->
+           <!-- <label>1</label> -->
+        <!-- </div>  -->
+        <!-- <a class="nav-link" routerLink="./../AdminRole">Admin Panel</a>    -->
       </li>
     </ul>
     <button class="btn btn-danger my-2 my-sm-0" (click)="onLogOut()">Logout</button>

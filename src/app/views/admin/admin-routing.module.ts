@@ -21,10 +21,6 @@ const routes: Routes = [
     },
     children: [
       {
-        path: '',
-        redirectTo: 'admission'
-      },
-      {
         path: 'admission',
         component: AdmissionComponent,
         data: {

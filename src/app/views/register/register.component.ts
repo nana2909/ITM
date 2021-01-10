@@ -1,4 +1,4 @@
-import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
 

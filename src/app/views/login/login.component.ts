@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     constructor(public service:UserService,private router:Router,private toastr:ToastrService) { }
   
     ngOnInit() {
+    localStorage.removeItem('token');
       if (localStorage.getItem('token')!=null)
         this.router.navigateByUrl('/home');
     }
@@ -24,7 +25,7 @@ export class LoginComponent implements OnInit {
       this.service.login().subscribe(
         (res:any)=>{
           localStorage.setItem('token',res.token);
-          this.router.navigateByUrl('/AdminRole');
+          this.router.navigateByUrl('/Admin');
         },
         err=>{
           if(err.status == 400)

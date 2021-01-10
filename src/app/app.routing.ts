@@ -52,7 +52,7 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'AdminRole',
+    path: 'Admin',
     component: DefaultLayoutComponent,
     canActivate:[AuthGuard],
     data :{
@@ -65,7 +65,7 @@ export const routes: Routes = [
        component:DashboardComponent,
       },
       {
-      path:'admin',
+      path:'*',
       loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
       }
     ]
