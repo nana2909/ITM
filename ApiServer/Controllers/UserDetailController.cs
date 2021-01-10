@@ -45,14 +45,14 @@ namespace APIServer.Controllers
             return await _userManager.Users.ToListAsync();
         }
         [HttpGet]
-       // [Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin")]
         [Route("EditUser/{userName}")]
         public async Task<IActionResult> UpdateUser(string userName)
         {
             ApplicationUser model = await _userManager.FindByNameAsync(userName);
             return Ok(model);
         }
-        [HttpPost]
+        [HttpPut]
         [Authorize(Roles = "Admin")]
         [Route("EditUser/{userName}")]
         public async Task<Object> UpdateUser(User user,string userName)
@@ -61,6 +61,15 @@ namespace APIServer.Controllers
             model.Email = user.Email;
             model.FullName = user.FullName;         
             return await _userManager.UpdateAsync(model);
+        }
+
+        [HttpDelete]
+        [Authorize(Roles = "Admin")]
+        [Route("DeleteUser/{userName}")]
+        public async Task<Object> DeleteUser(string userName)
+        {
+            var model = await _userManager.FindByNameAsync(userName);
+            return await _userManager.DeleteAsync(model);
         }
 
         [HttpGet]
@@ -80,7 +89,7 @@ namespace APIServer.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             return Ok(user);
         }
-        [HttpPost]
+        [HttpPut]
         [Authorize]
         [Route("UpdateUserDetail")]
         public async Task<Object> UpdateUserDetail(User model)
