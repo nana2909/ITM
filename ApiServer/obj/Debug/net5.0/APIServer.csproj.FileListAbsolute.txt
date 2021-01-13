@@ -196,3 +196,6 @@ C:\Users\NANA\Desktop\Project-Sem3\ITM\ApiServer\obj\Debug\net5.0\scopedcss\bund
 C:\Users\NANA\Desktop\Project-Sem3\ITM\ApiServer\obj\Debug\net5.0\APIServer.RazorTargetAssemblyInfo.cache
 C:\Users\NANA\Desktop\Project-Sem3\ITM\ApiServer\obj\Debug\net5.0\APIServer.csproj.CopyComplete
 C:\Users\NANA\Desktop\Project-Sem3\ITM\ApiServer\obj\Debug\net5.0\APIServer.genruntimeconfig.cache
+C:\Users\NANA\Desktop\Project-Sem3\ITM\ApiServer\bin\Debug\net5.0\MailKit.dll
+C:\Users\NANA\Desktop\Project-Sem3\ITM\ApiServer\bin\Debug\net5.0\MimeKit.dll
+C:\Users\NANA\Desktop\Project-Sem3\ITM\ApiServer\bin\Debug\net5.0\BouncyCastle.Crypto.dll

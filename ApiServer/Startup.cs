@@ -17,7 +17,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using APIServer.Models.User;
-
+using APIServer.Models.EmailService;
+using Microsoft.AspNetCore.Http.Features;
 
 namespace APIServer
 {
@@ -45,15 +46,19 @@ namespace APIServer
                 options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<AuthenticationContext>();
+                .AddEntityFrameworkStores<AuthenticationContext>()
+                .AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = false;
-                options.Password.RequireUppercase = false;
+                options.Password.RequireUppercase = false; 
+                options.User.RequireUniqueEmail = true;
                 options.Password.RequiredLength = 4;
             });
+            services.Configure<DataProtectionTokenProviderOptions>(options =>
+                options.TokenLifespan = TimeSpan.FromHours(1));
             services.AddCors();
 
             //Jwt.Authentication
@@ -75,6 +80,17 @@ namespace APIServer
                     ValidateAudience = false,
                     ClockSkew = TimeSpan.Zero
                 };
+            });
+
+            //Email Config
+            var emailConfig = Configuration.GetSection("EmailConfiguration").Get<EmailConfiguration>();
+            services.AddSingleton(emailConfig);
+            services.AddScoped<IEmailService, EmailSender>();
+
+            services.Configure<FormOptions>(o => {
+                o.ValueLengthLimit = int.MaxValue;
+                o.MultipartBodyLengthLimit = int.MaxValue;
+                o.MemoryBufferThreshold = int.MaxValue;
             });
         }
 
