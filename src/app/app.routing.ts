@@ -1,3 +1,4 @@
+import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { AdmissionComponent } from './views/admin/admission/admission.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +13,7 @@ import { P500Component } from './views/error/500.component';
 import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
+import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
 
 export const routes: Routes = [
   {
@@ -19,10 +21,12 @@ export const routes: Routes = [
    // component:LoginComponent,
     redirectTo: 'login',
     pathMatch: 'full',
-  }
-,
-  {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
-
+  },
+  {
+    path:'home',
+    component:HomeComponent,
+    canActivate:[AuthGuard]
+  },
   {
     path: '404',
     component: P404Component,
@@ -49,6 +53,20 @@ export const routes: Routes = [
     component: RegisterComponent,
     data: {
       title: 'Register Page'
+    }
+  },
+  {
+    path: 'forgotpassword',
+    component: ForgotPasswordComponent,
+    data: {
+      title: 'Forgot Password Page'
+    }
+  },
+  {
+    path: 'resetpassword',
+    component: ResetPasswordComponent,
+    data: {
+      title: 'Reset Password Page'
     }
   },
   {

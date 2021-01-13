@@ -1,3 +1,4 @@
+import { CookieService } from 'ngx-cookie-service';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -47,6 +48,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { HomeComponent } from './views/home/home.component';
+import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
 
 @NgModule({
   imports: [
@@ -78,10 +81,14 @@ import { HomeComponent } from './views/home/home.component';
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy},
-     [UserService,{provide: HTTP_INTERCEPTORS,useClass:AuthInterceptor, multi:true}]
+  providers: [
+     [UserService,{provide: HTTP_INTERCEPTORS,useClass:AuthInterceptor, multi:true}],
+     [CookieService]
   ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+//{provide: LocationStrategy, useClass: HashLocationStrategy},
