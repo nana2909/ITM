@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using APIServer.Models.Admission;
 using APIServer.Service;
 using APIServer.Models.User;
+using Microsoft.EntityFrameworkCore;
 
 namespace APIServer.Controllers
 {
@@ -32,7 +33,13 @@ namespace APIServer.Controllers
             {
                 if (mailChk.FieldCode.Equals(model.FieldCode))
                 {
-                    return BadRequest("Admission just register!");
+                    ///* If Student can submit with some Stream.*/
+                    //var checkSubmit = mailChk.StreamCode.Equals(model.StreamCode);
+                    //if (checkSubmit)
+                    //{
+                    //    return BadRequest("Admission just register Stream with email!");
+                    //}
+                    return BadRequest("Admission just register with email!");
                 }
             }
             if (!ModelState.IsValid)
@@ -154,13 +161,65 @@ namespace APIServer.Controllers
             var Admission = await db.Admissions.FindAsync(Id);
             if (Admission != null)
             {
+                if (Admission.StatusID == 1) //Cannot delele admission when accepnt from admin
+                {
+                    return BadRequest("Cannot Delete Admission when accepted!");
+                }
                 db.Admissions.Remove(Admission);
                 return Ok("Delete Success!");
             }
             return NotFound();
         }
 
+        [HttpPut]
+        //[Authorize]
+        [Route("EditAdmission")]
+        //POST: api/Admission/DeleteAdmission
+        public async Task<IActionResult> EditAdmission(string Id, tbAdmission model)
+        {
+            if (Id == null)
+            {
+                return BadRequest("Admission ID cannot null!");
+            }
+            var Admission = await db.Admissions.FindAsync(Id);
+            if (Admission != null)
+            {
+                if (Admission.StatusID == 1) //Cannot edit admission when accepnt from admin
+                {
+                    return BadRequest("Cannot Delete Admission when accepted!");
+                }
+                else
+                {
+                    Admission.StudentEmail = model.StudentEmail;
+                    Admission.StudentName = model.StudentName;
+                    Admission.FatherName = model.FatherName;
+                    Admission.MotherName = model.MotherName;
+                    Admission.DoB = model.DoB;
+                    Admission.Gender = model.Gender;
+                    Admission.ResidentialAddress = model.ResidentialAddress;
+                    Admission.PermanentAddress = model.PermanentAddress;
+                    Admission.StreamCode = model.StreamCode;
+                    Admission.FieldCode = model.FieldCode;
+                    Admission.SportsDetails = model.SportsDetails;
+                    Admission.StatusID = model.StatusID;
+                    Admission.ExUniversity = model.ExUniversity;
+                    Admission.ExEnrollmentNumber = model.ExEnrollmentNumber;
+                    Admission.ExCenter = model.ExCenter;
+                    Admission.ExStream = model.ExStream;
+                    Admission.ExField = model.ExField;
+                    Admission.ExMarkSecured = model.ExMarkSecured;
+                    Admission.OutOfDate = model.OutOfDate;
+                    Admission.ClassObtained = model.ClassObtained;
+                    Admission.SpecializedSubjectID = model.SpecializedSubjectID;
+                    Admission.OptionalSubjectID = model.OptionalSubjectID;
 
+                    db.Entry(Admission).State = EntityState.Modified;
+                    await db.SaveChangesAsync();
+                    return Ok("Edit Success!");
+                }
+            }
+            return NotFound();
+        }
 
     }
 }
