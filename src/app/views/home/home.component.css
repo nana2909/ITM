@@ -1,0 +1,47 @@
+.with-background {
+    min-height: 30rem;
+    background-image: url("../../../assets/img/bg/guy_wall.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.bg-dark-gradient {
+    background: #485563;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #29323c, #485563);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #29323c, #485563);
+}
+.bg-hue-red {
+    background-image: linear-gradient(135deg, #FEB692 10%, #EA5455 100%); 
+}
+.feature-style {
+    min-height: 30rem;
+    background-image: url("../../../assets/img/bg/bg4.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center; 
+}
+.align-center {
+    display: flex;
+    align-items: center;
+ }
+.justify-center {
+    display: flex;
+    justify-content: center; 
+}
+.styled-card {
+    background: #fff;
+    right: -5px;
+    z-index: 1;
+    left: 5rem;
+    top: 80%;
+    transform: translate(0, -50%); 
+}
+.font-title {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-family: "Montserrat", sans-serif;
+    font-weight: bold; 
+}

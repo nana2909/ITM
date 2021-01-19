@@ -55,6 +55,7 @@
     "ngx-cookie-service": "^11.0.2",
     "ngx-perfect-scrollbar": "^9.0.0",
     "ngx-toastr": "^13.2.0",
+    "popper.js": "^1.16.1",
     "rxjs": "^6.6.0",
     "simple-line-icons": "^2.5.2",
     "ts-helpers": "^1.1.2",

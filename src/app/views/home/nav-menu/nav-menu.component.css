@@ -1,0 +1,57 @@
+.bg-hue-dark {
+    background: #232526;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #414345, #232526);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #414345, #232526);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */ }
+
+
+.cwhite {
+    color: white; 
+}
+a {
+    color: inherit;
+    opacity: 0.9; 
+}
+a:hover {
+  text-decoration: none;
+  color: inherit;
+  opacity: 1;
+  cursor: pointer; 
+}
+  
+ul {
+  list-style-type: none; 
+}
+  
+.uppercase {
+  text-transform: uppercase; 
+}
+.lighter {
+   font-weight: lighter; 
+}
+.op-7 {
+    opacity: 0.7; 
+}
+
+.font-title {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-family: "Montserrat", sans-serif;
+    font-weight: lighter; 
+}
+  
+  .font-body, body {
+    font-family: "Lato", sans-serif; 
+}
+.footer-style{
+    background-size:cover; 
+    background-position:20% 80%;
+    background-repeat:'no-reapeat';
+    width:auto;
+    background-image:url('../../../../assets/img/bg/forest.jpeg');
+}
+
+  

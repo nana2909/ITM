@@ -4,6 +4,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
 import { UserService } from '../../../shared/user.service';
+import { map } from 'rxjs/operators';
+import { __values } from 'tslib';
+
 
 @Component({
   selector: 'app-reset-password',
@@ -13,17 +16,18 @@ import { UserService } from '../../../shared/user.service';
 export class ResetPasswordComponent implements OnInit {
   getToken : string;
   getEmail : string;
-  constructor( private router: Router,
-    private route: ActivatedRoute,
+  constructor( 
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
     private service: UserService,
     private fb: FormBuilder,
     private toastr:ToastrService )
     { }
 
   ngOnInit(): void { 
-    var urlParams = new URLSearchParams(window.location.search);
-    this.getToken= urlParams.get("token");
-    this.getEmail= urlParams.get("email");
+   let params=this.activatedRoute.snapshot.queryParams;
+    this.getEmail=params['email'];
+    this.getToken=params['token'];
     this.service.resetModel.setValue({
       Token : this.getToken,
       Email : this.getEmail,

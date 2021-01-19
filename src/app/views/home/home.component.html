@@ -1,20 +1,179 @@
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand text-white">User Details</a>
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <!-- <div *ngIf="services.roleMatch(true)"> -->
-           <!-- <label>1</label> -->
-        <!-- </div>  -->
-        <!-- <a class="nav-link" routerLink="./../AdminRole">Admin Panel</a>    -->
-      </li>
-    </ul>
-    <button class="btn btn-danger my-2 my-sm-0" (click)="onLogOut()">Logout</button>
-  </nav>
+<div class="bg-dark-gradient" >
+  <section class="feature-style bg-light py-4 mb-2"  id="services">
+    <div class="container">
+      <h2 class="font-title pt-5 pb-2">PRINCIPAL’S MESSAGE</h2>
+      <p>At ITM College we proudly prioritise a safe and nurturing environment for our students. In order to learn, we all must feel safe to make mistakes, one doesn’t learn anything by always making the right choices - mistakes are an important step in learning. Indeed, James Joyce described mistakes as “the portals to discovery“. Isn’t that what we want for our students – the joy of discovery?</p>
+      <p>I look forward to a fulfilling and successful new school year!</p>        
+      <p> Adam Steven, Principal</p>
+    </div>
+  </section>
+
+  <section class="feature-style-2 bg-light py-4 " id="services">
+		<div class="row">
+			<div class="col-6 bg-hue-red col-md-4 p-5 align-center justify-center">
+				<div class="styled-card p-4 p-absolute">
+					<h1 class="font-title">Hello! {{this.userDetail.userName}}</h1>
+					<p class="font-body">"Data for Progress is the think tank for the future of progressivism. Through polling, policy development, and more, our work shows progressive causes can win.            "</p>
+					<ul class="inline py-1 px-0 none-disc" style="list-style-type:none">
+						<li ><a href="#" class=" btn btn-outline-primary " [routerLink]="['/home/UserAdmission']"><i class="fa fa-pencil"></i>Admission</a></li><br>
+						<li ><a href="#" class=" btn btn-outline-success " [routerLink]="['/home/UserInformation']"><i class="fa fa-user"></i>Your profile</a></li>
+					</ul>
+				</div>
+      </div>
+      <div class="col-6 col-md-8 with-background p-5"></div>
+		</div>
+  </section>
+  <section>
+    <div class="container">
+      <h2 class="font-handwritten text-center pb-4">Inspiration</h2>
+    <div class="row">
+      <div class="col-10 mx-auto col-md-6 col-lg-4 my-2">
+        <div class="card p-2" style="background-image:url('../assets/img/backgrounds/vertical1.jpeg');">
+          <div class="ue-showcase-content  m-3">
+            <div class="ue-showcase-outline border-white">
+              <h3 class="p-2 font-handwritten cwhite p-relative">Blind Night</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mx-auto col-md-6 col-lg-4 my-2">
+        <div class="card p-2" style="background-image:url('../assets/img/backgrounds/vertical2.jpeg');">
+          <div class="ue-showcase-content  m-3">
+            <div class="ue-showcase-outline border-white">
+              <h3 class="p-2 font-handwritten cwhite p-relative">Hard Ritual</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mx-auto col-md-6 col-lg-4 my-2">
+        <div class="card p-2" style="background-image:url('../assets/img/backgrounds/vertical3.jpeg');">
+          <div class="ue-showcase-content  m-3">
+            <div class="ue-showcase-outline border-white">
+              <h3 class="p-2 font-handwritten cwhite p-relative">Speak Smoke</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mx-auto col-md-6 col-lg-4 my-2">
+        <div class="card p-2" style="background-image:url('../assets/img/backgrounds/vertical4.jpeg');">
+          <div class="ue-showcase-content  m-3">
+            <div class="ue-showcase-outline border-white">
+              <h3 class="p-2 font-handwritten cwhite p-relative">Spark Fire</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mx-auto col-md-6 col-lg-4 my-2">
+        <div class="card p-2" style="background-image:url('../assets/img/backgrounds/vertical5.jpeg');">
+          <div class="ue-showcase-content  m-3">
+            <div class="ue-showcase-outline border-white">
+              <h3 class="p-2 font-handwritten cwhite p-relative">Fresh Forest</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-10 mx-auto col-md-6 col-lg-4 my-2">
+        <div class="card p-2" style="background-image:url('../assets/img/backgrounds/vertical6.jpeg');">
+          <div class="ue-showcase-content  m-3">
+            <div class="ue-showcase-outline border-white">
+              <h3 class="p-2 font-handwritten cwhite p-relative">Red Reality</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+  </section>
   
-  <div class="card m-5" style="width:18rem" *ngIf="userDetails">
-    <ul class="list-group">
-      <li class="list-group-item"><strong>Username : </strong>{{userDetails.userName}}</li>
-      <li class="list-group-item"><strong>FullName : </strong>{{userDetails.fullName}}</li>
-      <li class="list-group-item"><strong>Email : </strong>{{userDetails.email}}</li>
-    </ul>
+
+<section class="py-5 bg-light" id="courses">
+  <div class="container">
+  	<h2 class="font-title py-2 uppercase">New Courses</h2>
+  	<div class="row">
+  		<div class="col-12 col-md-6 col-lg-4 my-4">
+  			<div class="card card-blog-2 material-shadow">
+  				<div class="card-header background-cover p-5" style="background-image:url('../assets/img/backgrounds/ice.jpeg')"></div>
+          <div class="card-body">
+            <h6 class="my-2">By <a href="#" class="cprimary">Author Name</a><i class="small uppercase pull-right inline"><i class="m-1 fa fa-tag"></i><a href="#" class="m-1">Design</a><a href="#" class="m-1"> Code</a></i></h6>
+            <h5 class="my-3 font-body">Small Space Big Ideas</h5>
+            <p class="mb-3">This is a short summary of blog post and can be used to give a gist to google and others This is a short summary of blog post and can be used to give a gist to google and others...
+              </p>
+            <a href="#" class="cprimary m-1">Read More</a>
+            <a href="#" class="cdanger m-1 pull-right"><i class="fa fa-heart-o mr-1"></i>30</a>
+          </div>
+        </div>
+      </div>
+        <div class="col-12 col-md-6 col-lg-4 my-4">
+          <div class="card card-blog-2 material-shadow">
+             <div class="card-header background-cover p-5" style="background-image:url('../assets/img/backgrounds/food.jpeg')"></div>
+             <div class="card-body">
+                <h6 class="my-2">By <a href="#" class="cprimary">Author Name</a><i class="small uppercase pull-right inline"><i class="m-1 fa fa-tag"></i><a href="#" class="m-1">Design</a><a href="#" class="m-1"> Code</a></i></h6>
+                <h5 class="my-3 font-body">Small Space Big Ideas</h5>
+                <p class="mb-3">This is a short summary of blog post and can be used to give a gist to google and others This is a short summary of blog post and can be used to give a gist to google and others...
+                </p>
+                <a href="#" class="cprimary m-1">Read More</a>
+                <a href="#" class="cdanger m-1 pull-right"><i class="fa fa-heart-o mr-1"></i>30</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-4 my-4">
+          <div class="card card-blog-2 material-shadow">
+            <div class="card-header background-cover p-5" style="background-image:url('../assets/img/backgrounds/gr_mac.jpeg')"></div>
+            <div class="card-body">
+               <h6 class="my-2">By <a href="#" class="cprimary">Author Name</a><i class="small uppercase pull-right inline"><i class="m-1 fa fa-tag"></i><a href="#" class="m-1">Design</a><a href="#" class="m-1"> Code</a></i></h6>
+               <h5 class="my-3 font-body">Small Space Big Ideas</h5>
+               <p class="mb-3">This is a short summary of blog post and can be used to give a gist to google and others This is a short summary of blog post and can be used to give a gist to google and others...
+               </p>
+               <a href="#" class="cprimary m-1">Read More</a>
+               <a href="#" class="cdanger m-1 pull-right"><i class="fa fa-heart-o mr-1"></i>30</a>
+             </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<section class="form-style-7 p-relative bg-dark cwhite" id="contact">
+  <div class="container-fluid">
+  <div class="row">
+
+    <div class="col-10 mx-auto p-4">
+      <div class="row">
+        <div class="col-12 my-3">
+          <h2 class="font-title bolder text-center mb-5 uppercase">Contact Us<div class="mline bg-warning"></div></h2></div>
+          <div class="col-md-6 col-12">
+            <h6 class="uppercase my-3 font-title">Address</h6>
+            <p class="mb-5 ">Santinell, 400 Broad St, Seattle, WA 98109</p>
+            <h6 class="uppercase my-3 font-title">Contact</h6>
+            <p class="mb-5"><i class="fa fa-phone mr-2"></i>+1 100 100 100<br><i class="fa fa-envelope mr-2"></i> info@example.com</p>
+            <h6 class="uppercase my-3 font-title">Social</h6>
+            <a class="p-2 m-2 bg-white"><i class="fa fa-facebook cdark"></i></a>
+            <a class="p-2 m-2 bg-white"><i class="fa fa-google cdark"></i></a>
+            <a class="p-2 m-2 bg-white"><i class="fa fa-twitter cdark"></i></a>
+            <a class="p-2 m-2 bg-white"><i class="fa fa-linkedin cdark"></i></a>
+          </div>
+          <div class="col-md-6 col-12 my-3">
+            <form>
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" class="form-control flat  ">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control flat  ">
+              </div>
+              <div class="form-group">
+                <label>Message</label>
+                <textarea class="form-control flat " rows="4"></textarea>
+              </div>
+              <div class="form-group ">
+                <button type="submit" class="btn btn-warning"><i class="fa fa-paper-plane mr-2"></i>Send</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
   </div>

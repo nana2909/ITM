@@ -1,0 +1,90 @@
+<app-header style="background-color: black;opacity: 0.9; top: 0"
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/logo.png', width: 150, height: 150, alt: 'ITM Logo'}"
+  [sidebarToggler]="false"
+  [asideMenuToggler]="false" >
+<nav class="navbar font-title navbar-expand-md navbar-inverse navbar-dark bg-dark navbar-style-6" id="sticker" >
+  <ul class="nav navbar-nav ml-auto">
+    <li class="nav-item mx-2"  placement="bottom right">
+      <a class="nav-link" role="button" [routerLink]="['/home']">Home</a>
+    </li>
+    <li class="nav-item dropdown mx-2" dropdown placement="bottom right">
+      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false" dropdownToggle (click)="false">
+        Settings
+      </a>
+      <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+        <a class="dropdown-item" href="#" [routerLink]="['/home/UserInformation']"><i class="fa fa-user"></i> Profile</a>
+        <a class="dropdown-item" href="#" [routerLink]="['/home/UserAdmission']"><i class="fa fa-file"></i>Admission<span class="badge badge-info"></span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>FeedBack<span class="badge badge-success"></span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning"></span></a>
+        <a class="dropdown-item" href="#"><i class="fa fa-shield"></i> Change Password</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+      </div>
+    </li>
+  </ul>
+</nav>
+</app-header>
+<div class="container-fluid">
+    <router-outlet></router-outlet>
+</div> 
+<footer class="footer-style p-3 bg-hue-dark cwhite">
+  <div class="row">
+    <div class="col-12 col-lg-3 my-1 text-center py-2">
+      <span class="font-title h5"><b>ITM</b> College</span><br>
+      <small class="lighter my-3 op-7 inline">© 2021 Website made with heart.</small>
+      <ul class="py-2 px-0">
+        <li class="inline"><a href="#" class=" circle btn-outline-primary btn m-1 inline"><i class="fa fa-google"></i></a></li>
+        <li class="inline"><a href="#" class=" circle btn-outline-primary btn m-1 inline"><i class="fa fa-twitter"></i></a></li>
+        <li class="inline"><a href="#" class=" circle btn-outline-primary btn m-1 inline"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-12 col-lg-6 my-1 text-left py-2 font-title">
+      <div class="row">
+        <div class="col-4">
+          <h6 class="uppercase py-1">Categories</h6>
+          <ul class="py-1 px-0">
+            <li><a href="#">Humans</a></li>
+            <li><a href="#">Cats</a></li>
+            <li><a href="#">Canines</a></li>
+            <li><a href="#">Wolves</a></li>
+          </ul>
+        </div>
+        <div class="col-4">
+          <h6 class="uppercase py-1">Features</h6>
+          <ul class="py-1 px-0">
+            <li><a href="#">Responsive</a></li>
+            <li><a href="#">Modular</a></li>
+            <li><a href="#">Affordable</a></li>
+
+          </ul>
+        </div>
+        <div class="col-4">
+          <h6 class="uppercase py-1">Technologies</h6>
+          <ul class="py-1 px-0">
+            <li><a href="#">Jquery</a></li>
+            <li><a href="#">HTML5</a></li>
+            <li><a href="#">SAAS</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-lg-3 my-1 text-left py-2">
+      <h6 class="uppercase py-1">About</h6>
+      <small class="lighter my-3 op-7 inline font-body">A simple to use, modular and responsive set of components and ready made pages to launch your next project.</small>
+    </div>
+<div class="col-12 ">
+    <div class="mline bg-light"></div>
+  </div>
+    <div class="col-6 py-2">
+            <small class="lighter op-7">© 2021 ITMCollege</small>
+    </div>
+    <div class="col-6 text-right">
+      <img src="" width="100px">
+    </div>
+  </div>
+</footer>
+
+
+
+
+

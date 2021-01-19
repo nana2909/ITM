@@ -45,7 +45,7 @@ export class EditStudentAccountComponent implements OnInit {
             if(res.succeeded){
               
               this.dialogRef.close();
-              this.router.navigateByUrl('/Admin/*/studentAccount');
+              this.router.navigateByUrl('/Admin/studentAccount');
               this.toastr.success(' Success!','Update user successful.');
               location.reload();
             } else {

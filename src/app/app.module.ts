@@ -1,3 +1,5 @@
+import { NavHomePageComponent } from './views/home-page/nav-home-page/nav-home-page.component';
+import { HomePageComponent } from './views/home-page/home-page.component';
 import { CookieService } from 'ngx-cookie-service';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,6 +24,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import { AppComponent } from './app.component';
 
 // Import containers
+import { NavMenuComponent } from './views/home/nav-menu/nav-menu.component';
 import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -50,7 +53,8 @@ import { ChartsModule } from 'ng2-charts';
 import { HomeComponent } from './views/home/home.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
-
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [];
 @NgModule({
   imports: [
     BrowserModule,
@@ -70,9 +74,11 @@ import { ResetPasswordComponent } from './views/forgot-password/reset-password/r
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    
+    RouterModule.forRoot(routes,{ useHash: true })
   ],
   declarations: [
+    NavMenuComponent,
+    NavHomePageComponent,
     AppComponent,
     ...APP_CONTAINERS,
     P404Component,
@@ -80,15 +86,19 @@ import { ResetPasswordComponent } from './views/forgot-password/reset-password/r
     LoginComponent,
     RegisterComponent,
     HomeComponent,
+    HomePageComponent,
     DashboardComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    
   ],
   providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
      [UserService,{provide: HTTP_INTERCEPTORS,useClass:AuthInterceptor, multi:true}],
      [CookieService]
   ],
+  
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
-//{provide: LocationStrategy, useClass: HashLocationStrategy},
+//,

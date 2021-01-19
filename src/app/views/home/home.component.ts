@@ -1,31 +1,36 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../../shared/user.service';
 import { Router } from '@angular/router';
+import {ModalDirective} from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
-  //styleUrls: ['./home.component.css']
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  userDetails: any;
+  @ViewChild('myModal') public myModal: ModalDirective;
+  public userDetail : any;
 
   constructor(private router: Router,private service:UserService) { }
 
   ngOnInit() {
-  this.service.getUserProfile().subscribe(
-    res =>{
-      this.userDetails=res;
-    },
-    err =>{
-      console.log(err);
-    },
-  );
-}
-  
-onLogOut(){
-  localStorage.removeItem('token');
-  this.router.navigate(['login']);
-}
+    this.userDetail ={
+      userName:'',
+      email:'',
+      fullName:'',
+    }
+    this.service.getUserProfile().subscribe(
+      res =>{
+        this.userDetail=res;
+        //console.log(userDetail);
+      },
+      err =>{
+        console.log(err);
+      },
+    );
+    
+  }
+
 }

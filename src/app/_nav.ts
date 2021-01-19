@@ -12,32 +12,32 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Departments',
-    url: '/Admin/*/department',
+    url: '/Admin/#/department',
     icon: 'icon-folder'
   },
   {
     name: 'Streams',
-    url: '/Admin/*/stream',
+    url: '/Admin/#/stream',
     icon: 'icon-drop'
   },
   {
     name: 'Fields',
-    url: '/Admin/*/field',
+    url: '/Admin/#/field',
     icon: 'icon-pie-chart'
   },
   {
     name: 'Courses',
-    url: '/Admin/*/course',
+    url: '/Admin/#/course',
     icon: 'icon-docs'
   },
   {
     name: 'Faculty',
-    url: '/Admin/*/faculty',
+    url: '/Admin/#/faculty',
     icon: 'icon-user'
   },
   {
     name: 'Subjects',
-    url: '/Admin/*/subject',
+    url: '/Admin/#/subject',
     icon: 'icon-calculator'
   },
   {
@@ -46,12 +46,12 @@ export const navItems: INavData[] = [
   },
   {
     name: 'StudentAccount',
-    url: '/Admin/*/studentAccount',
+    url: '/Admin/#/studentAccount',
     icon: 'icon-star'
   },
   {
     name: 'Admission',
-    url: '/Admin/*/admission',
+    url: '/Admin/#/admission',
     icon: 'icon-list'
   },
   {
@@ -60,19 +60,20 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Facilities',
-    url: '/Admin/*/facilities',
+    url: '/Admin/#/facilities',
     icon: 'icon-home'
   },
   {
     name: 'Feedback',
-    url: '/Admin/*/feedback',
+    url: '/Admin/#/feedback',
     icon: 'icon-layers'
   },
   {
     name: 'ContactUs',
-    url: '/Admin/*/contactUs',
+    url: '/Admin/#/contactUs',
     icon: 'icon-envelope'
   },
+
 
   {
     name: 'Log Out',

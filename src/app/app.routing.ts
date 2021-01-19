@@ -1,5 +1,7 @@
+import { HomePageComponent } from './views/home-page/home-page.component';
+import { NavHomePageComponent } from './views/home-page/nav-home-page/nav-home-page.component';
+import { NavMenuComponent } from './views/home/nav-menu/nav-menu.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
-import { AdmissionComponent } from './views/admin/admission/admission.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './auth/auth.guard';
@@ -14,20 +16,15 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
+import { UserInfoComponent } from './views/home/user-detail/user-info/user-info.component';
 
 export const routes: Routes = [
   {
     path:'',
-   // component:LoginComponent,
-    redirectTo: 'login',
+    redirectTo: 'HomePage',
     pathMatch: 'full',
   },
-  {
-    path:'home',
-    component:HomeComponent,
-    canActivate:[AuthGuard]
-  },
-  {
+   {
     path: '404',
     component: P404Component,
     data: {
@@ -59,14 +56,14 @@ export const routes: Routes = [
     path: 'forgotpassword',
     component: ForgotPasswordComponent,
     data: {
-      title: 'Forgot Password Page'
+      title: 'ForgotPassword Page'
     }
   },
   {
     path: 'resetpassword',
     component: ResetPasswordComponent,
     data: {
-      title: 'Reset Password Page'
+      title: 'ResetPassword Page'
     }
   },
   {
@@ -83,8 +80,37 @@ export const routes: Routes = [
        component:DashboardComponent,
       },
       {
-      path:'*',
+      path:'',
       loadChildren: () => import('./views/admin/admin.module').then(m => m.AdminModule)
+      }
+    ]
+  },
+  {
+    path: 'HomePage',
+    component: NavHomePageComponent,
+    children: [
+      {
+       path:'',
+       component:HomePageComponent,
+      },
+      {
+      path:'',
+      loadChildren: () => import('./views/home-page/home-page.module').then(m => m.HomePageModule)
+      }
+    ]
+  },
+  {
+    path: 'home',
+    component: NavMenuComponent,
+    canActivate:[AuthGuard],
+    children: [
+      {
+        path:'',
+        component:HomeComponent,
+       },
+      {
+      path:'',
+      loadChildren: () => import('./views/home/home.module').then(u => u.HomeModule)
       }
     ]
   },
