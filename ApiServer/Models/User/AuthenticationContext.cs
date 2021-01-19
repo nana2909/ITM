@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using APIServer.Models.User;
 
 namespace APIServer.Models.User
 {

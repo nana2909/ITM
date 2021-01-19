@@ -44,6 +44,7 @@ namespace APIServer.Controllers
         {
             return await _userManager.Users.ToListAsync();
         }
+
         [HttpGet]
         [Authorize(Roles ="Admin")]
         [Route("EditUser/{userName}")]
@@ -52,6 +53,7 @@ namespace APIServer.Controllers
             ApplicationUser model = await _userManager.FindByNameAsync(userName);
             return Ok(model);
         }
+
         [HttpPut]
         [Authorize(Roles = "Admin")]
         [Route("EditUser/{userName}")]

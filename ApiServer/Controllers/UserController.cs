@@ -86,7 +86,7 @@ namespace APIServer.Controllers
                 // Build the password reset link
                 //var passwordResetLink = Url.Action("ResetPassword", "User",
                 //    new { email = sendEmail, token = token.Result}, Request.Scheme);
-                var passwordResetLink = "http://localhost:4200/resetpassword?email=" + sendEmail + "&token=" + token.Result;
+                var passwordResetLink = "http://localhost:4200/#/resetpassword?email=" + sendEmail + "&token=" + token.Result;
 
 
                var message = new Message(new string[] { sendEmail }, "Reset Passwork Link",passwordResetLink,null );
