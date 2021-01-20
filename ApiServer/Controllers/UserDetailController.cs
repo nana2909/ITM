@@ -17,8 +17,11 @@ namespace APIServer.Controllers
     {
         private UserManager<ApplicationUser> _userManager;
         private IPasswordHasher<ApplicationUser> _passwordHasher;
-        public UserDetailController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher)
+        private AuthenticationContext _db;
+        
+        public UserDetailController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher,AuthenticationContext db)
         {
+            _db = db;
             _userManager = userManager;
             _passwordHasher = passwordHasher;
         }
@@ -33,10 +36,13 @@ namespace APIServer.Controllers
             {
                 user.FullName,
                 user.Email,
-                user.UserName
+                user.UserName,
+                user.AdmissionID
             };
         }
 
+        //For Admin 
+        //Get List of Users
         [HttpGet]
         [Authorize(Roles = "Admin")]
         [Route("ListUsers")]
@@ -45,6 +51,7 @@ namespace APIServer.Controllers
             return await _userManager.Users.ToListAsync();
         }
 
+        //Update user change Email or Fullname if requested
         [HttpGet]
         [Authorize(Roles ="Admin")]
         [Route("EditUser/{userName}")]
@@ -65,6 +72,7 @@ namespace APIServer.Controllers
             return await _userManager.UpdateAsync(model);
         }
 
+        //Delete User
         [HttpDelete]
         [Authorize(Roles = "Admin")]
         [Route("DeleteUser/{userName}")]
@@ -74,18 +82,90 @@ namespace APIServer.Controllers
             return await _userManager.DeleteAsync(model);
         }
 
-        [HttpGet]
-        [Authorize(Roles = "Student")]
-        [Route("ForStudent")]
-        public string GetForStudent()
+        //For Account Student
+        // Submit Admission into account
+        [HttpPut]
+        [Authorize]
+        [Route("PutUserAdmission/{AdmissionID}")]
+        public async Task<Object> PutUserAdmission(string AdmissionID)
         {
-            return "Web method for Student";
+            var admission = await _db.Admissions.FindAsync(AdmissionID);
+            if (admission != null){
+                string userId = User.Claims.First(c => c.Type == "UserID").Value;
+                var user = await _userManager.FindByIdAsync(userId);
+                if (!user.Email.Equals(admission.StudentEmail, StringComparison.Ordinal))
+                {
+                    return BadRequest("Invalid Email!");
+                }
+                else
+                {
+                    if (admission.StatusID == 1)
+                    {
+                        user.AdmissionID = admission.AdmissionID;
+                        return await _userManager.UpdateAsync(user);
+                    }
+                    else
+                    {
+                        return BadRequest("Invalid Admission!");
+                    }
+                }
+            } else
+            {
+                return NotFound("Not Found!");
+            }
+            
         }
 
+        //Get Admission
         [HttpGet]
         [Authorize]
-        [Route("UpdateUserDetail")]
-        public async Task<Object> UpdateUserDetail()
+        [Route("GetUserAdmission")]
+        public async Task<Object> GetUserAdmission()
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user.AdmissionID != null)
+            {
+                var admission = await _db.Admissions.FindAsync(user.AdmissionID);
+                return new {
+                    admission.AdmissionID,
+                    admission.ClassObtained,
+                    admission.DoB,
+                    admission.ExCenter,
+                    admission.ExEnrollmentNumber,
+                    admission.ExField,
+                    admission.ExMarkSecured,
+                    admission.ExStream,
+                    admission.ExUniversity,
+                    admission.FatherName,
+                    admission.FieldCode,
+                    admission.Gender,
+                    admission.MotherName,
+                    admission.OptionalSubjectID,
+                    admission.OutOfDate,
+                    admission.PermanentAddress,
+                    admission.ResidentialAddress,
+                    admission.SpecializedSubjectID,
+                    admission.SportsDetails,
+                    admission.StatusID,
+                    admission.StreamCode,
+                    admission.StudentEmail,
+                    admission.StudentName,
+                    admission.tbAdmissionStatus,
+                    admission.tbField,
+                    admission.tbOpSubject,
+                    admission.tbSpeSubject,
+                    admission.tbStream,
+                };
+            }
+            return NotFound("Not Found!");
+        }
+
+        //Update User Account
+        [HttpGet]
+        [Authorize]
+        [Route("UpdateAccount")]
+        public async Task<Object> UpdateUserDetail(ApplicationUser model)
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
@@ -93,7 +173,7 @@ namespace APIServer.Controllers
         }
         [HttpPut]
         [Authorize]
-        [Route("UpdateUserDetail")]
+        [Route("UpdateAccount")]
         public async Task<Object> UpdateUserDetail(User model)
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
@@ -107,5 +187,6 @@ namespace APIServer.Controllers
             IdentityResult result = await _userManager.UpdateAsync(user);
             return Ok(result);
         }
+        
     }
 }

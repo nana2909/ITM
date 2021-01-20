@@ -4,14 +4,16 @@ using APIServer.Models.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace APIServer.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    partial class AuthenticationContextModelSnapshot : ModelSnapshot
+    [Migration("20210119053315_Update")]
+    partial class Update
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -645,13 +647,8 @@ namespace APIServer.Migrations
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
-                    b.Property<string>("AdmissionID")
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(150)");
-
-                    b.HasIndex("AdmissionID");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -780,15 +777,6 @@ namespace APIServer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("APIServer.Models.User.ApplicationUser", b =>
-                {
-                    b.HasOne("APIServer.Models.Admission.tbAdmission", "Admission")
-                        .WithMany()
-                        .HasForeignKey("AdmissionID");
-
-                    b.Navigation("Admission");
                 });
 
             modelBuilder.Entity("APIServer.Models.Admission.tbAdmissionStatus", b =>
