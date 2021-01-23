@@ -3,6 +3,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, Validators, FormGroup,FormControl } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { map} from 'rxjs/operators';
+import * as moment from 'moment';
 @Injectable({
   providedIn: 'root'
 })
@@ -107,6 +108,51 @@ export class UserService {
   getUserProfile(){
     return this.http.get(this.BaseURI+'/UserDetail');
   }
+
+    //Admission
+  // Create Admission Model
+  admissionModel = this.fb.group({
+    AdmissionID : ['Create'],
+    StudentName : ['',Validators.required],
+    StudentEmail : [null,[Validators.required,Validators.email]],
+    FatherName : ['',Validators.required],
+    MotherName : ['',Validators.required],
+    DoB : ['',Validators.required],
+    Gender: ['',Validators.required],
+    ResidentialAddress: ['',Validators.required],
+    PermanentAddress: ['',Validators.required],
+    StreamCode: ['',Validators.required],
+    FieldCode: ['',Validators.required],
+    SportsDetails: [''],
+    StatusID: ['',Validators.required],
+    ExUniversity: ['',Validators.required],
+    ExEnrollmentNumber: ['',Validators.required],
+    ExCenter: ['',Validators.required],
+    ExStream: ['',Validators.required],
+    ExField: ['',Validators.required],
+    ExMarkSecured: ['',Validators.required],
+    OutOfDate: ['',Validators.required],
+    ClassObtained: ['',Validators.required],
+    SpecializedSubjectID: ['',Validators.required],
+    OptionalSubjectID: ['',Validators.required],
+});
+
+submitAdmision() {
+this.admissionModel.value.DoB = moment(this.admissionModel.value.DoB).format('YYYY-MM-DDTHH:mm');
+this.admissionModel.value.OutOfDate = moment(this.admissionModel.value.OutOfDate).format('YYYY-MM-DDTHH:mm');
+console.log(this.admissionModel.value);
+
+return this.http.post(this.BaseURI + '/Admission/SubmitAdmission', this.admissionModel.value).pipe(
+  map((result) => { 
+    console.log(result);
+  },
+      (error) => { 
+        console.log(error)
+      }
+    )
+  );
+}
+
 }
 
   
