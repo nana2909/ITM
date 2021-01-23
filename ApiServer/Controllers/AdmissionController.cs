@@ -4,12 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using APIServer.Models.Admission;
 using APIServer.Service;
@@ -184,6 +178,16 @@ namespace APIServer.Controllers
                 return Ok("Delete Success!");
             }
             return NotFound();
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("GetAllAdmissions")]
+        //POST: api/Admission/GetAllAdmissions
+        public async Task<ICollection<tbAdmission>> GetAllAdmissions()
+        {
+            var Admissions = await db.Admissions.Where(x => x.StatusID == 0).ToListAsync();
+            return Admissions;
         }
 
         [HttpPut]
