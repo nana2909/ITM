@@ -17,6 +17,7 @@ import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
 import { UserInfoComponent } from './views/home/user-detail/user-info/user-info.component';
+import { AdmissionStudentComponent } from './views/admission-student/admission-student.component';
 
 export const routes: Routes = [
   {
@@ -44,6 +45,11 @@ export const routes: Routes = [
     data: {
       title: 'Login Page'
     }
+  },
+  {
+    path: 'admission',
+    component: AdmissionStudentComponent,
+    // canActivate: [AuthGuard]
   },
   {
     path: 'register',

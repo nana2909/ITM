@@ -20,6 +20,7 @@ import { NgModule } from '@angular/core';
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
+import { AdmissionDetailComponent } from './admission/admission-detail/admission-detail.component';
 
 @NgModule({
   imports: [
@@ -42,8 +43,9 @@ import { AdminRoutingModule } from './admin-routing.module';
     StudentAccountComponent,
     SubjectsComponent,
     EditStudentAccountComponent,
+    AdmissionDetailComponent,
     
   ],
-entryComponents:[EditStudentAccountComponent],
+entryComponents:[EditStudentAccountComponent,AdmissionDetailComponent],
 })
 export class AdminModule { }
