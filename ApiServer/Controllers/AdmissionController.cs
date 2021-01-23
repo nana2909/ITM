@@ -4,11 +4,20 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using APIServer.Models.Admission;
 using APIServer.Service;
 using APIServer.Models.User;
 using Microsoft.EntityFrameworkCore;
+using APIServer.Models.EmailService;
+using Microsoft.Extensions.Logging;
+using System.Security.Claims;
 
 namespace APIServer.Controllers
 {
@@ -17,9 +26,15 @@ namespace APIServer.Controllers
     public class AdmissionController : ControllerBase
     {
         private AuthenticationContext db;
-        public AdmissionController(AuthenticationContext _db)
+        private readonly ILogger<AdmissionController> logger;
+        private readonly IEmailService emailService;
+        public AdmissionController(AuthenticationContext _db,
+                                    ILogger<AdmissionController> _logger,
+                                        IEmailService _emailService)
         {
             db = _db;
+            logger = _logger;
+            emailService = _emailService;
         }
         [HttpPost]
         //[Authorize]
@@ -217,6 +232,38 @@ namespace APIServer.Controllers
                     await db.SaveChangesAsync();
                     return Ok("Edit Success!");
                 }
+            }
+            return NotFound();
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("ConfirmlAdmission")]
+        //POST: api/Admission/ConfirmlAdmission
+        public async Task<IActionResult> ConfirmlAdmission(AdmissionDTO model)
+        {
+            var ob = (from x in db.Admissions where x.AdmissionID.Equals(model.AdmissionID) select x).SingleOrDefault();
+            if (ob != null)
+            {
+                if (ob.StatusID == model.StatusID) return BadRequest("Nothing Change!");
+                ob.StatusID = model.StatusID;
+
+                if (await db.SaveChangesAsync() > 0)
+                {
+                    string content = "";
+                    if (model.StatusID == 1)
+                    {
+                        content = "<p>Your Admission key:" + model.AdmissionID + "</p><p><a href=" + "http://localhost:4200/Admission" + ">Click here to check Admission</a></p>";
+                    }
+                    if (model.StatusID == -1)
+                    {
+                        content = "<p>Your Admission has reject by admin!";
+                    }
+                    var message = new Message(new string[] { ob.StudentEmail }, "WELCOME TO ITM COLLEGE!", content, null);
+
+                    await emailService.SendEmailAsync(message);
+                }
+                return Ok("OK");
             }
             return NotFound();
         }
