@@ -11,8 +11,16 @@ export class AdminService {
 
   constructor(private fb:FormBuilder, private http:HttpClient) { }
   readonly BaseURI='http://localhost:51373/api';
- //admission
+ 
+  //admission
+ ConfirmAdmission(formData){
+  console.log(formData);
+  return this.http.post(this.BaseURI + "/Admission/ConfirmlAdmission", formData);
+}
 
+GetAllAdmission(){
+  return this.http.get(this.BaseURI + "/Admission/GetAllAdmissions");
+}
  //contactUs
 
  //courses

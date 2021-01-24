@@ -1,0 +1,103 @@
+        <h1 class="register-heading">Admission Form</h1>
+        <!-- BEGIN FORM -->
+        <form [formGroup]="admissionDetails" autocomplete="on" >
+          <div class="form-row">
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="studentEmail">Student Email</label>
+                    <input class="form-control" id="studentEmail" formControlName="studentEmail" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Student Name</label>
+                    <input class="form-control" formControlName="studentName" placeholder="Student Name..">
+                </div>
+                  <div class="form-group">
+                    <label for="">Father Name</label>
+                    <input class="form-control" formControlName="fatherName" placeholder="Father Name..">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Mother Name</label>
+                    <input class="form-control" formControlName="motherName" placeholder="Mother Name..">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Date of birth</label>
+                    <div class="row">
+                      <div class="col">
+                        <input class="form-control" type="date" formControlName="doB" placeholder="Date of birth">
+                      </div>
+                      <div class="col">
+                        <div class="maxl">
+                          <label class="radio inline"> 
+                            <input type="radio" checked="true" [value]=true formControlName="gender" >
+                            <span> Male </span> 
+                          </label>
+                          <label class="radio inline"> 
+                            <input type="radio" [value]=false formControlName="gender">
+                            <span>Female </span> 
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="">Residential Address</label>
+                    <input type="text" class="form-control" formControlName="residentialAddress" placeholder="Residential Address">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Permanent Address</label>
+                    <input type="text" class="form-control" formControlName="permanentAddress" placeholder="Permanent Address">
+                  </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="">Stream Code</label>
+                    <input type="text" class="form-control" formControlName="streamCode" placeholder="Stream Code">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Field Code</label>
+                    <input type="text" class="form-control" formControlName="fieldCode" placeholder="Field Code">
+                  </div>
+                  <div class="form-group">
+                    <label for="">Sports Details</label>
+                      <input type="text" class="form-control" formControlName="sportsDetails" placeholder="Sports Detail">
+                  </div>
+                  <div class="form-group">
+                    <label for="">exUniversity</label>
+                    <input type="text" class="form-control" formControlName="exUniversity" placeholder="Ex University">
+                  </div>
+                  <div class="form-group">
+                    <label for="">exEnrollmentNumber</label>
+                    <input type="text" class="form-control" formControlName="exEnrollmentNumber" placeholder="Ex EnrollmentNumber">
+                  </div>
+                  <div class="form-group">
+                    <label for="">exCenter</label>
+                    <input type="text" class="form-control" formControlName="exCenter" placeholder="Ex Center">
+                  </div>
+                  <div class="form-group">
+                    <label for="">exStream</label>
+                    <input type="text" class="form-control" formControlName="exStream" placeholder="Ex Stream">
+                  </div>
+                  <div class="form-group">
+                    <label for="">exField</label>
+                    <input type="text" class="form-control" formControlName="exField" placeholder="Ex Field">
+                  </div>
+                  <div class="form-group">
+                    <label for="">exMarkSecured</label>
+                    <input type="number" class="form-control" formControlName="exMarkSecured" placeholder="Ex Mark Secured">
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col">
+                        <label for="">Out of Date</label>
+                        <input type="date" class="form-control" formControlName="outOfDate" placeholder="Out Of Date">
+                      </div>
+                      <div class="col">
+                        <label for="">Class Obtained</label>
+                        <input class="form-control" formControlName="classObtained" placeholder="Class Obtained">
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+        </form>
+        <!-- END FORM -->

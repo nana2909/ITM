@@ -22,6 +22,7 @@ import { MatDialogModule} from '@angular/material/dialog';
 import { AdminRoutingModule } from './admin-routing.module';
 import { FacultyAddComponent } from './faculty/faculty-add.component';
 import { DataTablesModule } from 'angular-datatables';
+import { AdmissionDetailComponent } from './admission/admission-detail/admission-detail.component';
 
 @NgModule({
   imports: [
@@ -46,8 +47,9 @@ import { DataTablesModule } from 'angular-datatables';
     SubjectsComponent,
     EditStudentAccountComponent,
     FacultyAddComponent,
+    AdmissionDetailComponent,
     
   ],
-entryComponents:[EditStudentAccountComponent],
+entryComponents:[EditStudentAccountComponent,AdmissionDetailComponent],
 })
 export class AdminModule { }

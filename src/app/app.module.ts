@@ -55,6 +55,7 @@ import { ForgotPasswordComponent } from './views/forgot-password/forgot-password
 import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
 import { RouterModule, Routes } from '@angular/router';
 import { DataTablesModule } from 'angular-datatables';
+import { AdmissionStudentComponent } from './views/admission-student/admission-student.component';
 const routes: Routes = [];
 @NgModule({
   imports: [
@@ -100,6 +101,8 @@ const routes: Routes = [];
     ForgotPasswordComponent,
     ResetPasswordComponent,
    
+    AdmissionStudentComponent,
+    
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},

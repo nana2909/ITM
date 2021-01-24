@@ -9,10 +9,10 @@ import { FacilitiesComponent } from './facilities/facilities.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { DepartmentComponent } from './department/department.component';
-import { AdmissionComponent } from './admission/admission.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdmissionComponent } from './admission/admission.component';
 
 
 const routes: Routes = [
