@@ -1,7 +1,5 @@
 import { UserAdmissionComponent } from './user-detail/user-admission/user-admission.component';
 import { UserInfoComponent } from './user-detail/user-info/user-info.component';
-import { UserDetailComponent } from './user-detail/user-detail.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { BehaviorSubject } from 'rxjs';
 import { UserService } from './../../shared/user.service';
 
 @Component({
@@ -9,6 +10,7 @@ import { UserService } from './../../shared/user.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit { 
+  
   loginModel={
     UserName:'',
     Password:''
@@ -17,13 +19,16 @@ export class LoginComponent implements OnInit {
   
     ngOnInit() {
     localStorage.removeItem('token');
-      if (localStorage.getItem('token')!=null)
+      if (localStorage.getItem('token')!=null){
         this.router.navigateByUrl('/home');
+      }
+        
     }
   
     onSubmit(){
       this.service.login().subscribe(
         (res:any)=>{
+          this.service.loggedIn.next(true);
           localStorage.setItem('token',res.token);
           this.router.navigateByUrl('/Admin');
         },

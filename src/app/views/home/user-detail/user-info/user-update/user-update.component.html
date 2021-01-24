@@ -1,0 +1,26 @@
+<fieldset class="border p-2">
+  <legend class="w-auto">Edit Account</legend>
+  <form [formGroup]="userUpdateForm"  *ngIf="userUpdateForm" (ngSubmit)="onSubmit()" >
+    <div class="form-group mx-4">
+        <label>Account Name</label>
+        <input class="form-control" formControlName="userName" name="userName" diabled>
+    </div>
+    <div class="form-group mx-4">
+        <label>FullName</label>
+        <input class="form-control"  formControlName="FullName" name="FullName" required>
+        <label class="text-danger" *ngIf="userUpdateForm.get('FullName')?.touched && userUpdateForm.get('FullName')?.errors?.required">This field is mandatory.</label>
+    </div>
+    <div class="form-group mx-4">
+        <label>Email</label>
+        <input class="form-control" formControlName="Email" name="Email" required>
+        <label class="text-danger" *ngIf="userUpdateForm.get('Email')?.touched && userUpdateForm.get('Email')?.errors?.required">This field is mandatory.</label>
+        <label class="text-danger" *ngIf="userUpdateForm.get('Email')?.touched && userUpdateForm.get('Email')?.errors?.email">Invalid email address!</label>
+    </div>
+    <div class="form-group">
+        <button  type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!userUpdateForm.valid" style="letter-spacing:3px;"><i class="fa fa-pencil"> Submit</i></button>
+    </div>
+  </form>
+</fieldset>
+
+    
+

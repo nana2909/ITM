@@ -29,26 +29,32 @@ ul {
   text-transform: uppercase; 
 }
 .lighter {
-   font-weight: lighter; 
+  font-weight: lighter; 
 }
 .op-7 {
-    opacity: 0.7; 
+  opacity: 0.7; 
+}
+.mline {
+  position: relative;
+  width: 50%;
+  margin: 0.5rem auto;
+  height: 2px; 
 }
 
 .font-title {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-family: "Montserrat", sans-serif;
-    font-weight: lighter; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-family: "Montserrat", sans-serif;
+  font-weight: lighter; 
 }
   
-  .font-body, body {
-    font-family: "Lato", sans-serif; 
+.font-body {
+  font-family: "Lato", sans-serif; 
 }
 .footer-style{
     background-size:cover; 
-    background-position:20% 80%;
+    background-position:20% 40%;
     background-repeat:'no-reapeat';
     width:auto;
     background-image:url('../../../../assets/img/bg/forest.jpeg');

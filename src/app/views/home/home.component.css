@@ -5,6 +5,9 @@
     background-repeat: no-repeat;
     background-position: center; 
 }
+ul{
+    list-style-type: none;
+}
 .bg-dark-gradient {
     background: #485563;
     /* fallback for old browsers */
@@ -22,6 +25,9 @@
     background-repeat: no-repeat;
     background-position: center; 
 }
+.cwhite {
+    color: white; 
+}
 .align-center {
     display: flex;
     align-items: center;
@@ -32,11 +38,11 @@
 }
 .styled-card {
     background: #fff;
-    right: -5px;
+    right: -50px;
     z-index: 1;
     left: 5rem;
-    top: 80%;
-    transform: translate(0, -50%); 
+    top: 10%;
+    transform: translate(0, -40%); 
 }
 .font-title {
     -webkit-font-smoothing: antialiased;
@@ -45,3 +51,84 @@
     font-family: "Montserrat", sans-serif;
     font-weight: bold; 
 }
+.font-handwritten {
+    font-family: "Permanent Marker", cursive; 
+}
+.p-absolute {
+    position: absolute; 
+}
+.p-relative {
+    position: relative; 
+}
+.border-white {
+    border-color: white; 
+}
+.cprimary {
+    color: #007BFF; 
+}
+.cdanger {
+    color: #dc3545; 
+}
+.cdark {
+    color: #343A40; 
+}
+.inline {
+    display: inline-block; 
+}
+.showcase-style .card {
+    min-height: 25rem; 
+}
+.showcase-style .card:hover .showcase-outline {
+  top: -1rem;
+  left: 1rem;
+  transition: all ease-in 0.2s; 
+}
+.showcase-style .showcase-content {
+    position: relative;
+    display: flex;
+    flex: 1; 
+}
+.btn-warning {
+    background-color: rgba(255, 193, 7, 0.9); }
+    .btn-warning:hover {
+      background-color: #ffc107; }
+.background-cover {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; 
+}
+.bolder {
+    font-weight: bolder; 
+}
+.showcase-style .showcase-content .showcase-outline {
+    transition: all ease-in 0.2s;
+    position: absolute;
+    top: 0rem;
+    left: 0rem;
+    border-width: 3px;
+    border-style: solid;
+    width: 100%;
+    height: 100%; 
+}
+.showcase-style .showcase-content .showcase-outline h3 {
+    top: 85%; 
+}
+.material-shadow {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23); 
+}
+.card-blog-2 .card-header {
+    min-height: 15rem; 
+}
+.mline {
+    position: relative;
+    width: 50%;
+    margin: 0.5rem auto;
+    height: 2px; 
+}
+.flat {
+    border-radius: 0px !important; 
+}
+  
+  
+
+  

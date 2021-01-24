@@ -1,168 +1,272 @@
+<div class="container mb-5 mt-5" id="profile">
+  <div class="card">
+    <div class="card-header">
+      <h5 class="float-left mt-2">PROFILE DETAILS</h5>
+      <h5 class="badge badge-dark badge-outline float-right">{{this.userDetail.userName}} </h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-9">
+          <fieldset class="border p-2">
+            <legend class="w-auto">Personal Information</legend>
+            <div class="row mb-3">
+              <div class="col-md-10">
+                <div class=" mb-0">
+                  <label for="FullName" class="label">Full name<span>*</span></label>
+                  <div class="controls">
+                    <input value ="{{this.userDetail.fullName}}" disabled/>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <div class="">
+                    <label for="Email" class="Label">Email<span>*</span></label>
+                    <div class="">
+                      <input value="{{this.userDetail.email}}" disabled/>
+                    </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="">
+                  <label for="UserName"  class="form-control-label">UserName<span>*</span>
+                  </label>
+                  <div class="">
+                    <input value="{{this.userDetail.userName}}" disabled/>
+                  </div>
+                </div>
+              </div>
+            </div>
+              <!--Password-->
+            <div class="row mb-3">
+              <div class="col-md-3">
+                <div class="">
+                  <label for="Password" class="label ">Password</label>
+                  <div class="">
+                    <button  class="btn btn-outline-primary" (click)="onChangePW()" ><i class="fa fa-lock fa-md mx-1"></i>Change password </button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3 pr-2">
+                <label for="Password" class="label">*</label>
+                <div class="">
+                  <div class="">
+                    <button  class="btn btn-outline-success" (click)="onUpdate()" ><i class="fa fa-edit fa-md mx-1"></i>Update Profile</button>
+                  </div>
+                </div>
+              </div>
 
- <div class="container mb-5 mt-5" id="profile">
-    <div class="card">
-      <div class="card-header">
-        <h5 class="float-left ">PROFILE DETAILS
-          <sup>
-            <span class="badge badge-primary ml-1" ></span>
-          </sup>
-        </h5>
-        <h5 class="badge badge-dark badge-outline float-right" id="fullName"></h5>
-      </div>
-      <div class="card-body">
-        <!-- <form method="POST" (ngSubmit)="onSubmit()"> -->
-          <div class="row">
-            <div class="col-lg-9">
+            </div>          
+          </fieldset>
+        </div>
+          <div class="col-lg-3">
+            <fieldset class="border p-3 mx-2 mt-4">
+              <div class="col-12">
+                <form action="">
+                <div class="form-group" >
+                  <img [src]="createImgPath(this.userDetail.imgUrl)"id="profpic" class="img-thumbnail mx-2 my-2"  alt=""/>
+                  <div class="mt-2">
+                    <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                    <a (click)="onCreate()" class="btn btn-md btn-success text-white">Change Photo</a>
+                  </div>
+                </div>
+              </form>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+          <div class="row mt-3" *ngIf="!(this.userDetail.admissionID==null)">
+            <div class="col-lg-12">
               <fieldset class="border p-2">
-                <legend class="w-auto">Personal Information</legend>
+                <legend class="w-auto">Admission Information</legend>
                 <div class="row mb-3">
                   <div class="col-md-10">
                     <div class=" mb-0">
-                      <label for="firstname" class="form-control-label">
-                        Full name<span>*</span>
-                      </label>
-                      <div class="controls">
-                        <input [value]="" class="form-control"  id="firstname" placeholder="eg: John" required type="text"/>
+                      <label for="admissionID" class="label">Admission ID<span>*</span></label>
+                      <div class="">
+                        <input  disabled value="{{this.userAdmission.admissionID}}" />
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="row">
+                <div class="row mb-3">
                   <div class="col-md-6">
                     <div class="">
-                      <label for="email" class="form-control-label">Email<span>*</span>
+                      <label for="email" class="label">Email<span>*</span>
                       </label>
-                      <div class="controls ">
-                        <input class="form-control"  [value]=""  id="email" [attr.disabled]="true"  required="required" type="email"/>
+                      <div class=" ">
+                        <input disabled  value="{{this.userAdmission.studentEmail}}"/>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="">
-                      <label for="username"  class="form-control-label">Username<span>*</span>
+                      <label for="gender"  class="label">Gender<span></span>
                       </label>
-                      <div class="controls">
-                        <input class="form-control" id="username" [attr.disabled]="true" required="required" type="text" />
+                      <div class="">
+                        <input disabled  class="" value="{{('this.userAdmission.gender' ? 'Male' : 'Female')}}" />
                       </div>
                     </div>
                   </div>
                   <div class="col-md-3">
                     <div class="">
-                      <label for="phone" class="form-control-label">Phone<span>*</span>
+                      <label for="dob" class="label">Date of Birth<span>*</span>
                       </label>
-                      <div class="controls">
-                        <input class="form-control" id="phone"   required="required" type="text" placeholder="(123)-456-7890"/>
+                      <div class="">
+                        <input disabled class=""  value="{{this.userAdmission.doB | date : 'mediumDate'}}" />
                       </div>
                     </div>
                   </div>
                 </div>
-                <!--Birthday-->
-                <div class="row">
+                <div class="row mb-3">
                   <div class="col-md-12">
                     <div class="">
-                      <label for="birthdate" class="form-control-label ">Birthday
-                      <span>
-                        <a id="datepickeDob" (click)="editDob()"><span class="badge badge-warning ml-1">EDIT</span></a>
-                      </span>
-                      </label>
+                      <label for="fullName" class="label ">FullName</label>
                       <div class="controls">
-                        <input type="text" id="birthdate" [attr.disabled]="true" [value]=""  class="form-control" >
+                        <input disabled  value="{{this.userAdmission.studentName}}" >
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-md-6">
+                <div class="row mb-3">
+                  <div class="col-md-8">
                     <div class="">
-                      <label for="gender" class="form-control-label ">Gender (optional)
-                        <span>
-                        <a id="genderPicker" (click)="editGender()"><span class="badge badge-warning ml-1">EDIT</span></a>
-                      </span>
-                      </label>
-                      <div class="controls ">
-                        <select [attr.disabled]="true"  class="form-control" id="gender">
-                          <!-- <option [value]="ProfileDetails.gender" [disabled]="true" -->
-                                  <!-- selected>{{(ProfileDetails.gender == '' || ProfileDetails.gender == null)  ? 'Select Gender' : ProfileDetails.gender}} -->
-                          <!-- </option> -->
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="">
-                      <label for="displayname" class="form-control-label">Display Name<span>*</span>
-                      </label>
-                      <div class="controls ">
-                        <input class="form-control" id="displayname"  required="required" type="text" placeholder="General King Koba" [value]=""/>
+                      <label for="fatherName" class="label ">Father Name</label>
+                      <div class="controls">
+                        <input disabled  value="{{this.userAdmission.fatherName}}" >
                       </div>
                     </div>
                   </div>
                 </div>
-              </fieldset>
-            </div>
-            <div class="col-lg-3">
-              <fieldset class="border p-3 mt-4">
-                <div class="col-12">
-                  <div class="form-group" id="profpic">
-                    <img [src]="" id="imgProfile"  class="img-thumbnail"  alt=""/>
-                    <div class="mt-2">
-                      <input type="file" (change)="onFileChanged($event)" id="profpicfile"  name="profpicfile"/>
-                      <a (click)="triggerInput()" class="btn btn-sm btn-success w-100 text-white">Change Photo</a>
+                <div class="row mb-3">
+                  <div class="col-md-8">
+                    <div class="">
+                      <label for="motherName" class="label ">Mother Name</label>
+                      <div class="controls">
+                        <input disabled  value="{{this.userAdmission.motherName}}" >
+                      </div>
                     </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="">
+                      <label for="residentialAddress" class="form-control-label ">Residential Address</label>
+                      <div class="controls">
+                        <input disabled value="{{this.userAdmission.residentialAddress}}" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-12">
+                    <div class="">
+                      <label for="permanentAddress" class="form-control-label ">Permanent Address</label>
+                      <div class="controls">
+                        <input disabled value="{{this.userAdmission.permanentAddress}}" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="col-md-8">
+                    <div class="">
+                      <label for="sportsDetails" class="label ">Sports</label>
+                      <div class="controls">
+                        <input disabled value="{{this.userAdmission.sportsDetails}}" >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="exUniversity" class="label ">Ex University </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.exUniversity}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exCenter" class="label ">Ex Center </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.exCenter}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exStream" class="label ">Ex Stream </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.exStream}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exField" class="label ">Ex Field </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.exField}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exEnrollmentNumber" class="label ">Ex EnrollmentNumber  </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.exEnrollmentNumber}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="exMarkSecured" class="label ">Ex MarkSecured  </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.exMarkSecured}}"  >
+                      </div>
+                    </div>
+
+
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="classObtained" class="label ">Class Obtained</label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.classObtained}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="outOfDate" class="label ">Out Of Date  </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.outOfDate | date : 'mediumDate'}}"  >
+                      </div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="fieldCode" class="label ">Field Code  </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.fieldCode}}"  >
+                      </div>
+                    </div>                    
+                    <div class="mb-3">
+                      <label for="streamCode" class="label ">Stream Code  </label>
+                      <div class=" ">
+                        <input disabled value="{{this.userAdmission.streamCode}}"  >
+                      </div>
+                    </div>
+
+
+
                   </div>
                 </div>
               </fieldset>
             </div>
           </div>
+
           <div class="row mt-2">
             <div class="col">
               <fieldset class="border p-2">
                 <legend class="w-auto"></legend>
-                <div class="form-check-inline">
                   <label>
-                    <input  type="checkbox" class="form-check-input"  >Terms Accepted
+                    Terms ...
                   </label>
-  
-                </div>
-                <div class="form-check-inline">
-                  <label>
-                    <input type="checkbox" class="form-check-input" [attr.disabled]="true" >Email Verified
-                  </label>
-                </div>
-                <!-- <div *ngIf="isTermsAccepted.touched && isTermsAccepted.errors" class="text-danger"> -->
-                  <!-- <span *ngIf="isTermsAccepted.hasError('required')">Please accept the terms</span> -->
-                <!-- </div> -->
               </fieldset>
             </div>
           </div>
-          <div class="pt-3">
-            <div>
-              <div class="text-center">
-                <button type="submit" class="btn btn-primary btn-custom-class">Save Changes</button>
-              </div>
-            </div>
-          </div>
-        <!-- </form> -->
       </div>
     </div>
   </div>
+
   
-  <!-- MODAL FOR REGISTRATION ERRORS -->
-  <div class="modal" id="errorModal"  role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title pull-left">{{modalTitle}}</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <p class="list-group-item active">{{modalMessage}}</p>
-          <ul class="list-group" *ngFor="let error of errorList">
-            <li class="list-group-item"><i class="fas fa-times text-danger mr-2"></i>{{error}}</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>

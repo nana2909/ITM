@@ -42,11 +42,10 @@ export class EditStudentAccountComponent implements OnInit {
       params => {
         this.service.EditUser(this.editStudentForm.value,this.data.userName).subscribe(
           (res:any)=>{     
-            if(res.succeeded){
-              
+            if(res.succeeded){            
               this.dialogRef.close();
               this.router.navigateByUrl('/Admin/studentAccount');
-              this.toastr.success(' Success!','Update user successful.');
+              this.toastr.success(' Success!','Update user successfully.');
               location.reload();
             } else {
               res.errors.forEach(element => {

@@ -1,0 +1,43 @@
+<div class="animated fadeIn">
+    <div class="row">
+      <div class="col-lg-12 mx-auto">
+        <div class="card">
+          <div class="card-body p-4">
+            <form [formGroup]="service.facultyForm" autocomplete="off" (submit)="onSubmit()">
+              <h1>Add New Faculty</h1>
+              <p class="text-muted">Futher details can be collected in HumanResources!</p>
+              <input class="form-control" formControlName="FacultyID" hidden>   
+              <div class="form-group mb-3">
+                <label class="">Name</label>
+                <input class="form-control" formControlName="Name" required placeholder="eg: John..">   
+                <label class="text-danger" *ngIf="service.facultyForm.get('Name')?.touched && service.facultyForm.get('Name')?.errors?.required">This field is mandatory.</label>
+              </div>
+              <div class="form-group mb-3">
+                <label class="">Date of Birth</label>
+                <input class="form-control" type="date" formControlName="DoB" required placeholder="eg: 23/01/1990..">   
+                <label class="text-danger" *ngIf="service.facultyForm.get('DoB')?.touched && service.facultyForm.get('DoB')?.errors?.required">This field is mandatory.</label>
+              </div>
+              <div class="form-group mb-3">
+                <label class="">Degree</label>
+                <input class="form-control" formControlName="Degree" required placeholder="eg: Master of..">   
+                <label class="text-danger" *ngIf="service.facultyForm.get('Degree')?.touched && service.facultyForm.get('Degree')?.errors?.required">This field is mandatory.</label>
+              </div>
+              <div class="form-group mb-3">
+                <label class="">Department</label>
+                <input class="form-control" formControlName="DepartmentID" required placeholder="eg: 1..">   
+                <label class="text-danger" *ngIf="service.facultyForm.get('DepartmentID')?.touched && service.facultyForm.get('DepartmentID')?.errors?.required">This field is mandatory.</label>
+              </div>
+              <div class="form-group mb-3">
+                <label class="">Image(Optional)</label>
+                <input class="form-control" formControlName="ImgUrl">   
+                <label class="text-danger" *ngIf="service.facultyForm.get('ImgUrl')?.touched && service.facultyForm.get('ImgUrl')?.errors?.required">This field is mandatory.</label>
+              </div>
+
+            <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!service.facultyForm.valid" style="letter-spacing:3px;">Create new Account</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+

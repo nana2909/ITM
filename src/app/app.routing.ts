@@ -16,7 +16,6 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
-import { UserInfoComponent } from './views/home/user-detail/user-info/user-info.component';
 
 export const routes: Routes = [
   {

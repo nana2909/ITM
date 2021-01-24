@@ -1,3 +1,4 @@
+import { FacultyAddComponent } from './faculty/faculty-add.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { StudentAccountComponent } from './student-account/student-account.component';
 import { StreamsComponent } from './streams/streams.component';
@@ -63,12 +64,25 @@ const routes: Routes = [
           title: 'Facilities'
         }
       },
+      
+      
+      
+      
       {
-        path: 'faculty',
-        component: FacultyComponent,
+        path: 'faculty',       
         data: {
           title: 'Faculty'
-        }
+        },
+        children:[
+          {
+            path:'',
+            component: FacultyComponent,
+          },
+          {
+            path:'facultyAdd',
+            component: FacultyAddComponent
+          },
+        ]
       },
       {
         path: 'feedback',

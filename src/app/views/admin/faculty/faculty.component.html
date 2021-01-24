@@ -1,1 +1,87 @@
-<p>faculty works!</p>
+<div class="animated fadeIn">         
+<div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-user"></i> Faculty
+          <a href="" class="btn btn-outline-primary" [routerLink]="['facultyAdd']">Add New</a>
+        </div>
+        <div class="card-body">
+          <table datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions" class="table table-bordered table-striped table-sm">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Birthday</th>
+                <th>Degree</th>
+                <th>DepartmentID</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of List">
+                    <td>{{ item.facultyID }}</td>
+                    <td>{{ item.name }}</td>
+                    <td>{{ item.doB }}</td>
+                    <td>{{ item.degree }}</td>
+                    <td>{{ item.departmentID }}</td>
+                    <td>
+                       <a class="btn text-primary" ><i class="fa fa-edit fa-lg"></i></a>
+                      <a class="btn text-danger" ><i class="fa fa-trash fa-lg"></i></a>       
+                    </td>
+                  </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!--/.col-->
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

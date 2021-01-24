@@ -1,3 +1,4 @@
+import { UserService } from './../../../shared/user.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -8,15 +9,13 @@ import { Router } from '@angular/router';
 })
 export class NavMenuComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private service:UserService) { }
 
   ngOnInit(): void {
     
   }
-  
   onLogOut(){
-    localStorage.removeItem('token');
-    this.router.navigate(['login']);
+    this.service.logout();
   }
 
 }

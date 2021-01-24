@@ -54,6 +54,7 @@ import { HomeComponent } from './views/home/home.component';
 import { ForgotPasswordComponent } from './views/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
 import { RouterModule, Routes } from '@angular/router';
+import { DataTablesModule } from 'angular-datatables';
 const routes: Routes = [];
 @NgModule({
   imports: [
@@ -65,15 +66,23 @@ const routes: Routes = [];
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
+    DataTablesModule.forRoot(),
     MatDialogModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      maxOpened: 3,
+      preventDuplicates: true,
+      timeOut: 7000,
+      progressBar: true,
+      positionClass: "toast-bottom-right",
+    }),
     ChartsModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+
     RouterModule.forRoot(routes,{ useHash: true })
   ],
   declarations: [
@@ -90,7 +99,7 @@ const routes: Routes = [];
     DashboardComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
-    
+   
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
@@ -98,7 +107,7 @@ const routes: Routes = [];
      [CookieService]
   ],
   
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
 })
 export class AppModule { }
 //,

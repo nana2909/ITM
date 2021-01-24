@@ -7,20 +7,22 @@
           <i class="fa fa-user"></i> User
         </div>
         <div class="card-body">
-          <table class="table table-bordered table-striped table-sm">
+          <table datatable [dtTrigger]="dtTrigger" [dtOptions]="dtOptions"  class="table table-bordered table-striped table-sm">
             <thead>
+              <tr>
                 <th>UserAccount</th>
                 <th>Name</th>
                 <th>Email</th>
-                <th>Key Register</th>
+                <th>AdmissionID</th>
                 <th>Action</th>
+              </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let item of userDetails">
                     <td>{{item.userName}}</td>
                     <td>{{item.fullName}}</td>
                     <td>{{item.email}}</td>
-                    <td>key</td>
+                    <td>{{item.admissionID}}</td>
                     <td>
                        <a class="btn text-primary" (click)="openForEdit(item.userName)"><i class="fa fa-edit fa-lg"></i></a>
                       <a class="btn text-danger" (click)="onDelete(item.userName)"><i class="fa fa-trash fa-lg"></i></a>       
@@ -28,18 +30,6 @@
                   </tr>
             </tbody>
           </table>
-          <nav>
-            <ul class="pagination">
-              <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-              <li class="page-item active">
-                <a class="page-link" href="#">1</a>
-              </li>
-              <li class="page-item"><a class="page-link" href="#">2</a></li>
-              <li class="page-item"><a class="page-link" href="#">3</a></li>
-              <li class="page-item"><a class="page-link" href="#">4</a></li>
-              <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul>
-          </nav>
         </div>
       </div>
     </div>

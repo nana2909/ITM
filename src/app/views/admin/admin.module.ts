@@ -9,17 +9,19 @@ import { DepartmentComponent } from './department/department.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AdmissionComponent } from './admission/admission.component';
-import { MatDialogModule} from '@angular/material/dialog';
 import { EditStudentAccountComponent } from './student-account/edit-student-account.component';
 
 // Angular
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { MatDialogModule} from '@angular/material/dialog';
 
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
+import { FacultyAddComponent } from './faculty/faculty-add.component';
+import { DataTablesModule } from 'angular-datatables';
 
 @NgModule({
   imports: [
@@ -27,7 +29,8 @@ import { AdminRoutingModule } from './admin-routing.module';
     FormsModule,
     AdminRoutingModule,
     MatDialogModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DataTablesModule,
   ],
   declarations: [
     AdmissionComponent,
@@ -42,6 +45,7 @@ import { AdminRoutingModule } from './admin-routing.module';
     StudentAccountComponent,
     SubjectsComponent,
     EditStudentAccountComponent,
+    FacultyAddComponent,
     
   ],
 entryComponents:[EditStudentAccountComponent],

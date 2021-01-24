@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditStudentAccountComponent} from './edit-student-account.component';
 import { AdminService } from '../../../shared/admin.service';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { AdminService } from '../../../shared/admin.service';
   // styleUrls: ['./student-account.component.css']
 })
 export class StudentAccountComponent implements OnInit {
-  
+  title='datatables';
+  dtOptions:DataTables.Settings={};
+  dtTrigger: Subject<any> = new Subject();
   userDetails: any;
   constructor(
     private router: Router,
@@ -22,6 +25,13 @@ export class StudentAccountComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.dtOptions = {
+      paging:true,
+      searching:true,
+      pagingType: 'full_numbers',
+      pageLength: 5,
+      processing: true
+    };
     this.refreshList();
   }
   openForEdit(userName:string) {
@@ -34,7 +44,7 @@ export class StudentAccountComponent implements OnInit {
   }
 
   refreshList(){
-    this.service.getUserList().then(res=>this.userDetails= res);
+    this.service.getUserList().then(res=>{this.userDetails= res;this.dtTrigger.next();});
   }
   onDelete(userName:string){
     if (confirm('Are you sure to delete this account?')){

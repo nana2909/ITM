@@ -22,7 +22,21 @@ export class AdminService {
  //facilities
 
  //faculty
-
+ facultyForm=this.fb.group({
+  FacultyID : '',
+  Name:[null,Validators.required],
+  DoB: [null,Validators.required],
+  Degree:[null,Validators.required],
+  DepartmentID:[null,Validators.required],
+  ImgUrl:''
+  });
+ 
+ getFacultyList(){
+   return this.http.get(this.BaseURI+'/Faculty/ListFaculty').toPromise();
+ }
+ addFaculty(body){
+   return this.http.post(this.BaseURI+'/Faculty/CreateFaculty',body);
+ }
  //feedback
 
  //fields
