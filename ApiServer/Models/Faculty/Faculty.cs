@@ -13,8 +13,8 @@ namespace APIServer.Models.Faculty
     public partial class tbFaculty
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int FacultyID { get; set; }
+        [StringLength(30)]
+        public string FacultyID { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(50)]

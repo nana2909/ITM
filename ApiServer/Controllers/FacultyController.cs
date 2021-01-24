@@ -5,13 +5,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Data.Entity;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Net.Http;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,14 +30,16 @@ namespace APIServer.Controllers
 
         // GET: api/<FacultyController>
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("ListFaculty")]
-        public async Task<IEnumerable<tbFaculty>> ListFaculty()
+        public List<tbFaculty> ListFaculty()
         {
-            return await _db.Faculties.ToListAsync();
+            return _db.Faculties.ToList();
         }
 
         // GET api/<FacultyController>/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("GetFaculty/{id}")]
         public async Task<Object> GetFaculty(string id)
         {
@@ -46,6 +48,7 @@ namespace APIServer.Controllers
 
         // POST api/<FacultyController>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("CreateFaculty")]
         public async Task<IActionResult> CreateFaculty(tbFaculty model)
         {
@@ -61,27 +64,48 @@ namespace APIServer.Controllers
 
         // PUT api/<FacultyController>/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("EditFaculty/{id}")]
-        public IActionResult EditFaculty(tbFaculty model)
+        public async Task<IActionResult> EditFaculty(string id,tbFaculty model)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                _db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _db.SaveChanges();
-                return Ok();
+                return BadRequest(" ID cannot null!");
             }
-            return BadRequest();
+            var fac = await _db.Faculties.FindAsync(id);
+            if (fac!= null)
+            {
+                fac.Name = model.Name;
+                fac.Degree = model.Degree;
+                fac.DoB = model.DoB;
+                fac.DepartmentID = model.DepartmentID;
+                _db.Update(fac);
+                await _db.SaveChangesAsync();
+                return Ok("Edit Success!");
+
+            }
+            return NotFound();
         }
 
         // DELETE api/<FacultyController>/5
         [HttpDelete]
-        [Route("Delete/{id}")]
-        public ActionResult DeleteFaculty(int id)
+        [Authorize(Roles = "Admin")]
+        [Route("DeleteFaculty/{id}")]
+        public async Task<IActionResult> DeleteFaculty(string id)
         {
-            var model = _db.Faculties.Find(id);
-            _db.Faculties.Remove(model);
-            _db.SaveChanges();
-            return Ok();
+
+            if (id == null)
+            {
+                return BadRequest("ID cannot null!");
+            }
+            var fac = await _db.Faculties.FindAsync(id);
+            if (fac != null)
+            {
+                _db.Faculties.Remove(fac);
+                _db.SaveChanges();
+                return Ok("Delete Success!");
+            }
+            return NotFound();
         }
     }
 }

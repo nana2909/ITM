@@ -11,8 +11,8 @@ namespace APIServer.Models.Facility
     public partial class tbFacility
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int FacCode { get; set; }
+        [StringLength(30)]
+        public string FacCode { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(50)]

@@ -24,18 +24,18 @@ namespace APIServer.Controllers
 
         // GET: api/<DepartmentController>
         [HttpGet]
-        [Route("ListDepartment")]
-        public async Task<IEnumerable<tbDepartment>> ListDepartment()
+        [Route("ListDepartments")]
+        public async Task<List<tbDepartment>> ListDepartments()
         {
-            return await _db.Departments.ToListAsync();
+            return await _db.Departments.Include(e=>e.tbFaculties).ToListAsync();
         }
 
         // GET api/<DepartmentController>/5
-        [HttpGet("{id}")]
+        [HttpGet]
         [Route("GetDepartment/{id}")]
         public async Task<Object> GetDepartment(string id)
         {
-            return await _db.Faculties.FindAsync(id);
+            return await _db.Departments.FindAsync(id);
         }
 
         // POST api/<DepartmentController>
@@ -56,26 +56,43 @@ namespace APIServer.Controllers
         // PUT api/<DepartmentController>/5
         [HttpPut]
         [Route("EditDepartment/{id}")]
-        public IActionResult EditFaculty(tbDepartment model)
+        public async Task<IActionResult> EditDepartment(string id,tbDepartment model)
         {
-            if (ModelState.IsValid)
+            if (id == null)
             {
-                _db.Entry(model).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _db.SaveChanges();
-                return Ok();
+                return BadRequest(" ID cannot null!");
             }
-            return BadRequest();
+            var dep = await _db.Departments.FindAsync(id);
+            if (dep != null)
+            {
+                dep.Name = model.Name;
+                dep.Description = model.Description;
+                _db.Update(dep);
+                await _db.SaveChangesAsync();
+                return Ok("Edit Success!");
+
+            }
+            return NotFound();
         }
 
         // DELETE api/<FacultyController>/5
         [HttpDelete]
-        [Route("Delete/{id}")]
-        public ActionResult DeleteDepartment(string id)
+        [Route("DeleteDepartment/{id}")]
+        public async Task<IActionResult> DeleteDepartment(string id)
         {
-            var model = _db.Departments.Find(id);
-            _db.Departments.Remove(model);
-            _db.SaveChanges();
-            return Ok();
+
+            if (id == null)
+            {
+                return BadRequest("ID cannot null!");
+            }
+            var dep = await _db.Departments.FindAsync(id);
+            if (dep != null)
+            {
+                _db.Departments.Remove(dep);
+                _db.SaveChanges();
+                return Ok("Delete Success!");
+            }
+            return NotFound();
         }
     }
 }
