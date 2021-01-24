@@ -8,6 +8,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using APIServer.Models.User;
 using Microsoft.EntityFrameworkCore;
+using System.Threading;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
 
 namespace APIServer.Controllers
 {
@@ -16,14 +20,14 @@ namespace APIServer.Controllers
     public class UserDetailController : ControllerBase
     {
         private UserManager<ApplicationUser> _userManager;
-        private IPasswordHasher<ApplicationUser> _passwordHasher;
         private AuthenticationContext _db;
+        private IWebHostEnvironment _env;
         
-        public UserDetailController(UserManager<ApplicationUser> userManager, IPasswordHasher<ApplicationUser> passwordHasher,AuthenticationContext db)
+        public UserDetailController(UserManager<ApplicationUser> userManager,AuthenticationContext db,IWebHostEnvironment env)
         {
             _db = db;
             _userManager = userManager;
-            _passwordHasher = passwordHasher;
+            _env = env;
         }
         [HttpGet]
         [Authorize]
@@ -37,7 +41,9 @@ namespace APIServer.Controllers
                 user.FullName,
                 user.Email,
                 user.UserName,
-                user.AdmissionID
+                user.AdmissionID,
+                user.ImgUrl
+
             };
         }
 
@@ -106,7 +112,7 @@ namespace APIServer.Controllers
                     }
                     else
                     {
-                        return BadRequest("Invalid Admission!");
+                        return BadRequest("Invalid Admission!   ");
                     }
                 }
             } else
@@ -164,17 +170,18 @@ namespace APIServer.Controllers
         //Update User Account
         [HttpGet]
         [Authorize]
-        [Route("UpdateAccount")]
-        public async Task<Object> UpdateUserDetail(ApplicationUser model)
+        [Route("GetUser")]
+        public async Task<Object> UpdateUserDetail()
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
             return Ok(user);
         }
+
         [HttpPut]
         [Authorize]
-        [Route("UpdateAccount")]
-        public async Task<Object> UpdateUserDetail(User model)
+        [Route("UpdateUser")]
+        public async Task<Object> UpdateUserDetail(ApplicationUser model)
         {
             string userId = User.Claims.First(c => c.Type == "UserID").Value;
             var user = await _userManager.FindByIdAsync(userId);
@@ -182,11 +189,53 @@ namespace APIServer.Controllers
             {
                 user.Email = model.Email;
                 user.FullName = model.FullName;
-                user.PasswordHash = _passwordHasher.HashPassword(user, model.Password); 
             }
             IdentityResult result = await _userManager.UpdateAsync(user);
             return Ok(result);
         }
-        
+        [HttpPut]
+        [Authorize]
+        [Route("UpdateAvatar/{userName}")]
+        public async Task<Object> UpdateAvatar(ApplicationUser Model)
+        {
+            string userId = User.Claims.First(c => c.Type == "UserID").Value;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user.ImgUrl != null)
+            {
+                string fileDirectory = Path.Combine(Directory.GetCurrentDirectory(), user.ImgUrl);
+              //  string existFile = fileDirectory + user.ImgUrl;
+                if (System.IO.File.Exists(fileDirectory))
+                {
+                    System.IO.File.Delete(fileDirectory);
+                }
+            }
+            user.ImgUrl = Model.ImgUrl;
+            var result = await _userManager.UpdateAsync(user);
+            return Ok(result);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [Route("ChangePassword/{userId}")]
+        public async Task<Object> ChangePassword(string userId,ChangePwd model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByIdAsync(userId);
+                var result = await _userManager.ChangePasswordAsync(user, model.CurrentPassword, model.Password);
+                if (!result.Succeeded)
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                    return BadRequest();
+                }
+                return Ok(result);
+            }        
+
+            return BadRequest();
+        }
+
     }
 }

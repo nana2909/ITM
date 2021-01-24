@@ -1,4 +1,5 @@
 ﻿using APIServer.Models.Department;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -12,8 +13,8 @@ namespace APIServer.Models.Faculty
     public partial class tbFaculty
     {
         [Key]
-        [StringLength(30)]
-        public string FacultyID { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int FacultyID { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(50)]
@@ -21,7 +22,6 @@ namespace APIServer.Models.Faculty
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        [Display(Name = "Date Of Birth")]
         public DateTime DoB { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
@@ -31,10 +31,7 @@ namespace APIServer.Models.Faculty
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(30)]
         public string DepartmentID { get; set; }
-
-        [StringLength(200)]
         public string imgUrl { get; set; }
-
         public virtual tbDepartment tbDepartment { get; set; }
     }
 }

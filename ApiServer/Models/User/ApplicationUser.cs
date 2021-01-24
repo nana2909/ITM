@@ -15,6 +15,8 @@ namespace APIServer.Models.User
         public string FullName { get; set; }
         [AllowNull]
         public string AdmissionID { get; set; }
+        [AllowNull]
+        public string ImgUrl { get; set; }
         public tbAdmission Admission { get; set; }
     }
 }

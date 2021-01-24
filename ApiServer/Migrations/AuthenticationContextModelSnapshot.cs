@@ -17,7 +17,7 @@ namespace APIServer.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.1");
+                .HasAnnotation("ProductVersion", "5.0.2");
 
             modelBuilder.Entity("APIServer.Models.Admission.tbAdmission", b =>
                 {
@@ -271,8 +271,8 @@ namespace APIServer.Migrations
             modelBuilder.Entity("APIServer.Models.Facility.tbFacility", b =>
                 {
                     b.Property<string>("FacCode")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FacName")
                         .IsRequired()
@@ -294,8 +294,8 @@ namespace APIServer.Migrations
             modelBuilder.Entity("APIServer.Models.Faculty.tbFaculty", b =>
                 {
                     b.Property<string>("FacultyID")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Degree")
                         .IsRequired()
@@ -316,8 +316,7 @@ namespace APIServer.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("imgUrl")
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("tbDepartmentDepartmentID")
                         .HasColumnType("nvarchar(30)");
@@ -650,6 +649,9 @@ namespace APIServer.Migrations
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("ImgUrl")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasIndex("AdmissionID");
 

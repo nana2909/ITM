@@ -19,6 +19,9 @@ using System.Threading.Tasks;
 using APIServer.Models.User;
 using APIServer.Models.EmailService;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace APIServer
 {
@@ -59,7 +62,13 @@ namespace APIServer
             });
             services.Configure<DataProtectionTokenProviderOptions>(options =>
                 options.TokenLifespan = TimeSpan.FromHours(1));
-            services.AddCors();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+            });
 
             //Jwt.Authentication
             var key = Encoding.UTF8.GetBytes(Configuration["ApplicationSettings:JWT_Secret"].ToString());
@@ -92,6 +101,7 @@ namespace APIServer
                 o.MultipartBodyLengthLimit = int.MaxValue;
                 o.MemoryBufferThreshold = int.MaxValue;
             });
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -115,6 +125,12 @@ namespace APIServer
                 .AllowAnyHeader().AllowAnyMethod());
             app.UseAuthentication();
 
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"StaticFiles")),
+                RequestPath = new PathString("/StaticFiles")
+            });
             app.UseRouting();
 
             app.UseAuthorization();
