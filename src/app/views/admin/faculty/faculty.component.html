@@ -22,12 +22,12 @@
                 <tr *ngFor="let item of List">
                     <td>{{ item.facultyID }}</td>
                     <td>{{ item.name }}</td>
-                    <td>{{ item.doB }}</td>
+                    <td>{{ item.doB | date : 'mediumDate'}}</td>
                     <td>{{ item.degree }}</td>
                     <td>{{ item.departmentID }}</td>
                     <td>
-                       <a class="btn text-primary" ><i class="fa fa-edit fa-lg"></i></a>
-                      <a class="btn text-danger" ><i class="fa fa-trash fa-lg"></i></a>       
+                       <a class="btn text-primary" routerLink="facultyEdit/{{item.facultyID}}"><i class="fa fa-edit fa-lg"></i></a>
+                      <a class="btn text-danger" (click)="onDelete(item.facultyID)"><i class="fa fa-trash fa-lg"></i></a>       
                     </td>
                   </tr>
             </tbody>
@@ -38,50 +38,3 @@
     <!--/.col-->
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

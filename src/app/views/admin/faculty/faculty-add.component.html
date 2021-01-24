@@ -6,7 +6,11 @@
             <form [formGroup]="service.facultyForm" autocomplete="off" (submit)="onSubmit()">
               <h1>Add New Faculty</h1>
               <p class="text-muted">Futher details can be collected in HumanResources!</p>
-              <input class="form-control" formControlName="FacultyID" hidden>   
+              <div class="form-group mb-3">
+                <label class="">Faculty ID</label>
+                <input class="form-control" formControlName="FacultyID" required placeholder="eg: 1..">   
+                <label class="text-danger" *ngIf="service.facultyForm.get('FacultyID')?.touched && service.facultyForm.get('FacultyID')?.errors?.required">This field is mandatory.</label>
+              </div>
               <div class="form-group mb-3">
                 <label class="">Name</label>
                 <input class="form-control" formControlName="Name" required placeholder="eg: John..">   
@@ -24,16 +28,19 @@
               </div>
               <div class="form-group mb-3">
                 <label class="">Department</label>
-                <input class="form-control" formControlName="DepartmentID" required placeholder="eg: 1..">   
+                <select class="form-control" formControlName="DepartmentID" required>
+                  <option *ngFor="let item of Department" [value]="item.departmentID">
+                    {{item.name}}
+                  </option> 
+                </select>  
                 <label class="text-danger" *ngIf="service.facultyForm.get('DepartmentID')?.touched && service.facultyForm.get('DepartmentID')?.errors?.required">This field is mandatory.</label>
               </div>
               <div class="form-group mb-3">
                 <label class="">Image(Optional)</label>
                 <input class="form-control" formControlName="ImgUrl">   
-                <label class="text-danger" *ngIf="service.facultyForm.get('ImgUrl')?.touched && service.facultyForm.get('ImgUrl')?.errors?.required">This field is mandatory.</label>
               </div>
 
-            <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!service.facultyForm.valid" style="letter-spacing:3px;">Create new Account</button>
+            <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!service.facultyForm.valid" style="letter-spacing:3px;">Create</button>
             </form>
           </div>
         </div>

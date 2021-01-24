@@ -1,34 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../../../shared/admin.service';
 
 @Component({
-  selector: 'app-faculty-add',
-  templateUrl: './faculty-add.component.html',
-  styleUrls: ['./faculty-add.component.css']
+  selector: 'app-facilities-add',
+  templateUrl: './facilities-add.component.html',
+  styleUrls: ['./facilities-add.component.css']
 })
-export class FacultyAddComponent implements OnInit {
-  Department: any;
+export class FacilitiesAddComponent implements OnInit {
+
   constructor(
     public fb:FormBuilder,
     private toastr: ToastrService,
     private router: Router,
     private service : AdminService,
   ) { }
-
+  
   ngOnInit(): void {
-    this.service.getDepartmentList().subscribe(
-      (data:any)=>{
-        this.Department=data;
-      });
   }
   onSubmit(){
-    this.service.addFaculty(this.service.facultyForm.value).subscribe(
+    this.service.addFacilities(this.service.facilitiesForm.value).subscribe(
       (res:any)=>{
-        this.router.navigateByUrl('/Admin/Faculty');
-        this.toastr.success('Success','Added new Faculty.');  
+        this.router.navigateByUrl('/Admin/Facilities');
+        this.toastr.success('Success','Added new Facility.');  
       },
       err=>{
         if(err.status == 400)
@@ -38,8 +34,4 @@ export class FacultyAddComponent implements OnInit {
       }
     )
   }
-   
-   
-   
-  
 }

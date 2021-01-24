@@ -13,6 +13,11 @@ import { DepartmentComponent } from './department/department.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdmissionComponent } from './admission/admission.component';
+import { FacultyEditComponent } from './faculty/faculty-edit.component';
+import { FacilitiesAddComponent } from './facilities/facilities-add.component';
+import { FacilitiesEditComponent } from './facilities/facilities-edit.component';
+import { DepartmentAddComponent } from './department/department-add.component';
+import { DepartmentEditComponent } from './department/department-edit.component';
 
 
 const routes: Routes = [
@@ -27,7 +32,8 @@ const routes: Routes = [
         component: AdmissionComponent,
         data: {
           title: 'Admission'
-        }
+        },
+
       },
       {
         path: 'admission',
@@ -38,10 +44,24 @@ const routes: Routes = [
       },
       {
         path: 'department',
-        component: DepartmentComponent,
         data: {
           title: 'Department'
-        }
+        },
+        children:[
+          {
+            path:'',
+            component: DepartmentComponent,
+          },
+          {
+            path:'departmentAdd',
+            component: DepartmentAddComponent
+          },
+          {
+            path:'departmentEdit/:id',
+            component: DepartmentEditComponent
+          },
+        ]
+
       },
       {
         path: 'contactUs',
@@ -59,15 +79,24 @@ const routes: Routes = [
       },
       {
         path: 'facilities',
-        component: FacilitiesComponent,
         data: {
           title: 'Facilities'
-        }
-      },
-      
-      
-      
-      
+        },
+        children:[
+          {
+            path:'',
+            component: FacilitiesComponent,
+          },
+          {
+            path:'facilitiesAdd',
+            component: FacilitiesAddComponent
+          },
+          {
+            path:'facilitiesEdit',
+            component: FacilitiesEditComponent
+          },
+        ]
+      }, 
       {
         path: 'faculty',       
         data: {
@@ -81,6 +110,10 @@ const routes: Routes = [
           {
             path:'facultyAdd',
             component: FacultyAddComponent
+          },
+          {
+            path:'facultyEdit/:id',
+            component: FacultyEditComponent
           },
         ]
       },

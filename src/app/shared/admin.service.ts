@@ -25,13 +25,61 @@ GetAllAdmission(){
 
  //courses
 
+
+
  //department
+ departmentForm = this.fb.group({
+   DepartmentID:[null,Validators.required],
+   Name:[null,Validators.required],
+   Description:[null,Validators.required],
+   imgUrl:'',
+   tbFaculties:''
+ })
+  getDepartmentList(){
+    return this.http.get(this.BaseURI+'/Department/ListDepartments');
+  }
+  addDepartment(body){
+    return this.http.post(this.BaseURI+'/Department​/CreateDepartment',body);
+  }
+  getDepartment(id:string){
+    return this.http.get(this.BaseURI + '/Department/GetDepartment/'+id);
+  }
+  putDepartment(id:string,body){
+    return this.http.put(this.BaseURI+'/Department/EditDepartment/'+id,body);
+  }
+  deleteDepartment(id:string){
+    return this.http.delete(this.BaseURI+'/Department/DeleteDepartment/'+id);
+  }
+
 
  //facilities
+ facilitiesForm=this.fb.group({
+   FacCode:[null,Validators.required],
+   FacName:[null,Validators.required],
+   isActive:[null,Validators.required],
+   imgUrl:''
+ })
+  getFacilitiesList(){
+    return this.http.get(this.BaseURI+'/Facilities/ListFacilities');
+  }
+  addFacilities(body){
+    return this.http.post(this.BaseURI+'/Facilities/CreateFacility',body);
+  }
+  getFacility(id:string){
+    return this.http.get(this.BaseURI + '/Facilities/GetFacility/'+id);
+  }
+  putFacility(id:string,body){
+    return this.http.put(this.BaseURI+'/Facilities/EditFacility/'+id,body);
+  }
+  deleteFacility(id:string){
+    return this.http.delete(this.BaseURI+'/Facilities/Delete/'+id);
+  }
+
+
 
  //faculty
  facultyForm=this.fb.group({
-  FacultyID : '',
+  FacultyID : [null,Validators.required],
   Name:[null,Validators.required],
   DoB: [null,Validators.required],
   Degree:[null,Validators.required],
@@ -40,16 +88,34 @@ GetAllAdmission(){
   });
  
  getFacultyList(){
-   return this.http.get(this.BaseURI+'/Faculty/ListFaculty').toPromise();
+   return this.http.get(this.BaseURI+'/Faculty/ListFaculty');
  }
  addFaculty(body){
    return this.http.post(this.BaseURI+'/Faculty/CreateFaculty',body);
  }
+ getFaculty(id:string){
+  return this.http.get(this.BaseURI + '/Faculty/GetFaculty/'+id);
+}
+putFaculty(id:string,body){
+  return this.http.put(this.BaseURI+'/Faculty/EditFaculty/'+id,body);
+}
+deleteFaculty(id:string){
+  return this.http.delete(this.BaseURI+'/Faculty/DeleteFaculty/'+id);
+}
+
+
+
+
+
  //feedback
 
  //fields
 
  //streams
+
+
+
+
 
  //studentAccount
     //Get User Liset

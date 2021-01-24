@@ -12,7 +12,6 @@ import { Subject } from 'rxjs';
   styleUrls: ['./faculty.component.css']
 })
 export class FacultyComponent implements OnInit {
-
   dtOptions:DataTables.Settings={};
   dtTrigger: Subject<any> = new Subject();
   List:any;
@@ -33,6 +32,16 @@ export class FacultyComponent implements OnInit {
     this.refreshList();
   }
   refreshList(){
-    this.service.getFacultyList().then(res =>{this.List = res;   this.dtTrigger.next();});
+    this.service.getFacultyList().subscribe(res =>{this.List = res;this.dtTrigger.next();});
   }
+  onDelete(facultyID:string){
+    if (confirm('Are you sure to delete this Faculty?')){
+      this.service.deleteFaculty(facultyID).subscribe(res=>{
+        this.refreshList();
+        location.reload();
+        this.toastr.warning("Deleted Successfully","Delete Faculty");
+      })
+    }
+  }
+
 }

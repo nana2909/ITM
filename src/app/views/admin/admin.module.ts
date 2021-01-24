@@ -1,28 +1,32 @@
 import { SubjectsComponent } from './subjects/subjects.component';
 import { StudentAccountComponent } from './student-account/student-account.component';
+import { EditStudentAccountComponent } from './student-account/edit-student-account.component';
 import { StreamsComponent } from './streams/streams.component';
 import { FieldsComponent } from './fields/fields.component';
 import { FeedbackComponent } from './feedback/feedback.component';
-import { FacultyComponent } from './faculty/faculty.component';
-import { FacilitiesComponent } from './facilities/facilities.component';
-import { DepartmentComponent } from './department/department.component';
 import { CoursesComponent } from './courses/courses.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AdmissionComponent } from './admission/admission.component';
-import { EditStudentAccountComponent } from './student-account/edit-student-account.component';
+import { FacultyComponent } from './faculty/faculty.component';
+import { FacultyAddComponent } from './faculty/faculty-add.component';
+import { FacultyEditComponent } from './faculty/faculty-edit.component';
+import { AdmissionDetailComponent } from './admission/admission-detail/admission-detail.component';
+import { FacilitiesComponent } from './facilities/facilities.component';
+import { FacilitiesAddComponent } from './facilities/facilities-add.component';
+import { FacilitiesEditComponent } from './facilities/facilities-edit.component';
+import { DepartmentComponent } from './department/department.component';
+import { DepartmentAddComponent } from './department/department-add.component';
+import { DepartmentEditComponent } from './department/department-edit.component';
 
 // Angular
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { MatDialogModule} from '@angular/material/dialog';
-
+import { DataTablesModule } from 'angular-datatables';
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
-import { FacultyAddComponent } from './faculty/faculty-add.component';
-import { DataTablesModule } from 'angular-datatables';
-import { AdmissionDetailComponent } from './admission/admission-detail/admission-detail.component';
 
 @NgModule({
   imports: [
@@ -48,8 +52,14 @@ import { AdmissionDetailComponent } from './admission/admission-detail/admission
     EditStudentAccountComponent,
     FacultyAddComponent,
     AdmissionDetailComponent,
+    FacilitiesAddComponent,
+    FacilitiesEditComponent,
+    FacultyEditComponent,
+    DepartmentAddComponent,
+    DepartmentEditComponent,
     
   ],
+  providers: [DatePipe],
 entryComponents:[EditStudentAccountComponent,AdmissionDetailComponent],
 })
 export class AdminModule { }
