@@ -98,6 +98,7 @@
               "node_modules/bootstrap/dist/js/bootstrap.js"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
               "src/scss/style.scss"
             ],
             "stylePreprocessorOptions": {

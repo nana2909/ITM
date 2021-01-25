@@ -92,7 +92,7 @@ const routes: Routes = [
             component: FacilitiesAddComponent
           },
           {
-            path:'facilitiesEdit',
+            path:'facilitiesEdit/:id',
             component: FacilitiesEditComponent
           },
         ]

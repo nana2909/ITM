@@ -3,43 +3,64 @@
       <div class="col-lg-12 mx-auto">
         <div class="card">
           <div class="card-body p-4">
-            <form [formGroup]="facultyForm" autocomplete="off" (submit)="onSubmit()">
+            <form [formGroup]="facultyForm" autocomplete="off" (submit)="onSubmit(facultyForm.value)">
               <h1>Edit Faculty</h1>
               <p class="text-muted">Futher details can be collected in HumanResources!</p>
-              <div class="form-group mb-3">
-                <label class="">Faculty ID</label>
-                <input class="form-control" formControlName="FacultyID" name="FacultyID" disabled>   
+              <div class="row">
+                  <div class="col-lg-6">
+                    <div class="form-group mb-3">
+                      <label class="">Faculty ID</label>
+                      <input class="form-control" formControlName="FacultyID" name="FacultyID" disabled>   
+                    </div>
+                    <div class="form-group mb-3">
+                      <label class="">Name</label>
+                      <input class="form-control" formControlName="Name" name="Name" required placeholder="eg: John..">   
+                      <label class="text-danger" *ngIf="facultyForm.get('Name')?.touched && facultyForm.get('Name')?.errors?.required">This field is mandatory.</label>
+                    </div>
+                    <div class="form-group mb-3">
+                      <label class="">Date of Birth</label>
+                      <div class="input-group-prepend">
+                          <input matInput [matDatepicker]="picker" class="form-control" name="DoB" formControlName="DoB">
+                          <mat-datepicker-toggle matSuffix [for]="picker" style="color:black"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+                      </div>
+                      <!-- <input class="form-control" type="text" formControlName="DoB" value="{{ DoB | date : 'mediumDate'}}" name="DoB" required placeholder="eg: 01/23/1990..">    -->
+                      <label class="text-danger" *ngIf="facultyForm.get('DoB')?.touched && facultyForm.get('DoB')?.errors?.required">This field is mandatory.</label>
+                    </div>
+                    <div class="form-group mb-3">
+                      <label class="">Degree</label>
+                      <input class="form-control" formControlName="Degree" name="Degree" required placeholder="eg: Master of..">   
+                      <label class="text-danger" *ngIf="facultyForm.get('Degree')?.touched && facultyForm.get('Degree')?.errors?.required">This field is mandatory.</label>
+                    </div>
+                    <div class="form-group mb-3">
+                      <label class="">Department</label>
+                      <select class="form-control" formControlName="DepartmentID" name="DepartmentID" required>
+                        <option *ngFor="let item of Department" [value]="item.departmentID">
+                          {{item.name}}
+                        </option> 
+                      </select>  
+                      <label class="text-danger" *ngIf="facultyForm.get('DepartmentID')?.touched && facultyForm.get('DepartmentID')?.errors?.required">This field is mandatory.</label>
+                    </div>
+                    <!-- <div class="form-group hidden mb-3"> -->
+                      <!-- <label class="">Image(Optional)</label> -->
+                      <!-- <input > -->
+                    <!-- </div> -->
+                 </div>
+              <div class="col-lg-6">
+                <fieldset class="border p-2 mx-2 mt-2">
+                    <div class="col-12">
+                      <legend class="">Profile Picture</legend>
+                      <div class="form-group" >
+                        <img [src]="createImgPath(this.Img)"id="profpic" class="img-thumbnail mx-2 my-2"  alt=""/>
+                        <div class="mt-2">
+                          <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
+                        </div>
+                      </div>
+                    </div>
+                  </fieldset>      
               </div>
-              <div class="form-group mb-3">
-                <label class="">Name</label>
-                <input class="form-control" formControlName="Name" name="Name" required placeholder="eg: John..">   
-                <label class="text-danger" *ngIf="facultyForm.get('Name')?.touched && facultyForm.get('Name')?.errors?.required">This field is mandatory.</label>
-              </div>
-              <div class="form-group mb-3">
-                <label class="">Date of Birth</label>
-                <input class="form-control" type="date" formControlName="DoB" name="DoB" required placeholder="eg: 01/23/1990..">   
-                <label class="text-danger" *ngIf="facultyForm.get('DoB')?.touched && facultyForm.get('DoB')?.errors?.required">This field is mandatory.</label>
-              </div>
-              <div class="form-group mb-3">
-                <label class="">Degree</label>
-                <input class="form-control" formControlName="Degree" name="Degree" required placeholder="eg: Master of..">   
-                <label class="text-danger" *ngIf="facultyForm.get('Degree')?.touched && facultyForm.get('Degree')?.errors?.required">This field is mandatory.</label>
-              </div>
-              <div class="form-group mb-3">
-                <label class="">Department</label>
-                <select class="form-control" formControlName="DepartmentID" name="DepartmentID" required>
-                  <option *ngFor="let item of Department" [value]="item.departmentID">
-                    {{item.name}}
-                  </option> 
-                </select>  
-                <label class="text-danger" *ngIf="facultyForm.get('DepartmentID')?.touched && facultyForm.get('DepartmentID')?.errors?.required">This field is mandatory.</label>
-              </div>
-              <div class="form-group mb-3">
-                <label class="">Image(Optional)</label>
-                <input class="form-control" formControlName="ImgUrl">   
-              </div>
-
-            <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!facultyForm.valid" style="letter-spacing:3px;">Create</button>
+            </div>
+            <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!facultyForm.valid" style="letter-spacing:3px;">Update</button>
             </form>
           </div>
         </div>

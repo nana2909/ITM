@@ -1,5 +1,3 @@
-import { NavHomePageComponent } from './views/home-page/nav-home-page/nav-home-page.component';
-import { HomePageComponent } from './views/home-page/home-page.component';
 import { CookieService } from 'ngx-cookie-service';
 import { DashboardComponent } from './views/dashboard/dashboard.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -13,8 +11,6 @@ import { FormsModule, ReactiveFormsModule} from'@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { MatDialogModule} from '@angular/material/dialog';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-
-
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -27,6 +23,8 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import { NavMenuComponent } from './views/home/nav-menu/nav-menu.component';
+import { NavHomePageComponent } from './views/home-page/nav-home-page/nav-home-page.component';
+import { HomePageComponent } from './views/home-page/home-page.component';
 import { DefaultLayoutComponent } from './containers';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
@@ -59,6 +57,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { DataTablesModule } from 'angular-datatables';
 import { AdmissionStudentComponent } from './views/admission-student/admission-student.component';
 import { AdmissionInfoComponent } from './views/admission-student/admission-info/admission-info.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
 const routes: Routes = [];
 @NgModule({
   imports: [
@@ -72,6 +73,9 @@ const routes: Routes = [];
     AppSidebarModule,
     DataTablesModule.forRoot(),
     MatDialogModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatDatepickerModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),

@@ -20,10 +20,10 @@
                     <tr *ngFor="let item of List">
                         <td>{{ item.facCode }}</td>
                         <td>{{ item.facName }}</td>
-                        <td>{{ item.isActive}}</td>
+                        <td>{{ item.isActive ? "Active" : "N/A"}}</td>
                         <td>
-                           <a class="btn text-primary" ><i class="fa fa-edit fa-lg"></i></a>
-                          <a class="btn text-danger" ><i class="fa fa-trash fa-lg"></i></a>       
+                           <a class="btn text-primary" routerLink="facilitiesEdit/{{item.facCode}}"><i class="fa fa-edit fa-lg"></i></a>
+                          <a class="btn text-danger" (click)="onDelete(item.facCode)"><i class="fa fa-trash fa-lg"></i></a>       
                         </td>
                       </tr>
                 </tbody>

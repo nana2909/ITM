@@ -33,5 +33,14 @@ export class DepartmentComponent implements OnInit {
   refreshList(){
     this.service.getDepartmentList().subscribe(res =>{this.List = res;this.dtTrigger.next();});
   }
+  onDelete(departmentID:string){
+    if (confirm('Are you sure to delete this department?')){
+      this.service.deleteFaculty(departmentID).subscribe(res=>{
+        this.refreshList();
+        location.reload();
+        this.toastr.warning("Deleted Successfully","Delete Department");
+      })
+    }
+  }
 
 }

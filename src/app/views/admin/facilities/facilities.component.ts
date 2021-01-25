@@ -33,5 +33,14 @@ export class FacilitiesComponent implements OnInit {
   refreshList(){
     this.service.getFacilitiesList().subscribe(res =>{this.List = res;this.dtTrigger.next();});
   }
+  onDelete(facilitiesID:string){
+    if (confirm('Are you sure to delete this Facility?')){
+      this.service.deleteFaculty(facilitiesID).subscribe(res=>{
+        this.refreshList();
+        location.reload();
+        this.toastr.warning("Deleted Successfully","Delete Facility");
+      })
+    }
+  }
 
 }

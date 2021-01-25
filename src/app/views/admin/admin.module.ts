@@ -24,9 +24,15 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { MatDialogModule} from '@angular/material/dialog';
 import { DataTablesModule } from 'angular-datatables';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatRadioModule} from '@angular/material/radio';
+
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
+import { UploadComponent } from '../upload/upload.component';
 
 @NgModule({
   imports: [
@@ -36,6 +42,10 @@ import { AdminRoutingModule } from './admin-routing.module';
     MatDialogModule,
     ReactiveFormsModule,
     DataTablesModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatRadioModule
   ],
   declarations: [
     AdmissionComponent,
@@ -57,7 +67,7 @@ import { AdminRoutingModule } from './admin-routing.module';
     FacultyEditComponent,
     DepartmentAddComponent,
     DepartmentEditComponent,
-    
+    UploadComponent,
   ],
   providers: [DatePipe],
 entryComponents:[EditStudentAccountComponent,AdmissionDetailComponent],

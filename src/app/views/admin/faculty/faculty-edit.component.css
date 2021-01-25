@@ -1,0 +1,12 @@
+.mat-icon-button{
+    color:black;
+}
+#profpic {
+    size: cover;
+    width:140px;
+    height: 150px; 
+    background: #FFFFFF;  
+    margin: auto;
+    padding: 4px;
+   
+}

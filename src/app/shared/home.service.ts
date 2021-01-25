@@ -15,7 +15,6 @@ export class HomeService {
     return this.http.get('http://localhost:51373/api/Admission/GetInfoAdmission/'+ id);
   }
 
-
   //Event
   getEvents(){
     return this.http.get(this.BaseURI + "/GetAllEvents");

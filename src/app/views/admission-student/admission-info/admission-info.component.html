@@ -1,0 +1,79 @@
+<header class="header-style pt-3 p-relative" >
+    <div class="overlay op-8"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-12 col-sm-7 p-5 align-center justify-center">
+          <div class="content p-relative cwhite">
+            <h1 class="font-title p-4 text-left my-5 cwhite"><b>ITM College - Your Future Success</b></h1>
+            <p class="p-3 font-title paragraph">Access a set of 100+ courses and create a landing way of your dreams.</p>
+            <input #idAdmission class="form-control m-3" placeholder="input your Admission Key">
+            <p  *ngIf="!status" class="p-3 font-title paragraph text-danger">Your Admission is waiting approve.</p>
+            <a class="btn btn-success m-3" (click)="checkAdmission(idAdmission)"><i class="fa fa-android mr-3"></i>Check Admission</a>
+          </div>
+        </div>
+        <div class="col-12 col-sm-5 text-center"><img style="max-height: 370px;" src="../../../assets/img/bg/stu2.png"  class="stu_img"></div>
+      </div>
+    </div>
+</header>
+
+
+<div class="container mb-3" *ngIf="submitFlg">
+    <h1 class="font-title text-left my-2 cwhite"><b>REGISTER - INPUT FROM BELOW</b></h1>
+    <h4><span class="text-success">*Your Admissison has approve</span></h4>
+    <form [formGroup]="this.UserService.regiterForm" autocomplete="on" (submit)="onSubmit()">
+        <input type="hidden" formControlName="AdmissionID" >
+        <div class="row register-form">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input class="form-control" formControlName="StudentEmail" required placeholder="Student Email">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" formControlName="StudentName" required placeholder="Student Name">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input class="form-control" formControlName="StreamCode" placeholder="Stream">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" formControlName="FieldCode" placeholder="Field"> 
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="">Select Your Specical Subject: </label><span></span>
+                <div class="form-group">
+                    <select class="form-control" formControlName="SpecializedSubjectID" >
+                        <option class="hidden" [selected]="true" disabled>--- Choice Specical Subject --</option>
+                        <option *ngFor="let specical of SpecicalList; let i = index" [ngValue]="specical" >{{specical.subjectName}}</option>
+                    </select>
+                    <!-- <label class="text-danger" *ngIf="service.admissionModel.get('SpecializedSubjectID')?.touched && service.admissionModel.get('SpecializedSubjectID')?.errors?.required">This field is mandatory.</label> -->
+                  </div>
+            </div>
+            <div class="col-12">
+                <label for="">Select Your Optional Subject: </label>
+                <div class="form-group">
+                    <select class="form-control" formControlName="OptionalSubjectID">
+                        <option class="hidden" [selected]="true" disabled>--- Choice Optional Subject --</option>
+                        <option *ngFor="let optional of OptionalList; let i = index" [ngValue]="optional" >{{optional.subjectName}}</option>
+                    </select>
+                    <!-- <label class="text-danger" *ngIf="service.admissionModel.get('OptionalSubjectID')?.touched && service.admissionModel.get('OptionalSubjectID')?.errors?.required">This field is mandatory.</label> -->
+                  </div>
+            </div>
+            <div class="col-12">
+                <label for="">Select Your 5 Course: </label>
+                <div class="input-group mb-3">
+                    <select class="form-control" formControlName="Courses">
+                        <option class="hidden" [selected]="true" disabled>--- Choice Course --</option>
+                        <option *ngFor="let course of CourseList; let i = index" [ngValue]="course" >{{course.description}}</option>
+                    </select>                    
+                    <div class="input-group-append">
+                      <button class="btn btn-primary" type="button" (click)="addCourse()">Add Course</button>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-12">
+                <input type="submit" class="btn btn-success submit px-5" value="Submit">
+            </div>
+        </div>
+    </form>
+</div>
