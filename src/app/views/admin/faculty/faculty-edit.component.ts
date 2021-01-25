@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AdminService } from '../../../shared/admin.service';
 import { DatePipe } from '@angular/common';
+import { formatDate } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
 
 @Component({
   selector: 'app-faculty-edit',
@@ -14,18 +16,16 @@ export class FacultyEditComponent implements OnInit {
   ID:string;
   facultyForm=new FormGroup({});
   Department:any;
-  Date=new Date;
   constructor(
     public fb:FormBuilder,
     private toastr: ToastrService,
     private router: Router,
     private service : AdminService,
     private currentRoute:ActivatedRoute,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
   ) { }
-
+  
   ngOnInit(): void {
-    console.log(Date);
     this.facultyForm=this.fb.group({
       FacultyID : [null,Validators.required],
       Name:[null,Validators.required],
@@ -42,7 +42,8 @@ export class FacultyEditComponent implements OnInit {
         this.facultyForm.setValue({
           FacultyID : res.facultyID,
           Name: res.name,
-          DoB: this.datePipe.transform(res.doB, 'date'),
+          DoB:res.doB,
+          // DoB: this.datePipe.transform(res.doB, 'MM/dd/yyyy'),
           Degree: res.degree,
           DepartmentID : res.departmentID,
           ImgUrl:res.imgUrl
@@ -56,24 +57,16 @@ export class FacultyEditComponent implements OnInit {
 
   }
   onSubmit(){
-   // this.facultyForm.
-   
     this.service.putFaculty(this.ID,this.facultyForm.value).subscribe(
       (res:any)=>{     
-        if(res.succeeded){            
-          this.router.navigateByUrl('/Admin/faculty');
+        if(res){            
+          this.router.navigate(['/Admin/faculty']);
           this.toastr.success(' Success!','Update Faculty successfully.');
-          location.reload();
         } else {
-          res.errors.forEach(element => {
-            this.toastr.error(element.code ,'Update failed!');
-          });
-        }
-      }, (err) => {
-        console.log(err);
-      }
+            this.toastr.error("Update" ,'Update failed!');
+          };
+        } 
     )
-
   }
 
 }

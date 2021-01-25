@@ -17,7 +17,12 @@
               </div>
               <div class="form-group mb-3">
                 <label class="">Date of Birth</label>
-                <input class="form-control" type="date" formControlName="DoB" name="DoB" required placeholder="eg: 01/23/1990..">   
+                <div class="input-group-prepend">
+                    <input matInput [matDatepicker]="picker" class="form-control" name="DoB" formControlName="DoB">
+                    <mat-datepicker-toggle matSuffix [for]="picker" style="color:black"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </div>
+                <!-- <input class="form-control" type="text" formControlName="DoB" value="{{ DoB | date : 'mediumDate'}}" name="DoB" required placeholder="eg: 01/23/1990..">    -->
                 <label class="text-danger" *ngIf="facultyForm.get('DoB')?.touched && facultyForm.get('DoB')?.errors?.required">This field is mandatory.</label>
               </div>
               <div class="form-group mb-3">
@@ -39,7 +44,7 @@
                 <input class="form-control" formControlName="ImgUrl">   
               </div>
 
-            <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!facultyForm.valid" style="letter-spacing:3px;">Create</button>
+            <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!facultyForm.valid" style="letter-spacing:3px;">Update</button>
             </form>
           </div>
         </div>

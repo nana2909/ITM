@@ -45,7 +45,7 @@ GetAllAdmission(){
     return this.http.get(this.BaseURI + '/Department/GetDepartment/'+id);
   }
   putDepartment(id:string,body){
-    return this.http.put(this.BaseURI+'/Department/EditDepartment/'+id,body);
+    return this.http.put(this.BaseURI+'/Department/EditDepartment/'+id,body,{responseType: 'text'});
   }
   deleteDepartment(id:string){
     return this.http.delete(this.BaseURI+'/Department/DeleteDepartment/'+id);
@@ -69,7 +69,7 @@ GetAllAdmission(){
     return this.http.get(this.BaseURI + '/Facilities/GetFacility/'+id);
   }
   putFacility(id:string,body){
-    return this.http.put(this.BaseURI+'/Facilities/EditFacility/'+id,body);
+    return this.http.put(this.BaseURI+'/Facilities/EditFacility/'+id,body,{responseType: 'text'});
   }
   deleteFacility(id:string){
     return this.http.delete(this.BaseURI+'/Facilities/Delete/'+id);
@@ -97,7 +97,7 @@ GetAllAdmission(){
   return this.http.get(this.BaseURI + '/Faculty/GetFaculty/'+id);
 }
 putFaculty(id:string,body){
-  return this.http.put(this.BaseURI+'/Faculty/EditFaculty/'+id,body);
+  return this.http.post(this.BaseURI+'/Faculty/EditFaculty/'+id,body,{responseType: 'text'});
 }
 deleteFaculty(id:string){
   return this.http.delete(this.BaseURI+'/Faculty/DeleteFaculty/'+id);

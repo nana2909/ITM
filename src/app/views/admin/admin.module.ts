@@ -24,6 +24,10 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { MatDialogModule} from '@angular/material/dialog';
 import { DataTablesModule } from 'angular-datatables';
+import { MatNativeDateModule } from '@angular/material/core';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
@@ -36,6 +40,9 @@ import { AdminRoutingModule } from './admin-routing.module';
     MatDialogModule,
     ReactiveFormsModule,
     DataTablesModule,
+    MatNativeDateModule,
+    MatInputModule,
+    MatDatepickerModule,
   ],
   declarations: [
     AdmissionComponent,
