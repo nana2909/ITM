@@ -13,6 +13,9 @@ export class DepartmentEditComponent implements OnInit {
 
   ID:string;
   departmentForm=new FormGroup({});
+  editForm:any;
+  Img:any;
+  public responseUpload: {dbPath: ''};
 
   constructor(
     public fb:FormBuilder,
@@ -27,7 +30,7 @@ export class DepartmentEditComponent implements OnInit {
       DepartmentID:[null,Validators.required],
       Name:[null,Validators.required],
       Description:[null,Validators.required],
-      imgUrl:'',
+      ImgUrl:[null],
  
     });
     this.ID=this.currentRoute.snapshot.paramMap.get('id');
@@ -38,17 +41,31 @@ export class DepartmentEditComponent implements OnInit {
           DepartmentID:res.departmentID,
           Name:res.name,
           Description:res.description,
-          imgUrl:res.imgUrl
-        })
+          ImgUrl:res.imgUrl
+        });
+        this.Img=this.departmentForm.get('ImgUrl').value;
+        console.log(this.Img);
       }
     )
     
   }
-  onSubmit(){
-   this.service.putDepartment(this.ID,this.departmentForm.value).subscribe(
+  public uploadFinished = (event) => {
+    this.responseUpload = event;
+  }
+  public createImgPath = (serverPath: string) => {
+    return `http://localhost:51373/${serverPath}`;
+  }
+  onSubmit(data){
+    this.editForm={
+      DepartmentID:data.DepartmentID,
+      Name:data.Name,
+      Description:data.Description,
+      ImgUrl:this.responseUpload.dbPath
+    }
+   this.service.putDepartment(this.ID,this.editForm).subscribe(
     (res:any)=>{     
       if(res){            
-        this.router.navigateByUrl('/Admin/department');
+        this.router.navigate(['/Admin/department']);
         this.toastr.success(' Success!','Update Department successfully.');
       } else {
           this.toastr.error("Update" ,'Update failed!');

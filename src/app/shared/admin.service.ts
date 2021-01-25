@@ -97,8 +97,9 @@ GetAllAdmission(){
   return this.http.get(this.BaseURI + '/Faculty/GetFaculty/'+id);
 }
 putFaculty(id:string,body){
-  return this.http.post(this.BaseURI+'/Faculty/EditFaculty/'+id,body,{responseType: 'text'});
+  return this.http.put(this.BaseURI+'/Faculty/EditFaculty/'+id,body,{responseType: 'text'});
 }
+
 deleteFaculty(id:string){
   return this.http.delete(this.BaseURI+'/Faculty/DeleteFaculty/'+id);
 }

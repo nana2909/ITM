@@ -12,6 +12,9 @@ import { AdminService } from '../../../shared/admin.service';
 export class FacilitiesEditComponent implements OnInit {
   ID:string;
   facilitiesForm=new FormGroup({});
+  editForm:any;
+  Img:any;
+  public responseUpload: {dbPath: ''};
   constructor(
     public fb:FormBuilder,
     private toastr: ToastrService,
@@ -26,26 +29,40 @@ export class FacilitiesEditComponent implements OnInit {
       FacCode:[null,Validators.required],
       FacName:[null,Validators.required],
       isActive:[null,Validators.required],
-      imgUrl:''
+      imgUrl:[null]
     })
     this.ID=this.currentRoute.snapshot.paramMap.get('id');
     this.service.getFacility(this.ID).subscribe(
       (res:any)=>{
-        console.log(res);
         this.facilitiesForm.setValue({
           FacCode:res.facCode,
           FacName:res.facName,
           isActive:res.isActive,
-          imgUrl:''
+          imgUrl:res.imgUrl
       });
-      }
-    ); 
+      this.Img=this.facilitiesForm.get('imgUrl').value;
+    }
+    );
+    
+    
   }
-  onSubmit(){
-   this.service.putFacility(this.ID,this.facilitiesForm.value).subscribe(
+  public uploadFinished = (event) => {
+    this.responseUpload = event;
+  }
+  public createImgPath = (serverPath: string) => {
+    return `http://localhost:51373/${serverPath}`;
+  }
+  onSubmit(data){
+    this.editForm={
+      FacCode:data.FacCode,
+      FacName:data.FacName,
+      isActive:data.isActive,
+      ImgUrl:this.responseUpload.dbPath
+    }
+   this.service.putFacility(this.ID,this.editForm).subscribe(
      (res:any)=>{     
        if(res){            
-         this.router.navigateByUrl('/Admin/facilities');
+         this.router.navigate(['/Admin/facilities']);
          this.toastr.success(' Success!','Update Facility successfully.');
        } else {
            this.toastr.error("Update" ,'Update failed!');
