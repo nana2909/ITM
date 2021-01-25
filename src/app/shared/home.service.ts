@@ -9,10 +9,10 @@ import { CookieService } from 'ngx-cookie-service';
 export class HomeService {
 
   constructor(private fb:FormBuilder, private http:HttpClient,private cookieService:CookieService) { }
-  readonly BaseURI='http://localhost:51373/api';
+  readonly BaseURI='http://localhost:51373/api/Home';
 
-  getAdmission(){
-    return this.http.get(this.BaseURI+'/Admission/GetInfoAdmission');
+  GetInfoAdmission(id:string){
+    return this.http.get('http://localhost:51373/api/Admission/GetInfoAdmission/'+ id);
   }
 
 
@@ -72,16 +72,25 @@ export interface Field{
 }
 
 export interface Course{
-  CourseCode : string;
-  CoureseName : string;
-  Description: string;
-  StreamCode: string;
-  FieldCode: string;
+  coureseName : string;
+  courseCode : string;
+  description: string;
+  streamCode: string;
+  fieldCode: string;
   isNew : boolean;
   imgUrl: string;
 }
 
-export interface OptionSubject{
-    SubjectID: string;
-    SubjectName: string;
+export interface SpecSubject{
+    subjectID: string;
+    subjectName: string;
+    fieldCode:string;
+    tbAdmissions: [];
+    tbField: [];
+}
+
+export interface OptionalSubject{
+  subjectID: string;
+  subjectName: string;
+  tbAdmissions: [];
 }

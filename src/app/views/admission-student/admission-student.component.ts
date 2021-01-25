@@ -12,8 +12,6 @@ import { UserService } from '../../shared/user.service';
 })
 export class AdmissionStudentComponent implements OnInit {
 
-  
-  
   Streams : Stream[];
   Fields : Field[];
   @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
@@ -23,10 +21,6 @@ export class AdmissionStudentComponent implements OnInit {
               public service2: HomeService,
               public toastr: ToastrService
   ) { }
-
-  ngAfterViewInit(): void {
-    
-  }
 
   ngOnInit(): void {
     this.getStreams();
@@ -45,19 +39,15 @@ export class AdmissionStudentComponent implements OnInit {
   }
 
   downloadAsPDF(){
-
     const doc = new jsPDF();
-
     const specialElementHandlers = {
       '#editor': function (element, renderer) {
         return true;
       }
     };
-    
     let content = document.getElementById('pdfTable')
     html2canvas(content).then((canvas)=>{
       var imgData = canvas.toDataURL('image/png')
-
       var doc  = new jsPDF("l", "px", "a4");
       var width = doc.internal.pageSize.getWidth();
       var height = doc.internal.pageSize.getHeight();
