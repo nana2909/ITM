@@ -18,6 +18,7 @@ import { FacilitiesAddComponent } from './facilities/facilities-add.component';
 import { FacilitiesEditComponent } from './facilities/facilities-edit.component';
 import { DepartmentAddComponent } from './department/department-add.component';
 import { DepartmentEditComponent } from './department/department-edit.component';
+import { FeedbackCommentComponent } from './feedback/feedback-comment/feedback-comment.component';
 
 
 const routes: Routes = [
@@ -122,7 +123,7 @@ const routes: Routes = [
         component: FeedbackComponent,
         data: {
           title: 'Feedback'
-        }
+        },
       },
       {
         path: 'field',
