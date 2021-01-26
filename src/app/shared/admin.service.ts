@@ -105,10 +105,18 @@ deleteFaculty(id:string){
 }
 
 
-
-
-
  //feedback
+ getFeedbackList(){
+  return this.http.get(this.BaseURI+'/Feedback/ListFeedbacks');
+ }
+
+ getFeedbackById(id: string){
+  return this.http.get(this.BaseURI+'/Feedback/GetFeedback/'+ id);
+ }
+
+ deleteFeedback(id: string){
+  return this.http.get(this.BaseURI+'/Feedback/DeleteFeedback/'+ id);
+ }
 
  //fields
 

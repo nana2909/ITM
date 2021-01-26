@@ -33,6 +33,7 @@ import {MatRadioModule} from '@angular/material/radio';
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
+import { FeedbackCommentComponent } from './feedback/feedback-comment/feedback-comment.component';
 
 @NgModule({
   imports: [
@@ -68,8 +69,12 @@ import { AdminRoutingModule } from './admin-routing.module';
     DepartmentAddComponent,
     DepartmentEditComponent,
     UploadComponent,
+    FeedbackCommentComponent,
   ],
   providers: [DatePipe],
-entryComponents:[EditStudentAccountComponent,AdmissionDetailComponent],
+entryComponents:[
+    EditStudentAccountComponent,
+    AdmissionDetailComponent,
+    FeedbackCommentComponent],
 })
 export class AdminModule { }

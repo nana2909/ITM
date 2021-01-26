@@ -10,6 +10,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FormsModule, ReactiveFormsModule} from'@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS} from "@angular/common/http";
 import { MatDialogModule} from '@angular/material/dialog';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -55,6 +56,7 @@ import { ResetPasswordComponent } from './views/forgot-password/reset-password/r
 import { RouterModule, Routes } from '@angular/router';
 import { DataTablesModule } from 'angular-datatables';
 import { AdmissionStudentComponent } from './views/admission-student/admission-student.component';
+import { AdmissionInfoComponent } from './views/admission-student/admission-info/admission-info.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
@@ -88,7 +90,7 @@ const routes: Routes = [];
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-
+    MDBBootstrapModule.forRoot(),
     RouterModule.forRoot(routes,{ useHash: true })
   ],
   declarations: [
@@ -107,6 +109,8 @@ const routes: Routes = [];
     ResetPasswordComponent,
    
     AdmissionStudentComponent,
+   
+    AdmissionInfoComponent,
     
   ],
   providers: [

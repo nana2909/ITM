@@ -160,7 +160,7 @@ getUserAdmission(){
     ExMarkSecured: ['',Validators.required],
     OutOfDate: ['',Validators.required],
     ClassObtained: ['',Validators.required],
-    SpecializedSubjectID: ['',Validators.required],
+    SpecializedSubjectID: ['none',Validators.required],
     OptionalSubjectID: ['',Validators.required],
 });
 
@@ -180,6 +180,22 @@ return this.http.post(this.BaseURI + '/Admission/SubmitAdmission', this.admissio
   );
 }
 
+//Register from -- after admissionid is approve
+
+regiterForm = this.fb.group({
+  AdmissionID : [''],
+  StudentName: [''],
+  StudentEmail: [''],
+  StreamCode: [''],
+  FieldCode: [''],
+  SpecializedSubjectID: [''],
+  OptionalSubjectID: [''],
+  Courses: [''],
+})
+
+submitRegisForm(body){
+  return this.http.post(this.BaseURI + '/UserDetail/Register',body);
+}
 
 //Post Admission to Account User
 putUserAdmission(body){
