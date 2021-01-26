@@ -92,7 +92,7 @@ const routes: Routes = [];
     ReactiveFormsModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    RouterModule.forRoot(routes,{ useHash: true })
+    RouterModule.forRoot(routes,{ useHash: true, anchorScrolling: 'enabled' })
   ],
   declarations: [
     NavMenuComponent,
@@ -107,10 +107,8 @@ const routes: Routes = [];
     HomePageComponent,
     DashboardComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent,
-   
-    AdmissionStudentComponent,
-   
+    ResetPasswordComponent,  
+    AdmissionStudentComponent, 
     AdmissionInfoComponent,
     
   ],
