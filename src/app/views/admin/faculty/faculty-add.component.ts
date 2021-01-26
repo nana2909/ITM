@@ -31,13 +31,14 @@ export class FacultyAddComponent implements OnInit {
         if(res){
           this.service.facultyForm.reset();
           this.router.navigate(['/Admin/faculty']);
-          this.toastr.success('Added new Facility.','Success');
+          this.toastr.success('Added new Faculty.','Success');
         } else {
           this.toastr.error('Something is wrong','Add failed.');
-          console.log(error);
-               
         }         
+      } , (err)=>{
+        this.toastr.error('Something is wrong, check ID!','Add failed.');  
       }
+
     )
   }
    

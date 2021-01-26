@@ -15,8 +15,12 @@
     font-family: "Montserrat", sans-serif;
     font-weight: lighter; 
 }
-  
-
+.uppercase{
+text-transform:uppercase;
+}
+.font-handwritten {
+  font-family: "Permanent Marker", cursive; 
+}
 .header-style {
     background-image: url('../../../assets/img/bg/stu2.jpg');
     background-repeat: no-repeat;
@@ -322,18 +326,22 @@ footer {
       font-size: 8px; } }
   .components-list {
     list-style-type: none;
-    text-align: center; }
-    .components-list li {
-      display: inline-block; }
-      .components-list li a {
-        border: 1px solid rgba(255, 255, 255, 0.4);
-        display: inline-block;
-        margin: 0.5rem;
-        color: #fff;
-        padding: 0.25rem 0.5rem;
-        border-radius: 0.20rem; }
-        .components-list li a:hover {
-          text-decoration: none; }
+    text-align: center; 
+  }
+  .components-list li {
+    display: inline-block;
+   }
+  .components-list li a {
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    display: inline-block;
+    margin: 0.5rem;
+    color: #fff;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.20rem; 
+  }
+    .components-list li a:hover {
+      text-decoration: none; 
+    }
 
 .feature-style-8 .content-feature .icon-container {
   height: 3.375rem;

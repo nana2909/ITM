@@ -10,7 +10,7 @@ export class HomeService {
 
   constructor(private fb:FormBuilder, private http:HttpClient,private cookieService:CookieService) { }
   readonly BaseURI='http://localhost:51373/api/Home';
-
+  readonly BaseURI2='http://localhost:51373/api/';
   GetInfoAdmission(id:string){
     return this.http.get('http://localhost:51373/api/Admission/GetInfoAdmission/'+ id);
   }
@@ -28,9 +28,22 @@ export class HomeService {
   getAllDepartments(){
     return this.http.get(this.BaseURI + "/GetAllDepartment");
   }
+  getListDepartments(){
+    return this.http.get(this.BaseURI2+'/Department/GetListDepartments');
+  }
 
   getDepartmentById(id: string){
     return this.http.get(this.BaseURI + "/GetDepartmentById/"+ id);
+  }
+  
+  //Faculty
+  getListFaculties(){
+    return this.http.get(this.BaseURI2+'/Department/GetListFaculties');
+  }
+
+  //Facilities
+  getListFacilities(){
+    return this.http.get(this.BaseURI2+'/Department/GetListFacilities');
   }
 
   // Stream

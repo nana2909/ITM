@@ -1,15 +1,16 @@
 import { EventEmitter, Injectable, Output } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { FormBuilder, Validators, FormGroup,FormControl } from '@angular/forms';
-import { HttpClient, HttpEventType, HttpHeaders } from "@angular/common/http";
+import { HttpClient, } from "@angular/common/http";
 import { map} from 'rxjs/operators';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import * as moment from 'moment';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private activityDetails$: Observable<any>;
   public loggedIn:BehaviorSubject<boolean>= new BehaviorSubject<boolean>(false);
   get IsLoggedIn(){
     return this.loggedIn.asObservable();
@@ -97,6 +98,7 @@ export class UserService {
 logout(){
   this.loggedIn.next(false);
   localStorage.removeItem('token');
+  localStorage.removeItem('isSessionActive');
   this.router.navigate(['/HomePage']);
 }
 //Update Avatar

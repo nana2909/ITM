@@ -60,6 +60,7 @@ import { AdmissionInfoComponent } from './views/admission-student/admission-info
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
+import { InterceptorService } from './shared/interceptor.service';
 const routes: Routes = [];
 @NgModule({
   imports: [
@@ -116,7 +117,10 @@ const routes: Routes = [];
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
      [UserService,{provide: HTTP_INTERCEPTORS,useClass:AuthInterceptor, multi:true}],
-     [CookieService]
+     [CookieService],
+     {
+      provide: HTTP_INTERCEPTORS,useClass: InterceptorService,multi: true
+      }
   ],
   
   bootstrap: [ AppComponent ],

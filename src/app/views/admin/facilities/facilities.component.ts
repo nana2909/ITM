@@ -26,8 +26,9 @@ export class FacilitiesComponent implements OnInit {
       paging:true,
       searching:true,
       pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
+      pageLength: 10,
+      processing: true,
+      order :[ 0, "desc" ],
     };
     this.refreshList();
   }

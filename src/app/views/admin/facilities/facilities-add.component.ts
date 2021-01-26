@@ -30,7 +30,9 @@ export class FacilitiesAddComponent implements OnInit {
           this.router.navigate(['/Admin/facilities']);
           this.toastr.success('Added new Facility.','Success');
           };
-      }
+        } , (err)=>{
+          this.toastr.error('Something is wrong, check ID!','Add failed.');  
+        }  
     )
   }
 }

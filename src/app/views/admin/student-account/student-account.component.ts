@@ -47,9 +47,9 @@ export class StudentAccountComponent implements OnInit {
     this.service.getUserList().then(res=>{this.userDetails= res;this.dtTrigger.next();});
   }
   onDelete(userName:string){
-    if (confirm('Are you sure to delete this account?')){
+    if (confirm('Are you sure to delete this account? You can undo after delete!')){
       this.service.DeleteUser(userName).then(res=>{
-        this.refreshList();
+        this.service.getUserList().then(res=>{this.userDetails= res});
         this.toastr.success("Deleted Successfully","Student Account");
       })
     }

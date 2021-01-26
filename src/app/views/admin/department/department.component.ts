@@ -25,8 +25,8 @@ export class DepartmentComponent implements OnInit {
       paging:true,
       searching:true,
       pagingType: 'full_numbers',
-      pageLength: 5,
-      processing: true
+      pageLength: 10,
+      processing: true,
     };
     this.refreshList();
   }

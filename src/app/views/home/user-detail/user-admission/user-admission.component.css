@@ -20,7 +20,13 @@
     border-radius: 0.25rem;
     margin-bottom: 14px;
 }
+.setBG{
+    background-color:aliceblue;
+    background-size:cover; 
+    background-repeat:'no-reapeat';
+    height:100%;
 
+}
 
 
 
