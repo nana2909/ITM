@@ -34,6 +34,7 @@ export class FacultyEditComponent implements OnInit {
       DoB: [null,Validators.required],
       Degree:[null,Validators.required],
       DepartmentID:[null,Validators.required],
+      isActive:[null,Validators.required],
       ImgUrl:[null],
       });
       
@@ -46,9 +47,11 @@ export class FacultyEditComponent implements OnInit {
           DoB:res.doB,
           // DoB: this.datePipe.transform(res.doB, 'MM/dd/yyyy'),
           Degree: res.degree,
+          isActive:res.isActive,
           DepartmentID : res.departmentID,
           ImgUrl:res.imgUrl
       });
+      console.log(this.facultyForm);
       this.Img=this.facultyForm.get('ImgUrl').value;
       console.log(this.Img);
       }
@@ -66,21 +69,35 @@ export class FacultyEditComponent implements OnInit {
   }
 
   onSubmit(data){
-    this.editForm={
-      FacultyID:data.FacultyID,
-      Name:data.Name,
-      DoB:data.DoB,
-      Degree:data.Degree,
-      DepartmentID:data.DepartmentID,
-      ImgUrl:this.responseUpload.dbPath
+    if (this.responseUpload == undefined ) {
+      this.editForm={
+        FacultyID:data.FacultyID,
+        Name:data.Name,
+        DoB:data.DoB,
+        Degree:data.Degree,
+        isActive:data.isActive,
+        DepartmentID:data.DepartmentID,
+        ImgUrl:this.Img
+      }
+    }
+    else{
+      this.editForm={
+        FacultyID:data.FacultyID,
+        Name:data.Name,
+        DoB:data.DoB,
+        Degree:data.Degree,
+        isActive:data.isActive,
+        DepartmentID:data.DepartmentID,
+        ImgUrl:this.responseUpload.dbPath
+      }
     }
     this.service.putFaculty(this.ID,this.editForm).subscribe(
       (res:any)=>{     
         if(res){            
           this.router.navigate(['/Admin/faculty']);
-          this.toastr.success(' Success!','Update Faculty successfully.');
+          this.toastr.success('Update Faculty successfully.',' Success!');
         } else {
-            this.toastr.error("Update" ,'Update failed!');
+            this.toastr.error('Update failed!','Update');
           };
         } 
     )

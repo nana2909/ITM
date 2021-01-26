@@ -34,11 +34,15 @@ export class DepartmentComponent implements OnInit {
     this.service.getDepartmentList().subscribe(res =>{this.List = res;this.dtTrigger.next();});
   }
   onDelete(departmentID:string){
-    if (confirm('Are you sure to delete this department?')){
-      this.service.deleteFaculty(departmentID).subscribe(res=>{
-        this.refreshList();
-        location.reload();
-        this.toastr.warning("Deleted Successfully","Delete Department");
+    if (confirm('Are you sure to delete this department? You can deactive if using in future!')){
+      this.service.deleteDepartment(departmentID).subscribe(
+        (res:any)=>{     
+          if(res!=null){          
+            this.toastr.error('Something is wrong','Delete failed.');                
+          } else {
+              this.service.getDepartmentList().subscribe(res =>{this.List = res;});
+              this.toastr.warning("Deleted Department","Success!");
+          };
       })
     }
   }

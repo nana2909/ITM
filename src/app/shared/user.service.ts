@@ -151,7 +151,7 @@ getUserAdmission(){
     StreamCode: ['',Validators.required],
     FieldCode: ['',Validators.required],
     SportsDetails: [''],
-    StatusID: ['',Validators.required],
+    StatusID: [0,Validators.required],
     ExUniversity: ['',Validators.required],
     ExEnrollmentNumber: ['',Validators.required],
     ExCenter: ['',Validators.required],

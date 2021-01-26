@@ -32,14 +32,13 @@ GetAllAdmission(){
    DepartmentID:[null,Validators.required],
    Name:[null,Validators.required],
    Description:[null,Validators.required],
-   imgUrl:'',
-   tbFaculties:''
+   isActive:[null,Validators.required],
  })
   getDepartmentList(){
     return this.http.get(this.BaseURI+'/Department/ListDepartments');
   }
   addDepartment(body){
-    return this.http.post(this.BaseURI+'/Department​/CreateDepartment',body);
+    return this.http.post(this.BaseURI+'/Department/CreateDepartment',body);
   }
   getDepartment(id:string){
     return this.http.get(this.BaseURI + '/Department/GetDepartment/'+id);
@@ -84,6 +83,7 @@ GetAllAdmission(){
   DoB: [null,Validators.required],
   Degree:[null,Validators.required],
   DepartmentID:[null,Validators.required],
+  isActive:[null,Validators.required],
   ImgUrl:''
   });
  

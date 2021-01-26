@@ -17,6 +17,20 @@
                 <label class="text-danger" *ngIf="service.departmentForm.get('Name')?.touched && service.departmentForm.get('Name')?.errors?.required">This field is mandatory.</label>
               </div>
               <div class="form-group mb-3">
+                <label class="mr-3">Active</label>
+                <label class="radio inline mr-2"> 
+                  <input type="radio" checked="true" [value]=true formControlName="isActive" >
+                  <span> Active </span> 
+                </label>
+                <label class="radio inline"> 
+                  <input type="radio" [value]=false formControlName="isActive">
+                  <span>Not Available </span> 
+                </label>
+                <!-- <input class="form-control" type="radio" formControlName="isActive" required placeholder="eg:Business..">    -->
+                <label class="text-danger" *ngIf="service.departmentForm.get('isActive')?.touched && service.departmentForm.get('isActive')?.errors?.required">This field is mandatory.</label>
+              </div>
+
+              <div class="form-group mb-3">
                 <label class="">Description</label>
                 <textarea row="3" class="form-control" formControlName="Description" required placeholder="eg:What for.."></textarea>  
                 <label class="text-danger" *ngIf="service.departmentForm.get('Description')?.touched && service.departmentForm.get('Description')?.errors?.required">This field is mandatory.</label>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { error } from 'jquery';
 import { ToastrService } from 'ngx-toastr';
 import { Subject } from 'rxjs';
 import { AdminService } from '../../../shared/admin.service';
@@ -34,11 +35,15 @@ export class FacilitiesComponent implements OnInit {
     this.service.getFacilitiesList().subscribe(res =>{this.List = res;this.dtTrigger.next();});
   }
   onDelete(facilitiesID:string){
-    if (confirm('Are you sure to delete this Facility?')){
-      this.service.deleteFaculty(facilitiesID).subscribe(res=>{
-        this.refreshList();
-        location.reload();
-        this.toastr.warning("Deleted Successfully","Delete Facility");
+    if (confirm('Are you sure to delete this facility?You can deactive if using in future!')){
+      this.service.deleteFacility(facilitiesID).subscribe(
+        (res:any)=>{     
+          if(res!=null){          
+            this.toastr.error('Something is wrong','Delete failed.');                
+          } else {
+              this.service.getFacilitiesList().subscribe(res =>{this.List = res;});
+              this.toastr.warning("Deleted Successfully","Delete Facility");
+          };
       })
     }
   }

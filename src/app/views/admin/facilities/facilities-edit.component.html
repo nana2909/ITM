@@ -15,9 +15,17 @@
                 <input class="form-control" formControlName="FacName" name="FacName"required placeholder="eg:Library..">   
                 <label class="text-danger" *ngIf="facilitiesForm.get('FacName')?.touched && facilitiesForm.get('FacName')?.errors?.required">This field is mandatory.</label>
               </div>
-              <div class="form-group mb-3">
-                <label class=""> Activate Facility</label>
-                <input class="form-control" formControlName="isActive" name="isActive" required >   
+              <div class="form-group mb-3 mr-3">
+                <label class="mr-3"> Activate Facility</label>
+                <label class="radio inline mr-2"> 
+                  <input type="radio" checked="true" [value]=true formControlName="isActive" >
+                  <span> Active </span> 
+                </label>
+                <label class="radio inline"> 
+                  <input type="radio" [value]=false formControlName="isActive">
+                  <span>Not Available </span> 
+                </label>
+                <!-- <input class="form-control" formControlName="isActive" name="isActive" required >    -->
                 <label class="text-danger" *ngIf="facilitiesForm.get('isActive')?.touched && facilitiesForm.get('isActive')?.errors?.required">This field is mandatory.</label>
               </div>
               

@@ -50,7 +50,7 @@ export class StudentAccountComponent implements OnInit {
     if (confirm('Are you sure to delete this account?')){
       this.service.DeleteUser(userName).then(res=>{
         this.refreshList();
-        this.toastr.warning("Deleted Successfully","Student Account");
+        this.toastr.success("Deleted Successfully","Student Account");
       })
     }
   }

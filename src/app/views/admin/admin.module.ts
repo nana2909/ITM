@@ -1,3 +1,4 @@
+import { UploadComponent } from './../upload/upload.component';
 import { SubjectsComponent } from './subjects/subjects.component';
 import { StudentAccountComponent } from './student-account/student-account.component';
 import { EditStudentAccountComponent } from './student-account/edit-student-account.component';
@@ -32,7 +33,6 @@ import {MatRadioModule} from '@angular/material/radio';
 
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
-import { UploadComponent } from '../upload/upload.component';
 
 @NgModule({
   imports: [
@@ -45,7 +45,7 @@ import { UploadComponent } from '../upload/upload.component';
     MatNativeDateModule,
     MatInputModule,
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule  
   ],
   declarations: [
     AdmissionComponent,

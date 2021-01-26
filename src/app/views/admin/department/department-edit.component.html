@@ -7,9 +7,7 @@
               <h1>Edit Department</h1>
               <p class="text-muted">Futher details can be collected in Administrative Offices !</p>
               <div class="form-group mb-3">
-                <label class="">Department ID</label>
-                <input class="form-control" formControlName="DepartmentID" required placeholder="eg:1,2..">   
-                <label class="text-danger" *ngIf="departmentForm.get('DepartmentID')?.touched && departmentForm.get('DepartmentID')?.errors?.required">This field is mandatory.</label>
+                <input class="form-control" formControlName="DepartmentID" hidden required placeholder="eg:1,2..">   
               </div>
               <div class="form-group mb-3">
                 <label class="">Name</label>
@@ -17,20 +15,24 @@
                 <label class="text-danger" *ngIf="departmentForm.get('Name')?.touched && departmentForm.get('Name')?.errors?.required">This field is mandatory.</label>
               </div>
               <div class="form-group mb-3">
+                <label class="mr-3">Active</label>
+                <label class="radio inline mr-2"> 
+                  <input type="radio" checked="true" [value]=true formControlName="isActive" >
+                  <span> Active </span> 
+                </label>
+                <label class="radio inline"> 
+                  <input type="radio" [value]=false formControlName="isActive">
+                  <span>Not Available </span> 
+                </label>
+                <!-- <input class="form-control" formControlName="isActive" required >    -->
+                <label class="text-danger" *ngIf="departmentForm.get('isActive')?.touched && departmentForm.get('isActive')?.errors?.required">This field is mandatory.</label>
+              </div>
+
+              <div class="form-group mb-3">
                 <label class="">Description</label>
                 <textarea row="3" class="form-control" formControlName="Description" required placeholder="eg:What for.."></textarea>  
                 <label class="text-danger" *ngIf="departmentForm.get('Description')?.touched && departmentForm.get('Description')?.errors?.required">This field is mandatory.</label>
               </div>
-              <fieldset class="border p-2 mx-2 mt-2">
-                  <legend class="">Department Image</legend>
-                  <small>It's optional</small>
-                  <div class="form-group" >
-                    <img [src]="createImgPath(this.Img)"id="profpic" class="img-thumbnail mx-2 my-2"  alt=""/>
-                    <div class="mt-2">
-                      <app-upload (onUploadFinished)="uploadFinished($event)"></app-upload>
-                    </div>
-                  </div>
-              </fieldset>      
             <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!departmentForm.valid" style="letter-spacing:3px;">Update</button>
             </form>
           </div>

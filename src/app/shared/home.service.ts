@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
 export class HomeService {
 
   constructor(private fb:FormBuilder, private http:HttpClient,private cookieService:CookieService) { }
-  readonly BaseURI='http://localhost:51373/api';
+  readonly BaseURI='http://localhost:51373/api/Home';
 
   getAdmission(){
     return this.http.get(this.BaseURI+'/Admission/GetInfoAdmission');

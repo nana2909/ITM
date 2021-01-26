@@ -35,12 +35,17 @@ export class FacultyComponent implements OnInit {
     this.service.getFacultyList().subscribe(res =>{this.List = res;this.dtTrigger.next();});
   }
   onDelete(facultyID:string){
-    if (confirm('Are you sure to delete this Faculty?')){
-      this.service.deleteFaculty(facultyID).subscribe(res=>{
-        this.refreshList();
-        location.reload();
-        this.toastr.warning("Deleted Successfully","Delete Faculty");
-      })
+    if (confirm('Are you sure to delete this Faculty?You can undo after delete!')){
+      this.service.deleteFaculty(facultyID).subscribe(
+        (res:any)=>{     
+          if(res!=null){          
+            this.toastr.error('Something is wrong','Delete failed.');                
+          } else {
+              this.service.getFacultyList().subscribe(res =>{this.List = res;});
+              this.toastr.warning("Deleted Successfully","Delete Faculty");
+          };
+        }
+      )
     }
   }
 
