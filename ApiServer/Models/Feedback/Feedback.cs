@@ -25,5 +25,6 @@ namespace APIServer.Models.Feedback
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
+        public bool isResolved { get; set; }
     }
 }

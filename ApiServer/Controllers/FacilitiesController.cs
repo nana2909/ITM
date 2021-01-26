@@ -1,10 +1,11 @@
 ﻿using APIServer.Models.Facility;
 using APIServer.Models.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,8 +24,14 @@ namespace APIServer.Controllers
         {
             _db = db;
         }
-
         [HttpGet]
+        [Route("GetListFacilities")]
+        public List<tbFacility> GetListFacilities()
+        {
+            return _db.Facilities.Where(e=>e.imgUrl!=null).ToList();
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("ListFacilities")]
         public List<tbFacility> ListFacilities()
         {
@@ -32,6 +39,7 @@ namespace APIServer.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("GetFacility/{id}")]
         public async Task<Object> GetFacility(string id)
         {
@@ -39,10 +47,15 @@ namespace APIServer.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("CreateFacility")]
         public async Task<IActionResult> CreateFacility(tbFacility model)
         {
-
+            var dep = _db.Departments.Find(model.FacCode);
+            if (dep != null)
+            {
+                return BadRequest("ID existed!");
+            }
             if (ModelState.IsValid)
             {
                 await _db.Facilities.AddAsync(model);
@@ -53,6 +66,7 @@ namespace APIServer.Controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("EditFacility/{id}")]
         public async Task<IActionResult> EditFacility(string id, tbFacility model)
         {
@@ -65,15 +79,25 @@ namespace APIServer.Controllers
             {
                 fac.FacName = model.FacName;
                 fac.isActive = model.isActive;
+                if (fac.imgUrl != null)
+                {
+                    string fileDirectory = Path.Combine(Directory.GetCurrentDirectory(), fac.imgUrl);
+                    if (System.IO.File.Exists(fileDirectory))
+                    {
+                        System.IO.File.Delete(fileDirectory);
+                    }
+                }
+                fac.imgUrl = model.imgUrl;
                 _db.Update(fac);
                 await _db.SaveChangesAsync();
-                return Ok("Edit Success!");
+                return Ok(fac);
 
             }
             return NotFound();
         }
-
+            
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("Delete/{id}")]
         public async Task<IActionResult> DeleteFacility(string id)
         {
@@ -86,7 +110,7 @@ namespace APIServer.Controllers
             {
                 _db.Facilities.Remove(fac);
                 _db.SaveChanges();
-                return Ok("Delete Success!");
+                return Ok();
             }
             return NotFound();
         }

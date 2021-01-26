@@ -27,7 +27,12 @@ namespace APIServer.Controllers
         {
             _db = db;
         }
-
+        [HttpGet]
+        [Route("GetListFaculties")]
+        public List<tbFaculty> GetListFaculties()
+        {
+            return _db.Faculties.Where(e=>e.imgUrl!=null).ToList();
+        }
         // GET: api/<FacultyController>
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -52,7 +57,7 @@ namespace APIServer.Controllers
         [Route("CreateFaculty")]
         public async Task<IActionResult> CreateFaculty(tbFaculty model)
         {
-
+            
             if (ModelState.IsValid)
             {
                 await _db.Faculties.AddAsync(model);
@@ -79,9 +84,20 @@ namespace APIServer.Controllers
                 fac.Degree = model.Degree;
                 fac.DoB = model.DoB;
                 fac.DepartmentID = model.DepartmentID;
+                fac.isActive=model.isActive;
+                if (fac.imgUrl != null)
+                {
+                    string fileDirectory = Path.Combine(Directory.GetCurrentDirectory(), fac.imgUrl);
+                    if (System.IO.File.Exists(fileDirectory))
+                    {
+                        System.IO.File.Delete(fileDirectory);
+                    }
+                    fac.imgUrl = model.imgUrl;
+                }
+                fac.imgUrl = model.imgUrl;
                 _db.Update(fac);
                 await _db.SaveChangesAsync();
-                return Ok("Edit Success!");
+                return Ok(fac);
 
             }
             return NotFound();
@@ -103,7 +119,7 @@ namespace APIServer.Controllers
             {
                 _db.Faculties.Remove(fac);
                 _db.SaveChanges();
-                return Ok("Delete Success!");
+                return Ok();
             }
             return NotFound();
         }

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,9 +30,8 @@ namespace APIServer.Models.Department
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(500)]
         public string Description { get; set; }
-        [Required(ErrorMessage = "{0} is required")]
-        [StringLength(200)]
-        public string imgUrl { get; set; }
+        public bool isActive { get; set; }
+    
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFaculty> tbFaculties { get; set; }

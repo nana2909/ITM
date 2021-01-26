@@ -1,9 +1,11 @@
 ﻿using APIServer.Models.Department;
 using APIServer.Models.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,14 +26,22 @@ namespace APIServer.Controllers
 
         // GET: api/<DepartmentController>
         [HttpGet]
+        [Route("GetListDepartments")]
+        public async Task<List<tbDepartment>> GetListDepartments()
+        {
+            return await _db.Departments.ToListAsync();
+        }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("ListDepartments")]
         public async Task<List<tbDepartment>> ListDepartments()
         {
-            return await _db.Departments.Include(e=>e.tbFaculties).ToListAsync();
+            return await _db.Departments.ToListAsync();
         }
 
         // GET api/<DepartmentController>/5
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         [Route("GetDepartment/{id}")]
         public async Task<Object> GetDepartment(string id)
         {
@@ -40,36 +50,43 @@ namespace APIServer.Controllers
 
         // POST api/<DepartmentController>
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [Route("CreateDepartment")]
-        public async Task<IActionResult> CreateDepartment(tbDepartment model)
+        public IActionResult CreateDepartment(tbDepartment model)
         {
-
+            var dep = _db.Departments.Find(model.DepartmentID);
+            if (dep != null)
+            {
+                return BadRequest("ID existed!");
+            }
             if (ModelState.IsValid)
             {
-                await _db.Departments.AddAsync(model);
-                await _db.SaveChangesAsync();
+                 _db.Departments.Add(model);
+                 _db.SaveChanges();
                 return Ok(model);
             }
-            return BadRequest();
+            return NoContent();
         }
 
         // PUT api/<DepartmentController>/5
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         [Route("EditDepartment/{id}")]
-        public async Task<IActionResult> EditDepartment(string id,tbDepartment model)
+        public IActionResult EditDepartment(string id,tbDepartment model)
         {
             if (id == null)
             {
                 return BadRequest(" ID cannot null!");
             }
-            var dep = await _db.Departments.FindAsync(id);
+            var dep =  _db.Departments.Find(id);
             if (dep != null)
             {
                 dep.Name = model.Name;
                 dep.Description = model.Description;
+                dep.isActive = model.isActive;
                 _db.Update(dep);
-                await _db.SaveChangesAsync();
-                return Ok("Edit Success!");
+                _db.SaveChanges();
+                return Ok(model);
 
             }
             return NotFound();
@@ -77,6 +94,7 @@ namespace APIServer.Controllers
 
         // DELETE api/<FacultyController>/5
         [HttpDelete]
+        [Authorize(Roles = "Admin")]
         [Route("DeleteDepartment/{id}")]
         public async Task<IActionResult> DeleteDepartment(string id)
         {
@@ -90,7 +108,7 @@ namespace APIServer.Controllers
             {
                 _db.Departments.Remove(dep);
                 _db.SaveChanges();
-                return Ok("Delete Success!");
+                return Ok();
             }
             return NotFound();
         }
