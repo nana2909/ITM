@@ -17,17 +17,17 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Streams',
-    url: '/Admin/stream',
+    url: '/Admin/streams',
     icon: 'icon-drop'
   },
   {
     name: 'Fields',
-    url: '/Admin/field',
+    url: '/Admin/fields',
     icon: 'icon-pie-chart'
   },
   {
     name: 'Courses',
-    url: '/Admin/course',
+    url: '/Admin/courses',
     icon: 'icon-docs'
   },
   {
@@ -36,8 +36,13 @@ export const navItems: INavData[] = [
     icon: 'icon-user'
   },
   {
-    name: 'Subjects',
-    url: '/Admin/subject',
+    name: 'Option Subjects',
+    url: '/Admin/opsubject',
+    icon: 'icon-calculator'
+  },
+  {
+    name: 'Specialize Subjects',
+    url: '/Admin/spesubject',
     icon: 'icon-calculator'
   },
   {
@@ -68,17 +73,4 @@ export const navItems: INavData[] = [
     url: '/Admin/feedback',
     icon: 'icon-layers'
   },
-  {
-    name: 'ContactUs',
-    url: '/Admin/contactUs',
-    icon: 'icon-envelope'
-  },
-
-
-
-
-
-
-
-
 ];

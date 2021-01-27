@@ -22,6 +22,7 @@ export class FacultyAddComponent implements OnInit {
   ngOnInit(): void {
     this.service.getDepartmentList().subscribe(
       (data:any)=>{
+        console.log(data)
         this.Department=data;
       });
   }

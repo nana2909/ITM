@@ -23,7 +23,8 @@ export class FieldaddComponent implements OnInit {
   ngOnInit(): void {
     this.service.getStreamList().subscribe(
       (data:any)=>{
-        this.Streamlist=data;
+        console.log(data)
+        this.Streamlist= Object.values(data);
       }
     )};
     onSubmit(){

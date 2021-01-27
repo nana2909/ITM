@@ -170,7 +170,7 @@ DeleteField(FieldCode:string){
   streamName : [null,Validators.required],
   });
  getStreamList(){
-  return this.http.get(this.BaseURI+'/Streams/ListStreams');
+  return this.http.get(this.BaseURI+'/Streams/GetStreams');
  }
  addStream(str){
   return this.http.post(this.BaseURI+'/Streams/CreateStreams',str);

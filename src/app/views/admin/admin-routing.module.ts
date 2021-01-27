@@ -182,23 +182,23 @@ const routes: Routes = [
           }
       ]
         },
-        // {
-        //   path: 'opsubject',
-        //   children:[
-        //     {
-        //       path:'',
-        //       component: OpsubjectComponent
-        //     },
-        //     {
-        //       path:'OpsubAdd',
-        //     component:OpsubAddComponent
-        //     },
-        //     {
-        //       path:'OpsubEdit/:id',
-        //       component:OpsubEditComponent
-        //     }
-        //   ]
-        // },
+        {
+          path: 'opsubject',
+          children:[
+            {
+              path:'',
+              component: OpsubjectComponent
+            },
+            {
+              path:'OpsubAdd',
+            component:OpsubAddComponent 
+            },
+            {
+              path:'OpsubEdit/:id',
+              component:OpsubEditComponent
+            }
+          ]
+        },
         {
           path: 'spesubject',
           children:[

@@ -46,6 +46,7 @@ import { StreamaddComponent } from './streams/streamadd.component';
 import { StreameditComponent } from './streams/streamedit.component';
 import { FieldaddComponent } from './fields/fieldadd/fieldadd.component';
 import { FieldeditComponent } from './fields/fieldedit/fieldedit.component';
+import { OpsubjectComponent } from './opsubject/opsubject.component';
 
 
 
@@ -86,6 +87,7 @@ import { FieldeditComponent } from './fields/fieldedit/fieldedit.component';
     FeedbackCommentComponent,
     CoursesEditComponent,
     CoursesAddComponent,
+    OpsubjectComponent,
     OpsubAddComponent,
     OpsubEditComponent,
     SpesubaddComponent,
