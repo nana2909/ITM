@@ -302,11 +302,15 @@ namespace APIServer.Migrations
                         .UseIdentityColumn();
 
                     b.Property<DateTime>("Date")
-                        .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("date");
 
                     b.Property<string>("FbContent")
                         .HasColumnType("text");
+
+                    b.Property<string>("FbEmail")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("FbSubject")
                         .HasMaxLength(100)

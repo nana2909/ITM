@@ -49,6 +49,7 @@ namespace APIServer.Controllers
 
             if (ModelState.IsValid)
             {
+                model.Date = DateTime.Now;
                 await _db.Feedbacks.AddAsync(model);
                 await _db.SaveChangesAsync();
                 return Ok(model);

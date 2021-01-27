@@ -16,6 +16,10 @@ namespace APIServer.Models.Feedback
         [StringLength(100)]
         public string FbSubject { get; set; }
 
+        [StringLength(100)]
+        [Required]
+        public string FbEmail { get; set; }
+
         [StringLength(50)]
         public string StudentName { get; set; }
 
@@ -25,7 +29,6 @@ namespace APIServer.Models.Feedback
         [Column(TypeName = "text")]
         public string isResolve { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
     }

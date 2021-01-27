@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace APIServer.Migrations
 {
-    public partial class inititalDB : Migration
+    public partial class addfbEmail : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,6 +67,7 @@ namespace APIServer.Migrations
                     FbID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FbSubject = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: true),
+                    FbEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     StudentName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     FbContent = table.Column<string>(type: "text", nullable: true),
                     isResolve = table.Column<string>(type: "text", nullable: true),
