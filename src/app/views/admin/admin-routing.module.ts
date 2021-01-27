@@ -6,7 +6,6 @@ import { FieldsComponent } from './fields/fields.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { FacultyComponent } from './faculty/faculty.component';
 import { FacilitiesComponent } from './facilities/facilities.component';
-import { CoursesComponent } from './courses/courses.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { DepartmentComponent } from './department/department.component';
 
@@ -19,6 +18,21 @@ import { FacilitiesEditComponent } from './facilities/facilities-edit.component'
 import { DepartmentAddComponent } from './department/department-add.component';
 import { DepartmentEditComponent } from './department/department-edit.component';
 import { FeedbackCommentComponent } from './feedback/feedback-comment/feedback-comment.component';
+
+import { CoursesComponent } from './courses/courses.component';
+import { CoursesAddComponent } from './courses/courses-add/courses-add.component';
+import { OpsubAddComponent } from './opsubject/opsub-add.component';
+import { OpsubEditComponent } from './opsubject/opsub-edit/opsub-edit.component';
+import { SpesubeditComponent } from './spesubject/spesubedit/spesubedit.component';
+import { SpesubaddComponent } from './spesubject/spesubadd/spesubadd.component';
+import { combineAll } from 'rxjs/operators';
+import { StreamaddComponent } from './streams/streamadd.component';
+import { StreameditComponent } from './streams/streamedit.component';
+import { CoursesEditComponent } from './courses/courses-edit/courses-edit.component';
+import { FieldaddComponent } from './fields/fieldadd/fieldadd.component';
+import { FieldeditComponent } from './fields/fieldedit/fieldedit.component';
+import { SpesubjectComponent } from './spesubject/spesubject.component';
+import { OpsubjectComponent } from './opsubject/opsubject.component';
 
 
 const routes: Routes = [
@@ -72,11 +86,21 @@ const routes: Routes = [
         }
       },
       {
-        path: 'course',
-        component: CoursesComponent,
-        data: {
-          title: 'Course'
-        }
+        path: 'courses',
+        children:[
+          {
+            path:'',
+            component:CoursesComponent
+          },
+          {
+              path:'addcourse',
+              component:CoursesAddComponent
+          },
+          {
+            path:'editcorse/:id',
+            component:CoursesEditComponent
+          }
+        ]
       },
       {
         path: 'facilities',
@@ -126,19 +150,72 @@ const routes: Routes = [
         },
       },
       {
-        path: 'field',
-        component: FieldsComponent,
-        data: {
-          title: 'Field'
-        }
-      },
+        path: 'fields',
+       children:[{
+          path:'',
+          component:FieldsComponent
+       },
+       {
+          path:'addfield',
+          component:FieldaddComponent
+       },
+       {
+          path:'editfield/:id',
+          component:FieldeditComponent
+       },
+      ]
+        },
       {
-        path: 'stream',
-        component: StreamsComponent,
-        data: {
-          title: 'Stream'
-        }
-      },
+        path: 'streams',
+        children:[
+          {
+          path:'',
+          component:StreamsComponent
+          },
+          {
+            path:'streamadd',
+            component:StreamaddComponent
+          },
+          {
+            path:'streamedit/:id',
+            component:StreameditComponent
+          }
+      ]
+        },
+        {
+          path: 'opsubject',
+          children:[
+            {
+              path:'',
+              component: OpsubjectComponent
+            },
+            {
+              path:'OpsubAdd',
+            component:OpsubAddComponent
+            },
+            {
+              path:'OpsubEdit/:id',
+              component:OpsubEditComponent
+            }
+          ]
+        },
+        {
+          path: 'spesubject',
+          children:[
+            {
+            path:'',
+            component:SpesubjectComponent
+            },
+            {
+              path:'spesubedit/:id',
+              component:SpesubeditComponent
+            },
+            {
+              path:'spesubadd',
+              component:SpesubaddComponent
+            },
+          ]
+        },
       {
         path: 'studentAccount',
         component: StudentAccountComponent,

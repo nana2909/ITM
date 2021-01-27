@@ -1,0 +1,37 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <form [formGroup]="SpeSubForm" autocomplete="off" (submit)="onSubmit(SpeSubForm.value)">
+            <h1>Edit Subject</h1>
+            <p class="text-muted">Futher details can be collected in HumanResources!</p>
+            <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label class="">Subject ID</label>
+                    <input class="form-control" formControlName="subjectID" name="subjectID" disabled>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="">Subject Name</label>
+                    <input class="form-control" formControlName="subjectName" name="subjectName" required>
+                    <label class="text-danger" *ngIf="SpeSubForm.get('subjectName')?.touched && SpeSubForm.get('subjectName')?.errors?.required">This field is mandatory.</label>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="">Field Name</label>
+                    <select class="form-control" formControlName="fieldCode" name="fieldCode" required>
+                      <option *ngFor="let item of ListSpeSub" [value]="item.fieldCode">
+                        {{item.fieldName}}
+                      </option>
+                    </select>
+                    <label class="text-danger" *ngIf="SpeSubForm.get('fieldCode')?.touched && SpeSubForm.get('fieldCode')?.errors?.required">This field is mandatory.</label>
+                  </div>
+               </div>
+          </div>
+          <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!SpeSubForm.valid" style="letter-spacing:3px;">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

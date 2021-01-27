@@ -1,0 +1,48 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <form [formGroup]="service.CourseForm" autocomplete="off" (submit)="onSubmit()">
+            <h1>Add New Course</h1>
+            <p class="text-muted">Futher details can be collected in HumanResources!</p>
+            <div class="form-group mb-3">
+              <label class="">Course Code</label>
+              <input class="form-control" formControlName="CourseCode" required >
+              <label class="text-danger" *ngIf="service.CourseForm.get('CourseCode')?.touched && service.CourseForm.get('CourseCode')?.errors?.required">This field is mandatory.</label>
+            </div>
+            <div class="form-group mb-3">
+              <label class="">Course Name</label>
+              <input class="form-control" formControlName="CourseName" required >
+              <label class="text-danger" *ngIf="service.CourseForm.get('CourseName')?.touched && service.CourseForm.get('CourseName')?.errors?.required">This field is mandatory.</label>
+            </div>
+            <div class="form-group mb-3">
+              <label class="">Description</label>
+              <input class="form-control"  formControlName="Description" required >
+              <label class="text-danger" *ngIf="service.CourseForm.get('Description')?.touched && service.CourseForm.get('Description')?.errors?.required">This field is mandatory.</label>
+            </div>
+            <div class="form-group mb-3">
+              <label class="">Field Name</label>
+              <select class="form-control" formControlName="FieldCode" required>
+                <option *ngFor="let item of FieldList" [value]="item.FieldCode">
+                  {{item.fieldName}}
+                </option>
+              </select>
+              <label class="text-danger" *ngIf="service.CourseForm.get('FieldCode')?.touched && service.CourseForm.get('FieldCode')?.errors?.required">This field is mandatory.</label>
+            </div>
+            <div class="form-group mb-3">
+              <label class="">Stream Name</label>
+              <select class="form-control" formControlName="StreamCode" required>
+                <option *ngFor="let item of StreamList" [value]="item.StreamCode">
+                  {{item.streamName}}
+                </option>
+              </select>
+              <label class="text-danger" *ngIf="service.CourseForm.get('StreamCode')?.touched && service.CourseForm.get('StreamCode')?.errors?.required">This field is mandatory.</label>
+            </div>
+          <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!service.CourseForm.valid" style="letter-spacing:3px;">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

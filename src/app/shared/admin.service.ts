@@ -23,8 +23,32 @@ GetAllAdmission(){
 }
  //contactUs
 
- //courses
-
+//courses
+CourseForm=this.fb.group({
+  CourseCode : [null,Validators.required],
+  CourseName : [null,Validators.required],
+  Description:[null,Validators.required],
+  StreamCode:[null,Validators.required],
+  FieldCode:[null,Validators.required],
+});
+getCoursesList(){
+return this.http.get(this.BaseURI+'/Courses/ListCourse');
+}
+addCourse(Course)
+{
+return this.http.post(this.BaseURI+'/Courses/CreateCourse',Course);
+}
+getCourses(CourseCode:string)
+{
+return this.http.get(this.BaseURI + '/Courses/GetCourses/'+CourseCode);
+}
+putCourses(CourseCode:string,str)
+{
+return this.http.put(this.BaseURI+'/Courses/EditCourse/'+CourseCode,str);
+}
+DeleteCourses(CourseCode:string){
+return this.http.delete(this.BaseURI+'/Courses/DeleteCourse/'+CourseCode);
+}
 
 
  //department
@@ -74,8 +98,6 @@ GetAllAdmission(){
     return this.http.delete(this.BaseURI+'/Facilities/Delete/'+id);
   }
 
-
-
  //faculty
  facultyForm=this.fb.group({
   FacultyID : [null,Validators.required],
@@ -118,13 +140,52 @@ deleteFaculty(id:string){
   return this.http.put(this.BaseURI+'/Feedback/ResolveFeedback/'+ id, body);
  }
 
- //fields
+//fields
+FieldForm=this.fb.group({
+  FieldCode : [null,Validators.required],
+  FieldName : [null,Validators.required],
+  StreamCode:[null,Validators.required],
+  });
+ getFieldList(){
+  return this.http.get(this.BaseURI+'/Fields/ListFields');
+ }
+ addField(f){
+  return this.http.post(this.BaseURI+'/Fields/CreateField',f);
+}
+getField(FieldCode:string)
+{
+  return this.http.get(this.BaseURI + '/Fields/GetFields/'+FieldCode);
+}
+putField(FieldCode:string,f)
+{
+  return this.http.put(this.BaseURI+'/Fields/EditFields/'+FieldCode,f);
+}
+DeleteField(FieldCode:string){
+  return this.http.delete(this.BaseURI+'/Fields/DeleteFields/'+FieldCode);
+}
 
  //streams
-
-
-
-
+ StreamForm=this.fb.group({
+  streamCode : [null,Validators.required],
+  streamName : [null,Validators.required],
+  });
+ getStreamList(){
+  return this.http.get(this.BaseURI+'/Streams/ListStreams');
+ }
+ addStream(str){
+  return this.http.post(this.BaseURI+'/Streams/CreateStreams',str);
+}
+getStream(StreamCode:string)
+{
+  return this.http.get(this.BaseURI + '/Streams/GetStreams/'+StreamCode);
+}
+putStream(StreamCode:string,str)
+{
+  return this.http.put(this.BaseURI+'/Streams/EditStreams/'+StreamCode,str);
+}
+DeleteStream(StreamCode:string){
+  return this.http.delete(this.BaseURI+'/Streams/DeleteStreams/'+StreamCode);
+}
 
  //studentAccount
     //Get User Liset
@@ -143,7 +204,55 @@ deleteFaculty(id:string){
     return this.http.delete(this.BaseURI+'/UserDetail/DeleteUser/'+userName).toPromise();
   }
 
-  //subjects
+   //Option subjects
+   OpSubForm=this.fb.group({
+    subjectID : [null,Validators.required],
+    subjectName:[null,Validators.required],
+    });
+  getOpsubjectList(){
+    return this.http.get(this.BaseURI+'/OpSubjects/ListOpSubs');
+  }
+  addOpSub(sub){
+    return this.http.post(this.BaseURI+'/OpSubjects/CreateOpSubs',sub);
+  }
+  getOpsubject(subjectID:string)
+  {
+    return this.http.get(this.BaseURI + '/OpSubjects/GetOpSubs/'+subjectID);
+  }
+  putOpSubject(subjectID:string,sub)
+  {
+    return this.http.put(this.BaseURI+'/OpSubjects/EditOpSubs/'+subjectID,sub);
+  }
+
+  DeleteOpSubs(subjectID:string){
+    return this.http.delete(this.BaseURI+'/OpSubjects/DeleteOpSubs/'+subjectID);
+  }
+
+//special Subject
+SpeSubForm = this.fb.group({
+  subjectID:  [null,Validators.required],
+  subjectName:[null,Validators.required],
+  fieldCode:[null,Validators.required],
+})
+  getSpesubjectList(){
+    return this.http.get(this.BaseURI+'/SpeSubjects/ListSpeSubs');
+  }
+  addSpeSub(sub){
+    return this.http.post(this.BaseURI+'/SpeSubjects/CreateSpeSubs',sub);
+  }
+  getSpesubject(subjectID:string)
+  {
+    return this.http.get(this.BaseURI + '/SpeSubjects/GetSpeSubs/'+subjectID);
+  }
+  putSpeSubject(subjectID:string,sub)
+  {
+    return this.http.put(this.BaseURI+'/SpeSubjects/EditSpeSubs/'+subjectID,sub);
+  }
+
+  DeleteSpeSubs(subjectID:string){
+    return this.http.delete(this.BaseURI+'/SpeSubjects/DeleteSpeSubs/'+subjectID);
+  }
+
 
 }
 

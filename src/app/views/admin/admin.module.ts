@@ -34,6 +34,20 @@ import {MatRadioModule} from '@angular/material/radio';
 // Components Routing
 import { AdminRoutingModule } from './admin-routing.module';
 import { FeedbackCommentComponent } from './feedback/feedback-comment/feedback-comment.component';
+import { SpesubjectComponent } from './spesubject/spesubject.component';
+import { from } from 'rxjs';
+import { CoursesEditComponent } from './courses/courses-edit/courses-edit.component';
+import { CoursesAddComponent } from './courses/courses-add/courses-add.component';
+import { OpsubAddComponent } from './opsubject/opsub-add.component';
+import { OpsubEditComponent } from './opsubject/opsub-edit/opsub-edit.component';
+import { SpesubaddComponent } from './spesubject/spesubadd/spesubadd.component';
+import { SpesubeditComponent } from './spesubject/spesubedit/spesubedit.component';
+import { StreamaddComponent } from './streams/streamadd.component';
+import { StreameditComponent } from './streams/streamedit.component';
+import { FieldaddComponent } from './fields/fieldadd/fieldadd.component';
+import { FieldeditComponent } from './fields/fieldedit/fieldedit.component';
+
+
 
 @NgModule({
   imports: [
@@ -70,6 +84,17 @@ import { FeedbackCommentComponent } from './feedback/feedback-comment/feedback-c
     DepartmentEditComponent,
     UploadComponent,
     FeedbackCommentComponent,
+    CoursesEditComponent,
+    CoursesAddComponent,
+    OpsubAddComponent,
+    OpsubEditComponent,
+    SpesubaddComponent,
+    SpesubeditComponent,
+    StreamaddComponent,
+    StreameditComponent,
+    FieldaddComponent,
+    FieldeditComponent,
+    SpesubjectComponent
   ],
   providers: [DatePipe],
 entryComponents:[

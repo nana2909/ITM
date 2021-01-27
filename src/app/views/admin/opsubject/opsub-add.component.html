@@ -1,0 +1,25 @@
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <form [formGroup]="this.service.OpSubForm" autocomplete="off" (submit)="onSubmit()">
+            <h1>Add New Subject</h1>
+            <p class="text-muted">Futher details can be collected in HumanResources!</p>
+            <div class="form-group mb-3">
+              <label class="">Subject ID</label>
+              <input class="form-control" formControlName="subjectID" required>
+              <label class="text-danger" *ngIf="service.OpSubForm.get('subjectID')?.touched && service.OpSubForm.get('subjectID')?.errors?.required">This field is mandatory.</label>
+            </div>
+            <div class="form-group mb-3">
+              <label class="">Subject Name</label>
+              <input class="form-control" formControlName="subjectName" required>
+              <label class="text-danger" *ngIf="service.OpSubForm.get('subjectName')?.touched && service.OpSubForm.get('subjectName')?.errors?.required">This field is mandatory.</label>
+            </div>
+          <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!service.OpSubForm.valid" style="letter-spacing:3px;">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

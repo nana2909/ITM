@@ -1,0 +1,35 @@
+<div class="animated fadeIn">
+  <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h1><strong> Subject List</strong></h1>
+            <i class="fa fa-user"></i>
+            <a href="" class="btn btn-outline-primary" [routerLink]="['spesubadd']">Add New</a>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered table-striped table-sm">
+              <thead>
+                <tr>
+                  <th>Subject ID</th>
+                  <th>Subject Name</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor="let item of ListSpeSub">
+                      <td>{{ item.subjectID }}</td>
+                      <td>{{ item.subjectName }}</td>
+                      <td>
+                         <a class="btn text-primary" routerLink="spesubedit/{{item.subjectID}}" ><i class="fa fa-edit fa-lg"></i></a>
+                        <a class="btn text-danger" (click)="onDelete(item.subjectID)"><i class="fa fa-trash fa-lg"></i></a>
+                      </td>
+                    </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <!--/.col-->
+    </div>
+  </div>

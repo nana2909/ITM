@@ -1,0 +1,38 @@
+
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12 mx-auto">
+      <div class="card">
+        <div class="card-body p-4">
+          <form [formGroup]="FieldForm" autocomplete="off" (submit)="onSubmit(FieldForm.value)">
+            <h1>Edit Field</h1>
+            <p class="text-muted">Futher details can be collected in HumanResources!</p>
+            <div class="row">
+                <div class="col-lg-6">
+                  <div class="form-group mb-3">
+                    <label class="">Field Code</label>
+                    <input class="form-control" formControlName="FieldCode" name="FieldCode" disabled>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="">Field Name</label>
+                    <input class="form-control" formControlName="FieldName" name="FieldName" required>
+                    <label class="text-danger" *ngIf="FieldForm.get('FieldName')?.touched && FieldForm.get('FieldName')?.errors?.required">This field is mandatory.</label>
+                  </div>
+                  <div class="form-group mb-3">
+                    <label class="">Stream Name</label>
+                    <select class="form-control" formControlName="StreamCode" name="StreamCode" required>
+                      <option *ngFor="let item of ListStream" [value]="item.streamCode">
+                        {{item.streamName}}
+                      </option>
+                    </select>
+                    <label class="text-danger" *ngIf="FieldForm.get('streamCode')?.touched && FieldForm.get('streamCode')?.errors?.required">This field is mandatory.</label>
+                  </div>
+               </div>
+          </div>
+          <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!FieldForm.valid" style="letter-spacing:3px;">Update</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

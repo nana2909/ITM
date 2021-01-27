@@ -3,25 +3,25 @@
       <div class="col-lg-12">
         <div class="card">
           <div class="card-header">
-            <h1><strong> Stream List</strong></h1>
+            <h1><strong> Subject List</strong></h1>
             <i class="fa fa-user"></i>
-            <a class="btn btn-outline-primary" [routerLink]="['streamadd']">Add New</a>
+            <a class="btn btn-outline-primary" [routerLink]="['OpsubAdd']">Add New</a>
           </div>
           <div class="card-body">
             <table datatable class="table table-bordered table-striped table-sm">
               <thead>
                 <tr>
-                  <th>Stream ID</th>
-                  <th>Stream Name</th>
+                  <th>Subject ID</th>
+                  <th>Subject Name</th>
                 </tr>
               </thead>
               <tbody>
-                  <tr *ngFor="let item of StreamList">
-                      <td>{{item.streamCode }}</td>
-                      <td>{{item.streamName }}</td>
+                  <tr *ngFor="let item of ListSub">
+                      <td>{{item.subjectID }}</td>
+                      <td>{{ item.subjectName }}</td>
                       <td>
-                         <a class="btn text-primary" routerLink="streamedit/{{item.streamCode}}"><i class="fa fa-edit fa-lg"></i></a>
-                        <a class="btn text-danger" (click)="onDelete(item.streamCode)"><i class="fa fa-trash fa-lg"></i></a>
+                         <a class="btn text-primary" routerLink="OpsubEdit/{{item.subjectID}}"><i class="fa fa-edit fa-lg"></i></a>
+                        <a class="btn text-danger" (click)="onDelete(item.subjectID)"><i class="fa fa-trash fa-lg"></i></a>
                       </td>
                     </tr>
               </tbody>
