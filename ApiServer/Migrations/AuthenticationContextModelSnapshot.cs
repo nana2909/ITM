@@ -229,50 +229,16 @@ namespace APIServer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("imgUrl")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
                     b.HasKey("DepartmentID");
 
                     b.ToTable("tbDepartment");
                 });
 
-            modelBuilder.Entity("APIServer.Models.Event.tbEvent", b =>
-                {
-                    b.Property<string>("EventID")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("text");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("imgUrl")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
-
-                    b.Property<bool>("isActive")
-                        .HasColumnType("bit");
-
-                    b.HasKey("EventID");
-
-                    b.ToTable("tbEvent");
-                });
-
             modelBuilder.Entity("APIServer.Models.Facility.tbFacility", b =>
                 {
                     b.Property<string>("FacCode")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("FacName")
                         .IsRequired()
@@ -294,8 +260,8 @@ namespace APIServer.Migrations
             modelBuilder.Entity("APIServer.Models.Faculty.tbFaculty", b =>
                 {
                     b.Property<string>("FacultyID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Degree")
                         .IsRequired()
@@ -349,6 +315,9 @@ namespace APIServer.Migrations
                     b.Property<string>("StudentName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("isResolve")
+                        .HasColumnType("text");
 
                     b.HasKey("FbID");
 

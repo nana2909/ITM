@@ -55,53 +55,57 @@ namespace APIServer.Controllers
                 return BadRequest("Age must over than 18 year old!");
             }
             //Generator Key Admission
-            var finalString = AdmissionService.GenerateKey(model.StreamCode);
-
+            var AdmissionKey = AdmissionService.GenerateKey(model.StreamCode);
+            model.StatusID = 0;
             //Save AdmissionForm + finalString to Db
-                var admission = new tbAdmission
-                {
-                    AdmissionID = finalString,
-                    StudentEmail = model.StudentEmail,
-                    StudentName = model.StudentName,
-                    FatherName = model.FatherName,
-                    MotherName = model.MotherName,
-                    DoB = model.DoB,
-                    Gender = model.Gender,
-                    ResidentialAddress = model.ResidentialAddress,
-                    PermanentAddress = model.PermanentAddress,
-                    StreamCode = model.StreamCode,
-                    FieldCode = model.FieldCode,
-                    SportsDetails = model.SportsDetails,
-                    StatusID = model.StatusID,
-                    ExUniversity = model.ExUniversity,
-                    ExEnrollmentNumber = model.ExEnrollmentNumber,
-                    ExCenter = model.ExCenter,
-                    ExStream = model.ExStream,
-                    ExField = model.ExField,
-                    ExMarkSecured = model.ExMarkSecured,
-                    OutOfDate = model.OutOfDate,
-                    ClassObtained = model.ClassObtained,
-                    SpecializedSubjectID = model.SpecializedSubjectID,
-                    OptionalSubjectID = model.OptionalSubjectID
-                };
-                await db.Admissions.AddAsync(admission);
-                await db.SaveChangesAsync();
-
+            var admission = new tbAdmission
+            {
+                AdmissionID = AdmissionKey,
+                StudentEmail = model.StudentEmail,
+                StudentName = model.StudentName,
+                FatherName = model.FatherName,
+                MotherName = model.MotherName,
+                DoB = model.DoB,
+                Gender = model.Gender,
+                ResidentialAddress = model.ResidentialAddress,
+                PermanentAddress = model.PermanentAddress,
+                StreamCode = model.StreamCode,
+                FieldCode = model.FieldCode,
+                SportsDetails = model.SportsDetails,
+                StatusID = model.StatusID,
+                ExUniversity = model.ExUniversity,
+                ExEnrollmentNumber = model.ExEnrollmentNumber,
+                ExCenter = model.ExCenter,
+                ExStream = model.ExStream,
+                ExField = model.ExField,
+                ExMarkSecured = model.ExMarkSecured,
+                OutOfDate = model.OutOfDate,
+                ClassObtained = model.ClassObtained,
+                SpecializedSubjectID = model.SpecializedSubjectID,
+                OptionalSubjectID = model.OptionalSubjectID
+            };
+            await db.Admissions.AddAsync(admission);
+            await db.SaveChangesAsync();
+            
             //Return key to Student
-            return new { AdmissionKey = finalString };
+            return new { AdmissionKey } ;
         }
 
         [HttpGet]
         //[Authorize]
-        [Route("GetInfoAdmission")]
+        [Route("GetInfoAdmission/{id}")]
         //POST: api/Admission/GetInfoAdmission
         public async Task<Object> GetInfoAdmission(string Id)
         {
-            if(Id == null)
+            if (Id == null)
             {
                 return BadRequest("Admission ID cannot null!");
             }
             var Admission = await db.Admissions.FindAsync(Id);
+            if (Admission == null)
+            {
+                return NotFound();
+            }
             //SpecializedSubject
             var SpecSubject = db.SpeSubjects.SingleOrDefault(e => e.SubjectID.Equals(Admission.SpecializedSubjectID));
             if (SpecSubject != null)
@@ -122,32 +126,10 @@ namespace APIServer.Controllers
             }
             //Field
             var Field = db.Fields.SingleOrDefault(e => e.FieldCode.Equals(Admission.FieldCode));
-            if (Field != null)
-            {
-                //Course
-                var CourseList = db.Courses.Where(x => x.FieldCode.Equals(Field.FieldCode)).ToList();
-                if (CourseList != null)
-                {
-                    Field.TbCourses = CourseList;
-                }
-                //Subject
-                var SubjectList = db.SpeSubjects.Where(x => x.FieldCode.Equals(Field.FieldCode)).ToList();
-                if(SubjectList != null)
-                {
-                    Field.tbSpeSubjects = SubjectList;
-                }
-                Admission.tbField = Field;
-            }
-            //Stream 
+            Admission.tbField = Field;
+            //Stream
             var Stream = db.Streams.SingleOrDefault(e => e.StreamCode.Equals(Admission.StreamCode));
-            if (Stream != null)
-            {
-                //Field
-                var FieldList = db.Fields.Where(x => x.StreamCode.Equals(Stream.StreamCode)).ToList();
-                Stream.TbFields = FieldList;
-                Admission.tbStream = Stream;
-            }
-
+            Admission.tbStream = Stream;
             return new { Admission };
         }
 

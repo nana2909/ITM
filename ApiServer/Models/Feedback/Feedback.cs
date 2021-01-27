@@ -22,9 +22,11 @@ namespace APIServer.Models.Feedback
         [Column(TypeName = "text")]
         public string FbContent { get; set; }
 
+        [Column(TypeName = "text")]
+        public string isResolve { get; set; }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
         [Column(TypeName = "date")]
         public DateTime Date { get; set; }
-        public bool isResolved { get; set; }
     }
 }

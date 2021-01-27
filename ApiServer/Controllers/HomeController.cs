@@ -1,19 +1,17 @@
 ﻿using APIServer.Models.Course;
 using APIServer.Models.Department;
 using APIServer.Models.EmailService;
-using APIServer.Models.Event;
 using APIServer.Models.Field;
 using APIServer.Models.OptionalSubject;
 using APIServer.Models.SpecicalSubject;
 using APIServer.Models.Stream;
 using APIServer.Models.User;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Threading.Tasks;
 
 namespace APIServer.Controllers
@@ -25,34 +23,19 @@ namespace APIServer.Controllers
         private AuthenticationContext db;
         private readonly ILogger<AdmissionController> logger;
         private readonly IEmailService emailService;
+        private readonly IWebHostEnvironment environment;
+
         public HomeController(AuthenticationContext _db,
                                     ILogger<AdmissionController> _logger,
-                                        IEmailService _emailService)
+                                        IEmailService _emailService,
+                                            IWebHostEnvironment environment)
         {
             db = _db;
             logger = _logger;
             emailService = _emailService;
+            this.environment = environment;
         }
 
-        [HttpGet]
-        //[Authorize]
-        [Route("GetAllEvents")]
-        //POST: api/Home/GetAllEvents
-        public async Task<ICollection<tbEvent>> GetAllEvents()
-        {
-            var events = await db.Events.ToListAsync();
-            return events;
-        }
-
-        [HttpGet]
-        //[Authorize]
-        [Route("GetEventById")]
-        //POST: api/Home/GetEventById
-        public async Task<tbEvent> GetEventById(string id)
-        {
-            var events = await db.Events.FindAsync(id);
-            return events;
-        }
 
         [HttpGet]
         //[Authorize]
@@ -80,7 +63,7 @@ namespace APIServer.Controllers
         //POST: api/Home/GetAllStream
         public async Task<ICollection<tbStream>> GetAllStream()
         {
-            var streams = await db.Streams.ToListAsync();
+            var streams = await db.Streams.Include(s => s.TbFields).ToListAsync();
             return streams;
         }
 
@@ -122,6 +105,17 @@ namespace APIServer.Controllers
         {
             var speSubjects = await db.SpeSubjects.ToListAsync();
             return speSubjects;
+        }
+
+        [HttpGet]
+        [Route("DownloadForm")]
+        //GET: api/Home/DownloadForm
+        public IActionResult DownloadForm()
+        {
+            string path = Path.Combine(this.environment.ContentRootPath, "AdmissionForm.docx");
+            string fileName = "Admission_Form.docx";
+            byte[] fileBytes = System.IO.File.ReadAllBytes(path);
+            return File(fileBytes, "application/force-download", fileName);
         }
 
     }
