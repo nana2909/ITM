@@ -38,7 +38,8 @@ export class FeedbackComponent implements OnInit {
   refreshList(){
     this.service.getFeedbackList().subscribe(res =>{
       console.info(res);
-      this.List = res;this.dtTrigger.next();
+      this.List = res;
+      this.dtTrigger.next();
     });
   }
 

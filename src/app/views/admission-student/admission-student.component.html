@@ -1,140 +1,145 @@
 <div class="container-fluid register" #pdfTable  id="pdfTable">
-    <div class="row">
-        <div class="col-md-3 register-left">
-            <h3 class="mt-3">WELCOME TO ITM COLLEGE</h3>
-            <p>For more information feel free to contact us any time!
-              <br>Phone: 
-                <a class="element" href="tel:+43 2252 790 260">
-                  <strong>+083 9096 566&nbsp;67</strong></a><br>Email: <a class="element" href="mailto:office@itm-college.eu">
-                  <strong>office@itm-college.com</strong>
-                </a>
-                <button (click)="downloadAsPDF()">Export To PDF</button>
-            </p>
-            <img src="/assets/img/logo.png" alt=""/>
-        </div>
-        <div class="col-md-9 register-right">
-            <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <h1 class="register-heading">Admission Form</h1>
-                    <!-- BEGIN FORM -->
-                    <form [formGroup]="service.admissionModel" autocomplete="on" (submit)="onSubmit()">
-                      <div class="row register-form">
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                <input class="form-control" formControlName="StudentEmail" required placeholder="Student Email..">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('StudentEmail')?.touched && service.admissionModel.get('StudentEmail')?.errors?.required">This field is mandatory.</label>
-                                  <label class="text-danger" *ngIf="service.admissionModel.get('StudentEmail')?.touched && service.admissionModel.get('StudentEmail')?.errors?.email">Invalid email address!</label>            
-                              </div>
-                              <div class="form-group">
-                                <input class="form-control" formControlName="StudentName" placeholder="Student Name..">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('StudentName')?.touched && service.admissionModel.get('StudentName')?.errors?.required">This field is mandatory.</label>
+  <div class="row">
+      <div class="col-md-3 register-left">
+          <h2>WELCOME TO ITM COLLEGE</h2>
+          <p>For more information feel free to contact us any time!
+            <br>Phone: 
+              <a class="element" href="tel:+43 2252 790 260">
+                <strong>+083 9096 566&nbsp;67</strong></a><br>Email: <a class="element" href="mailto:office@itm-college.eu">
+                <strong>office@itm-college.com</strong>
+              </a>
+              <button class="btn btn-link px-0"  (click)="downloadAsPDF()">Download Form</button>
+              <button type="button" class="btn btn-link px-0 "style="letter-spacing:2px;color:white" [routerLink]="['/']">Back to Home Page!</button>
+          </p>
+          <img src="/assets/img/logo.png" alt=""/>
+      </div>
+      <div class="col-md-9 register-right">
+          <div class="tab-content" id="myTabContent">
+              <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                  <h1 class="register-heading font-weight-bold">Admission Form</h1>
+                  <!-- BEGIN FORM -->
+                  <form [formGroup]="service.admissionModel" autocomplete="off" (submit)="onSubmit()">
+                    <div class="row register-form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <input class="form-control" formControlName="StudentEmail" required placeholder="Student Email..">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('StudentEmail')?.touched && service.admissionModel.get('StudentEmail')?.errors?.required">This field is mandatory.</label>
+                                <label class="text-danger" *ngIf="service.admissionModel.get('StudentEmail')?.touched && service.admissionModel.get('StudentEmail')?.errors?.email">Invalid email address!</label>            
                             </div>
-                              <div class="form-group">
-                                <input class="form-control" formControlName="FatherName" placeholder="Father Name..">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('FatherName')?.touched && service.admissionModel.get('FatherName')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <input class="form-control" formControlName="MotherName" placeholder="Mother Name..">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('MotherName')?.touched && service.admissionModel.get('MotherName')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <div class="row">
-                                  <div class="col">
-                                    <input class="form-control" type="date" formControlName="DoB" placeholder="Date of birth..">
-                                    <label class="text-danger" *ngIf="service.admissionModel.get('DoB')?.touched && service.admissionModel.get('DoB')?.errors?.required">This field is mandatory.</label>
+                            <div class="form-group">
+                              <input class="form-control" formControlName="StudentName" placeholder="Student Name..">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('StudentName')?.touched && service.admissionModel.get('StudentName')?.errors?.required">This field is mandatory.</label>
+                          </div>
+                            <div class="form-group">
+                              <input class="form-control" formControlName="FatherName" placeholder="Father Name..">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('FatherName')?.touched && service.admissionModel.get('FatherName')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <input class="form-control" formControlName="MotherName" placeholder="Mother Name..">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('MotherName')?.touched && service.admissionModel.get('MotherName')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col">
+                                  <input class="form-control" type="date" formControlName="DoB" placeholder="Date of birth..">
+                                  <label class="text-danger" *ngIf="service.admissionModel.get('DoB')?.touched && service.admissionModel.get('DoB')?.errors?.required">This field is mandatory.</label>
+                                </div>
+                                <div class="col">
+                                  <div class="maxl">
+                                    <label class="radio inline"> 
+                                      <input type="radio" checked="true" [value]=true formControlName="Gender">
+                                      <span> Male </span> 
+                                    </label>
+                                    <label class="radio inline"> 
+                                      <input type="radio" [value]=false formControlName="Gender">
+                                      <span>Female </span> 
+                                    </label>
                                   </div>
-                                  <div class="col">
-                                    <div class="maxl">
-                                      <label class="radio inline"> 
-                                        <input type="radio" checked="true" [value]=true formControlName="Gender" >
-                                        <span> Male </span> 
-                                      </label>
-                                      <label class="radio inline"> 
-                                        <input type="radio" [value]=false formControlName="Gender">
-                                        <span>Female </span> 
-                                      </label>
-                                    </div>
-                                    <label class="text-danger" *ngIf="service.admissionModel.get('Gender')?.touched && service.admissionModel.get('Gender')?.errors?.required">This field is mandatory.</label>
-                                  </div>
+                                  <label class="text-danger" *ngIf="service.admissionModel.get('Gender')?.touched && service.admissionModel.get('Gender')?.errors?.required">This field is mandatory.</label>
                                 </div>
                               </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control" formControlName="ResidentialAddress" placeholder="Residential Address">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('ResidentialAddress')?.touched && service.admissionModel.get('ResidentialAddress')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control" formControlName="PermanentAddress" placeholder="Permanent Address">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('PermanentAddress')?.touched && service.admissionModel.get('PermanentAddress')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <input type="submit" class="btnRegister"  value="Register"/>
-                          </div>
-                          <div class="col-md-6">
-                              <div class="form-group">
-                                <select class="form-control" formControlName="StreamCode">
-                                    <option class="hidden" [selected]="true" disabled>Please select your Steam Code</option>
-                                    <option *ngFor="let stream of Streams; let i = index" [ngValue]="stream.streamCode" >{{stream.name}}</option>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="ResidentialAddress" placeholder="Residential Address">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('ResidentialAddress')?.touched && service.admissionModel.get('ResidentialAddress')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="PermanentAddress" placeholder="Permanent Address">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('PermanentAddress')?.touched && service.admissionModel.get('PermanentAddress')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <button type="submit" class="btnRegister btn" [disabled]="!service.admissionModel.valid">Register</button>
+                            <!-- <ng-template [ngIf]="keyAdmission">
+                              <p>Your Key Admission: {{keyAdmission}}</p>
+                            </ng-template> -->
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                              <select id="streamsl" [ngModel]="StreamSelected" class="form-control"  formControlName="StreamCode" (change)="onChange($event.target.value)">
+                                <option class="hidden" [value]="0" disabled >Choose stream</option>
+                                <option *ngFor="let stream of Streams" [value]="stream.streamCode" >{{stream.name}}</option>
+                              </select>
+                              <label class="text-danger" *ngIf="service.admissionModel.get('StreamCode')?.touched && service.admissionModel.get('StreamCode')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <select class="form-control" [ngModel]="FieldSelected" formControlName="FieldCode" [disabled]="!FieldStatus">
+                                  <option [value]="0" [selected]="true" disabled>Choose field</option>
+                                    <option *ngFor="let field of FieldList" [value]="field.fieldCode">{{field.name}}</option>
                                 </select>
-                                <label class="text-danger" *ngIf="service.admissionModel.get('StreamCode')?.touched && service.admissionModel.get('StreamCode')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <select class="form-control" formControlName="FieldCode">
-                                    <option class="hidden" [selected]="true" disabled>Please select your Field Code</option>
-                                    <option *ngFor="let field of Fields; let i = index" [ngValue]="field.fieldCode">{{field.name}}</option>
-                                </select>
-                                <label class="text-danger" *ngIf="service.admissionModel.get('FieldCode')?.touched && service.admissionModel.get('FieldCode')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                  <input type="text" class="form-control" formControlName="SportsDetails" placeholder="Sports Detail">
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control" formControlName="ExUniversity" placeholder="Ex University...">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('ExUniversity')?.touched && service.admissionModel.get('ExUniversity')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control" formControlName="ExEnrollmentNumber" placeholder="Ex EnrollmentNumber...">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('ExEnrollmentNumber')?.touched && service.admissionModel.get('ExEnrollmentNumber')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control" formControlName="ExCenter" placeholder="Ex Center...">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('ExCenter')?.touched && service.admissionModel.get('ExCenter')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control" formControlName="ExStream" placeholder="Ex Stream...">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('ExStream')?.touched && service.admissionModel.get('ExStream')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <input type="text" class="form-control" formControlName="ExField" placeholder="Ex Field...">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('ExField')?.touched && service.admissionModel.get('ExField')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <input type="number" class="form-control" formControlName="ExMarkSecured" placeholder="Ex Mark Secured...">
-                                <label class="text-danger" *ngIf="service.admissionModel.get('ExMarkSecured')?.touched && service.admissionModel.get('ExMarkSecured')?.errors?.required">This field is mandatory.</label>
-                              </div>
-                              <div class="form-group">
-                                <div class="row">
-                                  <div class="col">
-                                    <input type="date" class="form-control" formControlName="OutOfDate" placeholder="Out Of Date...">
-                                    <label class="text-danger" *ngIf="service.admissionModel.get('OutOfDate')?.touched && service.admissionModel.get('OutOfDate')?.errors?.required">This field is mandatory.</label>
-                                  </div>
-                                  <div class="col">
-                                    <select class="form-control" formControlName="ClassObtained">
-                                      <option class="hidden" [selected]="true" disabled>--- Select One ---</option>
-                                      <option value="A">A</option>
-                                      <option value="B">B</option>
-                                      <option value="C">C</option>
-                                      <option value="D">D</option>
-                                    </select>
-                                    <label class="text-danger" *ngIf="service.admissionModel.get('ClassObtained')?.touched && service.admissionModel.get('ClassObtained')?.errors?.required">This field is mandatory.</label>
-                                  </div>
+                              <label class="text-danger" *ngIf="service.admissionModel.get('FieldCode')?.touched && service.admissionModel.get('FieldCode')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" formControlName="SportsDetails" placeholder="Sports Detail">
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="ExUniversity" placeholder="Ex University...">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('ExUniversity')?.touched && service.admissionModel.get('ExUniversity')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="ExEnrollmentNumber" placeholder="Ex EnrollmentNumber...">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('ExEnrollmentNumber')?.touched && service.admissionModel.get('ExEnrollmentNumber')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="ExCenter" placeholder="Ex Center...">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('ExCenter')?.touched && service.admissionModel.get('ExCenter')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="ExStream" placeholder="Ex Stream...">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('ExStream')?.touched && service.admissionModel.get('ExStream')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <input type="text" class="form-control" formControlName="ExField" placeholder="Ex Field...">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('ExField')?.touched && service.admissionModel.get('ExField')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <input type="number" class="form-control" formControlName="ExMarkSecured" placeholder="Ex Mark Secured...">
+                              <label class="text-danger" *ngIf="service.admissionModel.get('ExMarkSecured')?.touched && service.admissionModel.get('ExMarkSecured')?.errors?.required">This field is mandatory.</label>
+                            </div>
+                            <div class="form-group">
+                              <div class="row">
+                                <div class="col">
+                                  <input type="date" class="form-control" formControlName="OutOfDate" placeholder="Out Of Date...">
+                                  <label class="text-danger" *ngIf="service.admissionModel.get('OutOfDate')?.touched && service.admissionModel.get('OutOfDate')?.errors?.required">This field is mandatory.</label>
+                                </div>
+                                <div class="col">
+                                  <select class="form-control" formControlName="ClassObtained">
+                                    <option class="hidden" [selected]="true" disabled>-Select One-</option>
+                                    <option value="A">A</option>
+                                    <option value="B">B</option>
+                                    <option value="C">C</option>
+                                    <option value="D">D</option>
+                                  </select>
+                                  <label class="text-danger" *ngIf="service.admissionModel.get('ClassObtained')?.touched && service.admissionModel.get('ClassObtained')?.errors?.required">This field is mandatory.</label>
                                 </div>
                               </div>
-                          </div>
-                      </div>
-                    </form>
-                    <!-- END FORM -->
-                </div>
-          </div>
+                            </div>
+                        </div>
+                    </div>
+                  </form>
+                  <!-- END FORM -->
+              </div>
         </div>
-    </div>
-  
+      </div>
+  </div>
+
 </div>

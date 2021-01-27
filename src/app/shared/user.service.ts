@@ -66,6 +66,7 @@ export class UserService {
     userName: ['', Validators.required],
     passWord: ['', Validators.required]
   });
+
     login(){
       var body = {
         userName:this.loginForm.value.userName,
@@ -161,7 +162,7 @@ getUserAdmission(){
     OutOfDate: ['',Validators.required],
     ClassObtained: ['',Validators.required],
     SpecializedSubjectID: ['none',Validators.required],
-    OptionalSubjectID: ['',Validators.required],
+    OptionalSubjectID: ['none',Validators.required],
 });
 
 submitAdmision() {
@@ -169,28 +170,21 @@ this.admissionModel.value.DoB = moment(this.admissionModel.value.DoB).format('YY
 this.admissionModel.value.OutOfDate = moment(this.admissionModel.value.OutOfDate).format('YYYY-MM-DDTHH:mm');
 console.log(this.admissionModel.value);
 
-return this.http.post(this.BaseURI + '/Admission/SubmitAdmission', this.admissionModel.value).pipe(
-  map((result) => { 
-    console.log(result);
-  },
-      (error) => { 
-        console.log(error)
-      }
-    )
-  );
+return this.http.post(this.BaseURI + '/Admission/SubmitAdmission', this.admissionModel.value);
 }
 
 //Register from -- after admissionid is approve
-
-regiterForm = this.fb.group({
+registerForm = this.fb.group({
   AdmissionID : [''],
   StudentName: [''],
   StudentEmail: [''],
+  StreamName: [''],
+  FieldName: [''],
   StreamCode: [''],
   FieldCode: [''],
-  SpecializedSubjectID: [''],
-  OptionalSubjectID: [''],
-  Courses: [''],
+  SpecializedSubjectID: ['', [Validators.required]],
+  OptionalSubjectID: ['', [Validators.required]],
+  Courses: ['', [Validators.required]],
 })
 
 submitRegisForm(body){

@@ -1,9 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import { ToastrService } from 'ngx-toastr';
-import { Field, HomeService, Stream } from '../../shared/home.service';
+import { AdmissionKey, Field, HomeService, Stream } from '../../shared/home.service';
 import { UserService } from '../../shared/user.service';
+import {  saveAs as importedSaveAs  } from "file-saver"; 
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admission-student',
@@ -14,50 +14,57 @@ export class AdmissionStudentComponent implements OnInit {
 
   Streams : Stream[];
   Fields : Field[];
+  FieldList : Field[];
+  FieldStatus : boolean  = false;
+  StreamSelected = '0';
+  FieldSelected = '0';
+  keyAdmission: string ='';
   @ViewChild('pdfTable', {static: false}) pdfTable: ElementRef;
-
+  
+  onChange(value)
+  {
+      this.FieldStatus = true;
+      this.FieldList = this.Fields.filter(f => f.streamCode == value)
+  }
   constructor(
-              public service:UserService, 
+              public service: UserService, 
               public service2: HomeService,
-              public toastr: ToastrService
+              public toastr: ToastrService,
+              private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.getStreams();
-    this.getFields();
+    this.getInitialData();
   }
 
   onSubmit(){
     this.service.submitAdmision().subscribe(
-      res => {
-        console.info(res)
-      },
+      (res: any) => {
+          this.keyAdmission = res.admissionKey;
+          this.router.navigate(['/admissionfinish', this.keyAdmission]);
+          this.service.admissionModel.reset();
+          this.toastr.success('Admission submit form!','Registration successful.');
+        },
       err => {
-        console.error(err)
+        this.service.admissionModel.reset();
+        console.warn(err)
       }
     )
   }
 
+
   downloadAsPDF(){
-    const doc = new jsPDF();
-    const specialElementHandlers = {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
-    let content = document.getElementById('pdfTable')
-    html2canvas(content).then((canvas)=>{
-      var imgData = canvas.toDataURL('image/png')
-      var doc  = new jsPDF("l", "px", "a4");
-      var width = doc.internal.pageSize.getWidth();
-      var height = doc.internal.pageSize.getHeight();
-      doc.addImage(imgData, 0,0 ,width,height)
-      doc.save('image.pdf');
-    })
-   
+    this.service2.GetAdmissionForm().subscribe(
+      res=>{
+        console.log(res);
+        importedSaveAs(res, "AdmissionForm.docx");
+      },
+      err=>{console.log(err)}
+    )
+
   }
 
-  getStreams(){
+  getInitialData(){
     this.service2.getAllStream().subscribe(
       (res:any) => {
         console.log(res);
@@ -67,9 +74,6 @@ export class AdmissionStudentComponent implements OnInit {
         console.log(err);
       }
     )
-  }
-
-  getFields(){
     this.service2.getAllField().subscribe(
       (res:any) => {
         console.info(res);

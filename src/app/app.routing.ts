@@ -18,6 +18,8 @@ import { RegisterComponent } from './views/register/register.component';
 import { ResetPasswordComponent } from './views/forgot-password/reset-password/reset-password.component';
 import { UserInfoComponent } from './views/home/user-detail/user-info/user-info.component';
 import { AdmissionStudentComponent } from './views/admission-student/admission-student.component';
+import { AdmissionInfoComponent } from './views/admission-student/admission-info/admission-info.component';
+import { AdmissionFinishComponent } from './views/admission-student/admission-finish/admission-finish.component';
 
 export const routes: Routes = [
   {
@@ -50,6 +52,14 @@ export const routes: Routes = [
     path: 'admission',
     component: AdmissionStudentComponent,
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'admissionstatus',
+    component: AdmissionInfoComponent
+  },
+  {
+    path: 'admissionfinish/:key',
+    component: AdmissionFinishComponent
   },
   {
     path: 'register',

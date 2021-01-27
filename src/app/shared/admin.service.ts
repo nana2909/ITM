@@ -114,8 +114,8 @@ deleteFaculty(id:string){
   return this.http.get(this.BaseURI+'/Feedback/GetFeedback/'+ id);
  }
 
- deleteFeedback(id: string){
-  return this.http.get(this.BaseURI+'/Feedback/DeleteFeedback/'+ id);
+ resolveFeedback(id: string, body){
+  return this.http.put(this.BaseURI+'/Feedback/ResolveFeedback/'+ id, body);
  }
 
  //fields

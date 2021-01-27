@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Course, HomeService, OptionalSubject, SpecSubject } from '../../../shared/home.service';
 import { UserService } from '../../../shared/user.service';
@@ -11,18 +11,25 @@ import { UserService } from '../../../shared/user.service';
 })
 export class AdmissionInfoComponent implements OnInit {
 
+  Specicals : SpecSubject[];
+  Optionals: OptionalSubject[];
+  CourseList : Course[];
+  AdmissionIfo : any;
+
   status: boolean = true;
   submitFlg: boolean = false;
-  RegisterForm: FormGroup ;
-  SpecicalList : SpecSubject[];
-  OptionalList : OptionalSubject[];
-  CourseList : Course[];
+  setSelected = '0';
 
+  RegisterForm: FormGroup ;
+  
   constructor(
     private service : HomeService,
-    private UserService : UserService,
-  ) {
+    private userService : UserService
+  ) {}
 
+  onChange(value)
+  {
+    
   }
 
   ngOnInit(): void {
@@ -31,12 +38,12 @@ export class AdmissionInfoComponent implements OnInit {
     this.getAllCourse();
   }
   
+
   //Get Specials
   getAllSpecSubject(){
     this.service.getAllSpecSubject().subscribe(
      res=>{
-       this.SpecicalList = Object.values(res);
-       console.info(this.SpecicalList)
+       this.Specicals = Object.values(res);
      },
      err => {console.error(err)})
    }
@@ -45,9 +52,7 @@ export class AdmissionInfoComponent implements OnInit {
    getAllOpSubject(){
     this.service.getAllOpSubject().subscribe(
       res=>{
-        this.OptionalList = Object.values(res);
-        console.info(this.OptionalList)
-
+        this.Optionals = Object.values(res);
       },
       err=>{console.error(err)}
       )
@@ -56,19 +61,34 @@ export class AdmissionInfoComponent implements OnInit {
    getAllCourse(){
     this.service.getAllCourse().subscribe(
       res=>{
-        this.OptionalList = Object.values(res);
-        console.info(this.OptionalList)
+        this.CourseList = Object.values(res);
+        console.warn(this.CourseList)
       },
       err=>{console.error(err)}
       )
    }
   
+   //Check Admission
   checkAdmission(idAdmission){
     this.service.GetInfoAdmission(idAdmission.value).subscribe(
       (res:any) => {
-        console.info(res);
-        this.status = res.statusID == 1 ? true : false;
-        this.submitFlg = res.statusID == 1 ? true : false;
+        this.AdmissionIfo = res.admission;
+        this.status = this.AdmissionIfo.statusID == 1 ? true : false;
+        this.submitFlg = this.AdmissionIfo.statusID == 1 ? true : false;
+        if (this.AdmissionIfo.statusID == 1) {
+          this.userService.registerForm.patchValue({
+            AdmissionID : this.AdmissionIfo.admissionID ,
+            StudentName: this.AdmissionIfo.studentName ,
+            StudentEmail: this.AdmissionIfo.studentEmail ,
+            StreamName: this.AdmissionIfo.tbStream.name ,
+            StreamCode: this.AdmissionIfo.streamCode ,
+            FieldCode: this.AdmissionIfo.fieldCode ,
+            FieldName: this.AdmissionIfo.tbField.name ,
+          });
+          //Arrange data display
+          this.Specicals = this.Specicals.filter(s=> s.fieldCode == this.AdmissionIfo.fieldCode)
+          this.CourseList = this.CourseList.filter(c => c.fieldCode == this.AdmissionIfo.fieldCode && c.streamCode == this.AdmissionIfo.streamCode)
+        };
       },
       err => { console.warn(err)}
     );
@@ -78,7 +98,6 @@ export class AdmissionInfoComponent implements OnInit {
     //Submit
   }
 }
-
 
 export interface SubmitForm{
   AdmissionID : string;

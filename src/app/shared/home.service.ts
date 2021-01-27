@@ -15,6 +15,12 @@ export class HomeService {
     return this.http.get('http://localhost:51373/api/Admission/GetInfoAdmission/'+ id);
   }
 
+  GetAdmissionForm(){
+    return this.http.get(this.BaseURI + '/DownloadForm',{  
+      responseType: 'blob'  
+  });
+  }
+
   //Event
   getEvents(){
     return this.http.get(this.BaseURI + "/GetAllEvents");
@@ -60,6 +66,10 @@ export class HomeService {
 
 }
 
+export interface AdmissionKey{
+  AdmissionKey: string;
+}
+
 export interface Stream{
   StreamCode : string;
   Name : string
@@ -67,7 +77,8 @@ export interface Stream{
 
 export interface Field{
   FieldCode : string;
-  Name : string
+  Name : string;
+  streamCode: string;
 }
 
 export interface Course{
@@ -84,8 +95,8 @@ export interface SpecSubject{
     subjectID: string;
     subjectName: string;
     fieldCode:string;
-    tbAdmissions: [];
-    tbField: [];
+    // tbAdmissions: [];
+    // tbField: [];
 }
 
 export interface OptionalSubject{

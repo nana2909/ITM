@@ -18,14 +18,16 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let item of Admissions">
-                                <td><a (click)="openForDetails(item)" class="btn text-primary">{{item.admissionID}}</a></td>
+                                <td><a (click)="openForDetails(item)" class="btn text-primary">Show <i class="fas fa-eye"></i>
+
+                                </a></td>
                                 <td>{{item.studentName}}</td>
                                 <td>{{item.studentEmail}}</td>
                                 <td>{{item.exStream}}</td>
                                 <td>{{item.exUniversity}}</td>
                                 <td>{{item.exMarkSecured}}</td>
                                 <td>
-                                    <a (click)="confirm(item.admissionID)" class="btn text-primary"><i class="fa fa-edit fa-lg"></i></a>
+                                    <a (click)="confirm(item.admissionID)" class="btn text-primary"><i class="fas fa-thumbs-up"></i></a>
                                     <a (click)="reject(item.admissionID)" class="btn btn-danger"><i class="fa fa-trash fa-lg"></i></a>
                                 </td>
                             </tr>

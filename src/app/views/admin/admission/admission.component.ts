@@ -19,7 +19,6 @@ export class AdmissionComponent implements OnInit {
   ) { }
 
   Admissions : AdmissionSts[];
-
   ngOnInit(): void {
     this.getAllAdmissionToConfirm();
   }
@@ -42,9 +41,8 @@ export class AdmissionComponent implements OnInit {
       (res:any) => {
         if (res.succeeded) {
           // this.getAllAdmissionToConfirm();
-          this.router.navigateByUrl('/Admin/*/admission');
+          this.router.navigateByUrl('/Admin/admission');
           this.toastr.success(' Success!','Approve user successful.');
-          location.reload();
         }else {
           this.getAllAdmissionToConfirm();
           res.errors.forEach(element => {
