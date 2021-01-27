@@ -34,8 +34,10 @@ export class FeedbackCommentComponent implements OnInit {
       fbID: [''],
       fbSubject: [''],
       studentName: [''],
+      fbEmail: [''],
       fbContent: [''],
-      date: ['']
+      date: [''],
+      isResolve: ['']
     });
   }
 

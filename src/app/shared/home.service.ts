@@ -77,6 +77,11 @@ export class HomeService {
     return this.http.get(this.BaseURI + "/GetAllSpecSubject");
   }
 
+  postFeedBack(data){
+    console.log(data)
+    return this.http.post(this.BaseURI2 + "Feedback/PostFeedback", data);
+  }
+
 }
 
 export interface AdmissionKey{

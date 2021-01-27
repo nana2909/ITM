@@ -1,22 +1,22 @@
 <h1 class="register-heading">Feedback Comment</h1>
 <form>
     <div class="form-group" [formGroup]="feedbackDetails"  autocomplete="off" (submit)="onSubmit()">
-        <label for="exampleFormControlInput1">Feedback Subject</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        <label >Feedback Subject</label>
+        <input class="form-control" formControlName="fbSubject" >
     </div>
     <div class="form-group">
-      <label for="exampleFormControlInput1">Email address</label>
-      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      <label >Email address</label>
+      <input type="email" class="form-control" formControlName="fbEmail">
     </div>
     <div class="form-group">
-        <label for="exampleFormControlTextarea1">Feedback Content</label>
-        <textarea class="form-control" rows="3">
+        <label>Feedback Content</label>
+        <textarea class="form-control" rows="3" formControlName="fbContent">
           {{fbContent}}
         </textarea>
     </div>
     <div class="form-group">
-      <label for="exampleFormControlTextarea1">Example textarea</label>
-      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3">
+      <label>Result Feedback</label>
+      <textarea class="form-control"  rows="3" formControlName="isResolve">
         Hi {{studentName}} dear!
       </textarea>
     </div>

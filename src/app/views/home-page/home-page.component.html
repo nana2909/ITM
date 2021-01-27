@@ -417,21 +417,29 @@
               <a class="p-2 m-2 bg-white"><i class="fa fa-linkedin cdark"></i></a>
             </div>
             <div class="col-md-6 col-12 p-5">
-              <form>
+              <form [formGroup]="formFeedback" autocomplete="off" (submit)="onSubmitFeed()">
                 <div class="form-group">
                   <label>Name</label>
-                  <input type="text" class="form-control flat  ">
+                  <input formControlName="studentName" type="text" class="form-control flat  ">
+                  <label class="text-danger" *ngIf="formFeedback.get('studentName')?.touched && formFeedback.get('studentName')?.errors?.required">This field is mandatory.</label>
                 </div>
                 <div class="form-group">
                   <label>Email</label>
-                  <input type="email" class="form-control flat  ">
+                  <input formControlName="fbEmail" type="email" class="form-control flat  ">
+                  <label class="text-danger" *ngIf="formFeedback.get('fbEmail')?.touched && formFeedback.get('fbEmail')?.errors?.required">This field is mandatory.</label>
+                </div>
+                <div class="form-group">
+                  <label>Subject</label>
+                  <input formControlName="fbSubject" class="form-control flat" >
+                  <label class="text-danger" *ngIf="formFeedback.get('fbSubject')?.touched && formFeedback.get('fbSubject')?.errors?.required">This field is mandatory.</label>
                 </div>
                 <div class="form-group">
                   <label>Message</label>
-                  <textarea class="form-control flat " rows="4"></textarea>
+                  <textarea formControlName="fbContent" class="form-control flat " rows="4"></textarea>
+                  <label class="text-danger" *ngIf="formFeedback.get('fbContent')?.touched && formFeedback.get('fbContent')?.errors?.required">This field is mandatory.</label>
                 </div>
                 <div class="form-group ">
-                  <button type="submit" class="btn btn-warning"><i class="fa fa-paper-plane mr-2"></i>Send</button>
+                  <button type="submit" class="btn btn-warning" [disabled]="!formFeedback.valid"><i class="fa fa-paper-plane mr-2" ></i>Send</button>
                 </div>
               </form>
             </div>
