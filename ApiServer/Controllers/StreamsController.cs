@@ -23,6 +23,7 @@ namespace APIServer.Controllers
         }
 
         [HttpGet]
+        [Route("GetStreams")]
         public async Task<ActionResult<IEnumerable<tbStream>>> GetStreams()
         {
             return await _context.Streams.ToListAsync();

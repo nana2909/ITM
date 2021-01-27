@@ -28,7 +28,7 @@ namespace APIServer.Controllers
         [Route("ListFeedbacks")]
         public async Task<List<tbFeedback>> ListFeedbacks()
         {
-            return await _db.Feedbacks.Where(f => f.isResolve != null || f.isResolve != "").ToListAsync();
+            return await _db.Feedbacks.ToListAsync();
         }
 
 
