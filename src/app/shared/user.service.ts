@@ -17,9 +17,6 @@ export class UserService {
   }
 ;
 
-  // public createImgPath = (serverPath: string) => {
-    // return `https://localhost:51373/${serverPath}`;
- // }
   @Output() public onUploadFinished = new EventEmitter();
   constructor(
     private router:Router,
