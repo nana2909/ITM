@@ -12,6 +12,7 @@ using System.Threading;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using APIServer.Models.Admission;
 
 namespace APIServer.Controllers
 {
@@ -235,6 +236,14 @@ namespace APIServer.Controllers
             }        
 
             return BadRequest();
+        }
+
+        //Register course, Op and Sp after admission approve
+        [HttpPost]
+        [Route("/UserDetail/Register")]
+        public IActionResult RegisterStudent(AdmissionDTO model)
+        {
+            return NotFound();
         }
 
     }

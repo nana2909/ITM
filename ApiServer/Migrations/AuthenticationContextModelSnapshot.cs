@@ -271,8 +271,8 @@ namespace APIServer.Migrations
             modelBuilder.Entity("APIServer.Models.Facility.tbFacility", b =>
                 {
                     b.Property<string>("FacCode")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("FacName")
                         .IsRequired()
@@ -294,8 +294,8 @@ namespace APIServer.Migrations
             modelBuilder.Entity("APIServer.Models.Faculty.tbFaculty", b =>
                 {
                     b.Property<string>("FacultyID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Degree")
                         .IsRequired()
@@ -349,6 +349,10 @@ namespace APIServer.Migrations
                     b.Property<string>("StudentName")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("isResolve")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("FbID");
 

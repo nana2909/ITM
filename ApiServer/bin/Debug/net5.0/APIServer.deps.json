@@ -26,15 +26,15 @@
       "APIServer/1.0.0": {
         "dependencies": {
           "EntityFramework": "6.4.4",
+          "GemBox.Document": "33.0.1086",
           "MailKit": "2.10.1",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.1",
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": "5.0.1",
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.1",
-          "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "5.0.2",
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.1",
-          "Microsoft.EntityFrameworkCore.Tools": "5.0.1",
+          "Microsoft.EntityFrameworkCore.Tools": "5.0.2",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.1",
           "Swashbuckle.AspNetCore": "5.6.3",
@@ -195,7 +195,7 @@
           "System.Drawing": "4.0.0.0",
           "System.Drawing.Primitives": "5.0.0.0",
           "System.Dynamic.Runtime": "5.0.0.0",
-          "System.Formats.Asn1": "5.0.0.0",
+          "System.Formats.Asn1.Reference": "5.0.0.0",
           "System.Globalization.Calendars": "5.0.0.0",
           "System.Globalization.Reference": "5.0.0.0",
           "System.Globalization.Extensions.Reference": "5.0.0.0",
@@ -346,6 +346,67 @@
           "lib/netstandard2.1/EntityFramework.dll": {}
         }
       },
+      "GemBox.Document/33.0.1086": {
+        "dependencies": {
+          "HarfBuzzSharp": "2.6.1.7",
+          "Pkcs11Interop": "5.1.1",
+          "Portable.BouncyCastle": "1.8.9",
+          "System.Security.Cryptography.Pkcs": "5.0.1"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/GemBox.Document.dll": {
+            "assemblyVersion": "33.0.0.1086",
+            "fileVersion": "33.0.310.1086"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/unix/lib/netcoreapp3.1/GemBox.Document.dll": {
+            "rid": "unix",
+            "assetType": "runtime",
+            "assemblyVersion": "33.0.0.1086",
+            "fileVersion": "33.0.200.1086"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp3.1/GemBox.Document.dll": {}
+        }
+      },
+      "HarfBuzzSharp/2.6.1.7": {
+        "dependencies": {
+          "System.Memory": "4.5.4"
+        },
+        "runtime": {
+          "lib/netstandard2.0/HarfBuzzSharp.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "2.6.1.7"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/osx/native/libHarfBuzzSharp.dylib": {
+            "rid": "osx",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-arm64/native/libHarfBuzzSharp.dll": {
+            "rid": "win-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/libHarfBuzzSharp.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/libHarfBuzzSharp.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netstandard2.0/HarfBuzzSharp.dll": {}
+        }
+      },
       "Humanizer.Core/2.8.26": {
         "runtime": {
           "lib/netstandard2.0/Humanizer.dll": {
@@ -456,7 +517,7 @@
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/5.0.1": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.1",
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.2",
           "Microsoft.Extensions.Identity.Stores": "5.0.1"
         },
         "runtime": {
@@ -467,37 +528,6 @@
         },
         "compile": {
           "lib/net5.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.JsonPatch/5.0.2": {
-        "dependencies": {
-          "Microsoft.CSharp": "4.7.0",
-          "Newtonsoft.Json": "12.0.2"
-        },
-        "runtime": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {
-            "assemblyVersion": "5.0.2.0",
-            "fileVersion": "5.0.220.61302"
-          }
-        },
-        "compile": {
-          "lib/netstandard2.0/Microsoft.AspNetCore.JsonPatch.dll": {}
-        }
-      },
-      "Microsoft.AspNetCore.Mvc.NewtonsoftJson/5.0.2": {
-        "dependencies": {
-          "Microsoft.AspNetCore.JsonPatch": "5.0.2",
-          "Newtonsoft.Json": "12.0.2",
-          "Newtonsoft.Json.Bson": "1.0.2"
-        },
-        "runtime": {
-          "lib/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {
-            "assemblyVersion": "5.0.2.0",
-            "fileVersion": "5.0.220.61302"
-          }
-        },
-        "compile": {
-          "lib/net5.0/Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor/2.2.0": {
@@ -896,28 +926,28 @@
         }
       },
       "Microsoft.EntityFrameworkCore.Analyzers/5.0.2": {},
-      "Microsoft.EntityFrameworkCore.Design/5.0.1": {
+      "Microsoft.EntityFrameworkCore.Design/5.0.2": {
         "dependencies": {
           "Humanizer.Core": "2.8.26",
           "Microsoft.CSharp": "4.7.0",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.1"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.2"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Design.dll": {
-            "assemblyVersion": "5.0.1.0",
-            "fileVersion": "5.0.120.57509"
+            "assemblyVersion": "5.0.2.0",
+            "fileVersion": "5.0.220.61114"
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/5.0.1": {
+      "Microsoft.EntityFrameworkCore.Relational/5.0.2": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.Relational.dll": {
-            "assemblyVersion": "5.0.1.0",
-            "fileVersion": "5.0.120.57509"
+            "assemblyVersion": "5.0.2.0",
+            "fileVersion": "5.0.220.61114"
           }
         },
         "compile": {
@@ -927,7 +957,7 @@
       "Microsoft.EntityFrameworkCore.SqlServer/5.0.1": {
         "dependencies": {
           "Microsoft.Data.SqlClient": "2.0.1",
-          "Microsoft.EntityFrameworkCore.Relational": "5.0.1"
+          "Microsoft.EntityFrameworkCore.Relational": "5.0.2"
         },
         "runtime": {
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {
@@ -939,9 +969,9 @@
           "lib/netstandard2.1/Microsoft.EntityFrameworkCore.SqlServer.dll": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/5.0.1": {
+      "Microsoft.EntityFrameworkCore.Tools/5.0.2": {
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "5.0.1"
+          "Microsoft.EntityFrameworkCore.Design": "5.0.2"
         }
       },
       "Microsoft.Extensions.ApiDescription.Server/3.0.0": {},
@@ -1110,7 +1140,7 @@
         "dependencies": {
           "Microsoft.CSharp": "4.7.0",
           "Microsoft.IdentityModel.Logging": "6.7.1",
-          "System.Security.Cryptography.Cng": "4.7.0"
+          "System.Security.Cryptography.Cng": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll": {
@@ -1158,7 +1188,7 @@
       },
       "Microsoft.VisualStudio.Web.CodeGeneration.Contracts/5.0.1": {
         "dependencies": {
-          "Newtonsoft.Json": "12.0.2",
+          "Newtonsoft.Json": "11.0.2",
           "System.Collections.Immutable": "5.0.0"
         },
         "runtime": {
@@ -1175,7 +1205,7 @@
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "5.0.1",
           "Microsoft.VisualStudio.Web.CodeGeneration.Templating": "5.0.1",
-          "Newtonsoft.Json": "12.0.2"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/net5.0/Microsoft.VisualStudio.Web.CodeGeneration.Core.dll": {
@@ -1249,7 +1279,7 @@
         "dependencies": {
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "3.8.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Contracts": "5.0.1",
-          "Newtonsoft.Json": "12.0.2"
+          "Newtonsoft.Json": "11.0.2"
         },
         "runtime": {
           "lib/net5.0/Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll": {
@@ -1288,10 +1318,10 @@
       },
       "MimeKit/2.10.1": {
         "dependencies": {
-          "Portable.BouncyCastle": "1.8.8",
+          "Portable.BouncyCastle": "1.8.9",
           "System.Buffers": "4.5.1",
           "System.Reflection.TypeExtensions": "4.4.0",
-          "System.Security.Cryptography.Pkcs": "4.7.0",
+          "System.Security.Cryptography.Pkcs": "5.0.1",
           "System.Text.Encoding.CodePages": "4.7.0"
         },
         "runtime": {
@@ -1304,36 +1334,33 @@
           "lib/netstandard2.1/MimeKit.dll": {}
         }
       },
-      "Newtonsoft.Json/12.0.2": {
+      "Newtonsoft.Json/11.0.2": {
         "runtime": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {
-            "assemblyVersion": "12.0.0.0",
-            "fileVersion": "12.0.2.23222"
+            "assemblyVersion": "11.0.0.0",
+            "fileVersion": "11.0.2.21924"
           }
         },
         "compile": {
           "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
-      "Newtonsoft.Json.Bson/1.0.2": {
-        "dependencies": {
-          "Newtonsoft.Json": "12.0.2"
-        },
+      "Pkcs11Interop/5.1.1": {
         "runtime": {
-          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {
-            "assemblyVersion": "1.0.0.0",
-            "fileVersion": "1.0.2.22727"
+          "lib/netstandard2.0/Pkcs11Interop.dll": {
+            "assemblyVersion": "5.1.1.0",
+            "fileVersion": "5.1.1.0"
           }
         },
         "compile": {
-          "lib/netstandard2.0/Newtonsoft.Json.Bson.dll": {}
+          "lib/netstandard2.0/Pkcs11Interop.dll": {}
         }
       },
-      "Portable.BouncyCastle/1.8.8": {
+      "Portable.BouncyCastle/1.8.9": {
         "runtime": {
           "lib/netstandard2.0/BouncyCastle.Crypto.dll": {
-            "assemblyVersion": "1.8.8.0",
-            "fileVersion": "1.8.8.2"
+            "assemblyVersion": "1.8.9.0",
+            "fileVersion": "1.8.9.1"
           }
         },
         "compile": {
@@ -1460,11 +1487,7 @@
           "System.Threading.Tasks": "4.3.0"
         }
       },
-      "System.Collections.Immutable/5.0.0": {
-        "compile": {
-          "lib/netstandard2.0/System.Collections.Immutable.dll": {}
-        }
-      },
+      "System.Collections.Immutable/5.0.0": {},
       "System.Collections.NonGeneric/4.3.0": {
         "dependencies": {
           "System.Diagnostics.Debug": "4.3.0",
@@ -1491,11 +1514,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.ComponentModel.Annotations/5.0.0": {
-        "compile": {
-          "ref/netstandard2.1/System.ComponentModel.Annotations.dll": {}
-        }
-      },
+      "System.ComponentModel.Annotations/5.0.0": {},
       "System.ComponentModel.Primitives/4.3.0": {
         "dependencies": {
           "System.ComponentModel": "4.3.0",
@@ -1728,6 +1747,7 @@
           "Microsoft.Win32.SystemEvents": "4.7.0"
         }
       },
+      "System.Formats.Asn1/5.0.0": {},
       "System.Globalization/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -1928,11 +1948,7 @@
           "System.Runtime": "4.3.0"
         }
       },
-      "System.Reflection.Metadata/5.0.0": {
-        "compile": {
-          "lib/netstandard2.0/System.Reflection.Metadata.dll": {}
-        }
-      },
+      "System.Reflection.Metadata/5.0.0": {},
       "System.Reflection.Primitives/4.3.0": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "3.1.0",
@@ -2028,10 +2044,29 @@
           "System.Security.Principal.Windows": "4.7.0"
         }
       },
-      "System.Security.Cryptography.Cng/4.7.0": {},
-      "System.Security.Cryptography.Pkcs/4.7.0": {
+      "System.Security.Cryptography.Cng/5.0.0": {
         "dependencies": {
-          "System.Security.Cryptography.Cng": "4.7.0"
+          "System.Formats.Asn1": "5.0.0"
+        }
+      },
+      "System.Security.Cryptography.Pkcs/5.0.1": {
+        "dependencies": {
+          "System.Formats.Asn1": "5.0.0",
+          "System.Security.Cryptography.Cng": "5.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.0/System.Security.Cryptography.Pkcs.dll": {
+            "assemblyVersion": "5.0.0.1",
+            "fileVersion": "5.0.120.57516"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/netcoreapp3.0/System.Security.Cryptography.Pkcs.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "5.0.0.1",
+            "fileVersion": "5.0.120.57516"
+          }
         },
         "compile": {
           "ref/netcoreapp3.0/System.Security.Cryptography.Pkcs.dll": {}
@@ -3140,7 +3175,7 @@
         },
         "compileOnly": true
       },
-      "System.Formats.Asn1/5.0.0.0": {
+      "System.Formats.Asn1.Reference/5.0.0.0": {
         "compile": {
           "System.Formats.Asn1.dll": {}
         },
@@ -3875,6 +3910,20 @@
       "path": "entityframework/6.4.4",
       "hashPath": "entityframework.6.4.4.nupkg.sha512"
     },
+    "GemBox.Document/33.0.1086": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-FQAlstTTBk+niqVfNSL+7tW9LmSleuzM4sRhxRtpy74L9y6BNfWFBe6DjkSLJQtM8ERF7GUUSbsShnDHdeoXMA==",
+      "path": "gembox.document/33.0.1086",
+      "hashPath": "gembox.document.33.0.1086.nupkg.sha512"
+    },
+    "HarfBuzzSharp/2.6.1.7": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/ZDcKBMxStEjQs9MpSP3abSBJsdoWzkCQFZ8zRpDFAvblDysHazEhUTRyUYD/fVczlH6jX5V1EYCiITtdPz00w==",
+      "path": "harfbuzzsharp/2.6.1.7",
+      "hashPath": "harfbuzzsharp.2.6.1.7.nupkg.sha512"
+    },
     "Humanizer.Core/2.8.26": {
       "type": "package",
       "serviceable": true,
@@ -3958,20 +4007,6 @@
       "sha512": "sha512-c2OGE8wzdJOMKP+GkKZHHMKVMSHkdpO4ryjcvQuaPQoXW/tsg6ZYES2Y1eyq162buSbRublI7sMxJsGtJs+McQ==",
       "path": "microsoft.aspnetcore.identity.entityframeworkcore/5.0.1",
       "hashPath": "microsoft.aspnetcore.identity.entityframeworkcore.5.0.1.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.JsonPatch/5.0.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-4aPHlHLPISwGNe8I/fqxEoE4ZEivnpfaLDptRxvv9eV78VN3Bd+gd0hYN8GnQ1F9e7IdCcICqbAvNnU4EtYeEg==",
-      "path": "microsoft.aspnetcore.jsonpatch/5.0.2",
-      "hashPath": "microsoft.aspnetcore.jsonpatch.5.0.2.nupkg.sha512"
-    },
-    "Microsoft.AspNetCore.Mvc.NewtonsoftJson/5.0.2": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-xVoVqDufD71pK1iQdsmRHpAMXYBD7a3bu0waln7P5micZLiOZaHf/tpXQZrn3wDAEs7Rceluy/HANNc0nKu/qw==",
-      "path": "microsoft.aspnetcore.mvc.newtonsoftjson/5.0.2",
-      "hashPath": "microsoft.aspnetcore.mvc.newtonsoftjson.5.0.2.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor/2.2.0": {
       "type": "package",
@@ -4085,19 +4120,19 @@
       "path": "microsoft.entityframeworkcore.analyzers/5.0.2",
       "hashPath": "microsoft.entityframeworkcore.analyzers.5.0.2.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Design/5.0.1": {
+    "Microsoft.EntityFrameworkCore.Design/5.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-+/dbnLFwIkjZMPl4cGUCBVL6pS9ZAJYrW6Bm/n0TlKWKiwZmd0f1b7XCeji4BPMHbvZl/CryTVQ2Ox4au7AKEw==",
-      "path": "microsoft.entityframeworkcore.design/5.0.1",
-      "hashPath": "microsoft.entityframeworkcore.design.5.0.1.nupkg.sha512"
+      "sha512": "sha512-Bn1aa2M16p3aIS68q7aXb2Shv0G8evtwdp6SNfnxzTw5vdKH1BBe1g/4BPrY5a2YLp2dVwep2Jtjvk5VB9E0qA==",
+      "path": "microsoft.entityframeworkcore.design/5.0.2",
+      "hashPath": "microsoft.entityframeworkcore.design.5.0.2.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Relational/5.0.1": {
+    "Microsoft.EntityFrameworkCore.Relational/5.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ItzAKJH2KGeYVo9csLQz0D7TjJGEG9N5wd/HVF2E+RXxOZuTKZUBO7Ft+SntVvx7DOX7tKLQOleXutf0Vnds1Q==",
-      "path": "microsoft.entityframeworkcore.relational/5.0.1",
-      "hashPath": "microsoft.entityframeworkcore.relational.5.0.1.nupkg.sha512"
+      "sha512": "sha512-1bisryvgZWcc+jkgksUH7cBkqOSXqyaC7HCAte0Yy+RHzt903KERsTJ447K+HNkW3bVt5GV/VAEcSN2ywqU9wg==",
+      "path": "microsoft.entityframeworkcore.relational/5.0.2",
+      "hashPath": "microsoft.entityframeworkcore.relational.5.0.2.nupkg.sha512"
     },
     "Microsoft.EntityFrameworkCore.SqlServer/5.0.1": {
       "type": "package",
@@ -4106,12 +4141,12 @@
       "path": "microsoft.entityframeworkcore.sqlserver/5.0.1",
       "hashPath": "microsoft.entityframeworkcore.sqlserver.5.0.1.nupkg.sha512"
     },
-    "Microsoft.EntityFrameworkCore.Tools/5.0.1": {
+    "Microsoft.EntityFrameworkCore.Tools/5.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-aWC8uiAHkuZzOOxQwqzUyqRMGCCcqjthIUsJVn9I601UkVhxmHwvB/oARO1xb0GBaCfJuCJglo2wkehBjegwRQ==",
-      "path": "microsoft.entityframeworkcore.tools/5.0.1",
-      "hashPath": "microsoft.entityframeworkcore.tools.5.0.1.nupkg.sha512"
+      "sha512": "sha512-eJf7HbWRS6w7wJiOyjpkbkO1fTThElNzOru1d3+yWBLoEGv5v5eSN9aPXmHcXfyR9Uzx3fmjNIuMcyppDq5o/A==",
+      "path": "microsoft.entityframeworkcore.tools/5.0.2",
+      "hashPath": "microsoft.entityframeworkcore.tools.5.0.2.nupkg.sha512"
     },
     "Microsoft.Extensions.ApiDescription.Server/3.0.0": {
       "type": "package",
@@ -4351,26 +4386,26 @@
       "path": "mimekit/2.10.1",
       "hashPath": "mimekit.2.10.1.nupkg.sha512"
     },
-    "Newtonsoft.Json/12.0.2": {
+    "Newtonsoft.Json/11.0.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rTK0s2EKlfHsQsH6Yx2smvcTCeyoDNgCW7FEYyV01drPlh2T243PR2DiDXqtC5N4GDm4Ma/lkxfW5a/4793vbA==",
-      "path": "newtonsoft.json/12.0.2",
-      "hashPath": "newtonsoft.json.12.0.2.nupkg.sha512"
+      "sha512": "sha512-IvJe1pj7JHEsP8B8J8DwlMEx8UInrs/x+9oVY+oCD13jpLu4JbJU2WCIsMRn5C4yW9+DgkaO8uiVE5VHKjpmdQ==",
+      "path": "newtonsoft.json/11.0.2",
+      "hashPath": "newtonsoft.json.11.0.2.nupkg.sha512"
     },
-    "Newtonsoft.Json.Bson/1.0.2": {
+    "Pkcs11Interop/5.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-QYFyxhaABwmq3p/21VrZNYvCg3DaEoN/wUuw5nmfAf0X3HLjgupwhkEWdgfb9nvGAUIv3osmZoD3kKl4jxEmYQ==",
-      "path": "newtonsoft.json.bson/1.0.2",
-      "hashPath": "newtonsoft.json.bson.1.0.2.nupkg.sha512"
+      "sha512": "sha512-YDj3v4LN318ToSLeg+5NSJUhH2rpmUGsQN/XL87rMVkq5iZnaV759c3unFJR+W83hGV72I8aa6v+eI8jnstFlg==",
+      "path": "pkcs11interop/5.1.1",
+      "hashPath": "pkcs11interop.5.1.1.nupkg.sha512"
     },
-    "Portable.BouncyCastle/1.8.8": {
+    "Portable.BouncyCastle/1.8.9": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1rxdf8NfyAxLlqIEciCl/yNhmz1YiLkmp6rrF8p3/NVmyHHzPWLx8djtDvSAwhPLg64BXvsRcM3+5bP1HAUdYg==",
-      "path": "portable.bouncycastle/1.8.8",
-      "hashPath": "portable.bouncycastle.1.8.8.nupkg.sha512"
+      "sha512": "sha512-wlJo8aFoeyl+W93iFXTK5ShzDYk5WBqoUPjTNEM0Xv9kn1H+4hmuCjF0/n8HLm9Nnp1aY6KNndWqQTNk+NGgRQ==",
+      "path": "portable.bouncycastle/1.8.9",
+      "hashPath": "portable.bouncycastle.1.8.9.nupkg.sha512"
     },
     "runtime.native.System/4.3.0": {
       "type": "package",
@@ -4603,6 +4638,13 @@
       "path": "system.drawing.common/4.7.0",
       "hashPath": "system.drawing.common.4.7.0.nupkg.sha512"
     },
+    "System.Formats.Asn1/5.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-MTvUIktmemNB+El0Fgw9egyqT9AYSIk6DTJeoDSpc3GIHxHCMo8COqkWT1mptX5tZ1SlQ6HJZ0OsSvMth1c12w==",
+      "path": "system.formats.asn1/5.0.0",
+      "hashPath": "system.formats.asn1.5.0.0.nupkg.sha512"
+    },
     "System.Globalization/4.3.0": {
       "type": "package",
       "serviceable": true,
@@ -4834,19 +4876,19 @@
       "path": "system.security.accesscontrol/4.7.0",
       "hashPath": "system.security.accesscontrol.4.7.0.nupkg.sha512"
     },
-    "System.Security.Cryptography.Cng/4.7.0": {
+    "System.Security.Cryptography.Cng/5.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-4WQjFuypWtxb/bl/YwEE7LYGn4fgpsikFfBU6xwEm4YBYiRAhXAEJ62lILBu2JJSFbClIAntFTGfDZafn8yZTg==",
-      "path": "system.security.cryptography.cng/4.7.0",
-      "hashPath": "system.security.cryptography.cng.4.7.0.nupkg.sha512"
+      "sha512": "sha512-jIMXsKn94T9JY7PvPq/tMfqa6GAaHpElRDpmG+SuL+D3+sTw2M8VhnibKnN8Tq+4JqbPJ/f+BwtLeDMEnzAvRg==",
+      "path": "system.security.cryptography.cng/5.0.0",
+      "hashPath": "system.security.cryptography.cng.5.0.0.nupkg.sha512"
     },
-    "System.Security.Cryptography.Pkcs/4.7.0": {
+    "System.Security.Cryptography.Pkcs/5.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-0Srzh6YlhjuMxaqMyeCCdZs22cucaUAG6SKDd3gNHBJmre0VZ71ekzWu9rvLD4YXPetyNdPvV6Qst+8C++9v3Q==",
-      "path": "system.security.cryptography.pkcs/4.7.0",
-      "hashPath": "system.security.cryptography.pkcs.4.7.0.nupkg.sha512"
+      "sha512": "sha512-9ualfJXOMrjW/E4z73cGHVcAvFMCCnMZQE+8xME9eX70bTZ0UAJCstG0khsMvL8B+9c9qw+ktowt1fN0BffMnQ==",
+      "path": "system.security.cryptography.pkcs/5.0.1",
+      "hashPath": "system.security.cryptography.pkcs.5.0.1.nupkg.sha512"
     },
     "System.Security.Cryptography.Primitives/4.3.0": {
       "type": "package",
@@ -5759,7 +5801,7 @@
       "serviceable": false,
       "sha512": ""
     },
-    "System.Formats.Asn1/5.0.0.0": {
+    "System.Formats.Asn1.Reference/5.0.0.0": {
       "type": "referenceassembly",
       "serviceable": false,
       "sha512": ""

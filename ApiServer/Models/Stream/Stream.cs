@@ -37,5 +37,15 @@ namespace APIServer.Models.Stream
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbField> TbFields { get; set; }
+
+        public static implicit operator tbStream(Task<List<tbStream>> v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static implicit operator tbStream(List<tbStream> v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
