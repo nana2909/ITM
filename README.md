@@ -10,3 +10,8 @@
 
 
 
+|       Frontent       |      Backend       | 
+| :------------:|:-------------:|
+|     ANGULAR         |        .NET CORE      |  
+|    client branch          |        master branch     |  
+
