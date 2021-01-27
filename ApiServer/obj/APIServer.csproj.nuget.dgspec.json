@@ -40,14 +40,6 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
-            "GemBox.Document": {
-              "target": "Package",
-              "version": "[33.0.1086, )"
-            },
             "MailKit": {
               "target": "Package",
               "version": "[2.10.1, )"

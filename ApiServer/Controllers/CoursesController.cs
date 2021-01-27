@@ -100,9 +100,5 @@ namespace APIServer.Controllers
         {
             return _context.Courses.Any(c => c.CourseCode == id);
         }
-
-
-
-
     }
 }

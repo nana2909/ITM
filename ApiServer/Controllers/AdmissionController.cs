@@ -61,12 +61,12 @@ namespace APIServer.Controllers
                 return BadRequest("Age must over than 18 year old!");
             }
             //Generator Key Admission
-            var finalString = AdmissionService.GenerateKey(model.StreamCode);
+            var AdmissionKey = AdmissionService.GenerateKey(model.StreamCode);
             model.StatusID = 0;
             //Save AdmissionForm + finalString to Db
             var admission = new tbAdmission
             {
-                AdmissionID = finalString,
+                AdmissionID = AdmissionKey,
                 StudentEmail = model.StudentEmail,
                 StudentName = model.StudentName,
                 FatherName = model.FatherName,
@@ -92,9 +92,9 @@ namespace APIServer.Controllers
             };
             await db.Admissions.AddAsync(admission);
             await db.SaveChangesAsync();
-
+            
             //Return key to Student
-            return new { AdmissionKey = finalString };
+            return new { AdmissionKey } ;
         }
 
         [HttpGet]

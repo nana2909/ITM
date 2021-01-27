@@ -1,7 +1,6 @@
 ﻿using APIServer.Models.Admission;
 using APIServer.Models.Course;
 using APIServer.Models.Department;
-using APIServer.Models.Event;
 using APIServer.Models.Facility;
 using APIServer.Models.Faculty;
 using APIServer.Models.Feedback;
@@ -34,7 +33,6 @@ namespace APIServer.Models.User
         public DbSet<tbAdmissionStatus> AdmissionStatuses { get; set; }
         public DbSet<tbCourse> Courses { get; set; }
         public DbSet<tbDepartment> Departments { get; set; }
-        public DbSet<tbEvent> Events { get; set; }
         public DbSet<tbStream> Streams { get; set; }
         public DbSet<tbFacility> Facilities { get; set; }
         public DbSet<tbFaculty> Faculties { get; set; }

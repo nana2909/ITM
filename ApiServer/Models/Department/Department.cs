@@ -31,7 +31,6 @@ namespace APIServer.Models.Department
         public string Description { get; set; }
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(200)]
-        public string imgUrl { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tbFaculty> tbFaculties { get; set; }

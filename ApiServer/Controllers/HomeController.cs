@@ -1,7 +1,6 @@
 ﻿using APIServer.Models.Course;
 using APIServer.Models.Department;
 using APIServer.Models.EmailService;
-using APIServer.Models.Event;
 using APIServer.Models.Field;
 using APIServer.Models.OptionalSubject;
 using APIServer.Models.SpecicalSubject;
@@ -37,26 +36,6 @@ namespace APIServer.Controllers
             this.environment = environment;
         }
 
-
-        [HttpGet]
-        //[Authorize]
-        [Route("GetAllEvents")]
-        //POST: api/Home/GetAllEvents
-        public async Task<ICollection<tbEvent>> GetAllEvents()
-        {
-            var events = await db.Events.ToListAsync();
-            return events;
-        }
-
-        [HttpGet]
-        //[Authorize]
-        [Route("GetEventById")]
-        //POST: api/Home/GetEventById
-        public async Task<tbEvent> GetEventById(string id)
-        {
-            var events = await db.Events.FindAsync(id);
-            return events;
-        }
 
         [HttpGet]
         //[Authorize]

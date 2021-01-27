@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 
 namespace APIServer.Controllers
 {
@@ -27,7 +28,7 @@ namespace APIServer.Controllers
         [Route("ListFeedbacks")]
         public async Task<List<tbFeedback>> ListFeedbacks()
         {
-            return await _db.Feedbacks.ToListAsync();
+            return await _db.Feedbacks.Where(f => f.isResolve != null || f.isResolve != "").ToListAsync();
         }
 
 
@@ -76,6 +77,31 @@ namespace APIServer.Controllers
             return NotFound();
         }
 
+        //resolveFeedback
+        [HttpPut]
+        [Authorize(Roles = "Admin")]
+        [Route("ResolveFeedback/{id}")]
+        public async Task<IActionResult> ResolveFeedback(string id, tbFeedback model)
+        {
+            if (id == null)
+            {
+                return BadRequest(" ID cannot null!");
+            }
+            var feed = await _db.Feedbacks.FindAsync(id);
+            if (feed != null)
+            {
+                feed.FbID = model.FbID;
+                feed.FbSubject = model.FbSubject;
+                feed.StudentName = model.StudentName;
+                feed.FbContent = model.FbContent;
+                feed.isResolve = "resolve";
+                feed.Date = DateTime.Now;
+                _db.Update(feed);
+                await _db.SaveChangesAsync();
+                return Ok("Edit Success!");
 
+            }
+            return NotFound();
+        }
     }
 }
