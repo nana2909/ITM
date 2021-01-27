@@ -42,7 +42,7 @@ export class FeedbackCommentComponent implements OnInit {
   }
 
   onSubmit(){
-    this.service.resolveFeedback(this.data.data.fbID , this.feedbackDetails.value).subscribe(
+    this.service.resolveFeedback(this.data.data.fbID ,this.feedbackDetails.value).subscribe(
       (res:any)=>{
         this.router.navigateByUrl('/Admin/Feedback');
         this.toastr.success('Success','Resold feedback.');  
