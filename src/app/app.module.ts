@@ -60,11 +60,8 @@ import { AdmissionInfoComponent } from './views/admission-student/admission-info
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
-<<<<<<< HEAD
 import { AdmissionFinishComponent } from './views/admission-student/admission-finish/admission-finish.component';
-=======
 import { InterceptorService } from './shared/interceptor.service';
->>>>>>> 91ce9098a2e495a941624d47c940210651fb590c
 const routes: Routes = [];
 @NgModule({
   imports: [

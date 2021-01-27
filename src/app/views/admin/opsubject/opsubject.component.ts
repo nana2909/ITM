@@ -23,7 +23,7 @@ export class OpsubjectComponent implements OnInit {
     this.refreshListSub();
   }
   refreshListSub(){
-    this.service.getOpsubjectList().subscribe(res =>{this.ListSub = res;});
+    // this.service.getOpsubjectList().subscribe(res =>{this.ListSub = res;});
   }
   onDelete(subjectID:string){
     if (confirm('Are you sure to delete this Subject?')){

@@ -13,7 +13,7 @@
             <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">Admission</a>
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
               <a class="dropdown-item" [routerLink]="['/admission']" ><i class="fa fa-bell-o"></i>New Admission</a>
-              <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>Admission Status</a>
+              <a class="dropdown-item" [routerLink]="['/admissionstatus']" ><i class="fa fa-envelope-o"></i>Admission Status</a>
             </div>
         </li>
     
@@ -48,17 +48,14 @@
             Hi, {{userDetail.userName}}
         </a>
         <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-<<<<<<< HEAD
           <a class="dropdown-item" [routerLink]="['/admission']" ><i class="fa fa-bell-o"></i>New Admission</a>
           <a class="dropdown-item" [routerLink]="['/admissionstatus']"><i class="fa fa-envelope-o"></i>Admission Status</a>
-=======
           <a class="dropdown-item" [routerLink]="['/home']"><i class="fa fa-shield"></i> Your Account</a>
           <a class="dropdown-item" href="#" [routerLink]="['/home/UserInformation']"><i class="fa fa-user"></i> Profile</a>
           <a class="dropdown-item" href="#" [routerLink]="['/home/UserAdmission']"><i class="fa fa-file"></i>Admission<span class="badge badge-info"></span></a>
           <!-- <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>FeedBack<span class="badge badge-success"></span></a> -->
           <!-- <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning"></span></a> -->
           <a class="dropdown-item" (click)="onLogOut()"><i class="fa fa-lock"></i> Logout</a>
->>>>>>> 91ce9098a2e495a941624d47c940210651fb590c
         </div>
         </li>
     

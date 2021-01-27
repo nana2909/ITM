@@ -43,8 +43,8 @@ export class FeedbackComponent implements OnInit {
     });
   }
 
-  ReturnFeedback(facultyID:string){
-      
+  ResolveFeedback(feedId:string){
+      //Todo
   }
 
   //Open PopUp Feedback Comment
