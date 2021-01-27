@@ -42,12 +42,6 @@ namespace APIServer.Controllers
             {
                 if (mailChk.FieldCode.Equals(model.FieldCode))
                 {
-                    ///* If Student can submit with some Stream.*/
-                    //var checkSubmit = mailChk.StreamCode.Equals(model.StreamCode);
-                    //if (checkSubmit)
-                    //{
-                    //    return BadRequest("Admission just register Stream with email!");
-                    //}
                     return BadRequest("Admission just register with email!");
                 }
             }

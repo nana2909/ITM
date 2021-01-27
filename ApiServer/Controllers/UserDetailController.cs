@@ -54,7 +54,8 @@ namespace APIServer.Controllers
         [Route("ListUsers")]
         public async Task<List<ApplicationUser>> ListUsers()
         {
-            return await _userManager.Users.ToListAsync();
+            var m = await _userManager.GetUsersInRoleAsync("Student");
+            return (List<ApplicationUser>)m;
         }
 
         //Update user change Email or Fullname if requested

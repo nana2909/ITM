@@ -79,30 +79,18 @@ namespace APIServer.Controllers
         public async Task<IActionResult> ForgotPassword([FromQuery]string sendEmail)
         {
             var user =await _userManager.FindByEmailAsync(sendEmail);
-            if (user != null)     // use if have EmailConfirmed : await _userManager.IsEmailConfirmedAsync(user) 
+            if (user != null)     
             {
                 // Generate the reset password token
                 var token =  _userManager.GeneratePasswordResetTokenAsync(user);
-                // Build the password reset link
-                //var passwordResetLink = Url.Action("ResetPassword", "User",
-                //    new { email = sendEmail, token = token.Result}, Request.Scheme);
                 var passwordResetLink = "http://localhost:4200/#/resetpassword?email=" + sendEmail + "&token=" + token.Result;
-
-
-               var message = new Message(new string[] { sendEmail }, "Reset Passwork Link",passwordResetLink,null );
-                
-
+                var message = new Message(new string[] { sendEmail }, "Reset Passwork Link",passwordResetLink,null );
                 await _emailService.SendEmailAsync(message);
-
-                // Log the password reset link
-                // _logger.Log(LogLevel.Warning, passwordResetLink);
-
             } else
             {
                 return Ok();
             }
-            return Ok();
-            
+            return Ok();          
         }
 
         [HttpGet]
@@ -110,8 +98,6 @@ namespace APIServer.Controllers
         [AllowAnonymous]
         public IActionResult ResetPassword( string email, string token)
         {
-            // If password reset token or email is null, most likely the
-            // user tried to tamper the password reset link
             if (token == null || email == null)
             {
                 ModelState.AddModelError("", "Invalid password reset token");
@@ -123,9 +109,7 @@ namespace APIServer.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ResetPassword(ResetPasswordModel model)
         {
-            // Find the user by email
             var user = await _userManager.FindByEmailAsync(model.Email);
-
             if (user != null)
             {
                 // reset the user password
@@ -135,8 +119,6 @@ namespace APIServer.Controllers
                  //   model.Token
                     return Ok(user);
                 }
-                // Display validation errors. For example, password reset token already
-                // used to change the password or password complexity rules not met
                 foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError(error.Code, error.Description);
@@ -167,7 +149,9 @@ namespace APIServer.Controllers
                         new Claim(_options.ClaimsIdentity.RoleClaimType, role.FirstOrDefault())
                     }),
                     Expires = DateTime.UtcNow.AddMinutes(60),
-                    SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)),SecurityAlgorithms.HmacSha256Signature)
+                    SigningCredentials = new SigningCredentials(
+                        new SymmetricSecurityKey(
+                            Encoding.UTF8.GetBytes(_appSettings.JWT_Secret)),SecurityAlgorithms.HmacSha256Signature)
                 };
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var securityToken = tokenHandler.CreateToken(tokenDescriptor);
