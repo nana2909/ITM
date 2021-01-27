@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using APIServer.Models.EmailService;
 
 namespace APIServer.Controllers
 {
@@ -17,10 +18,13 @@ namespace APIServer.Controllers
     {
 
         private readonly AuthenticationContext _db;
+        private readonly IEmailService emailService;
 
-        public FeedbackController(AuthenticationContext db)
+
+        public FeedbackController(AuthenticationContext db, IEmailService _emailService)
         {
             _db = db;
+            emailService = _emailService;
         }
 
         // GET: api/<FeedbackController>
@@ -79,7 +83,7 @@ namespace APIServer.Controllers
         }
 
         //resolveFeedback
-        [HttpPut]
+        [HttpPost]
         [Authorize(Roles = "Admin")]
         [Route("ResolveFeedback/{id}")]
         public async Task<IActionResult> ResolveFeedback(string id, tbFeedback model)
@@ -91,11 +95,17 @@ namespace APIServer.Controllers
             var feed = await _db.Feedbacks.FindAsync(id);
             if (feed != null)
             {
+                //Send email
+                var message = new Message(new string[] { model.FbEmail }, "WELCOME TO ITM COLLEGE!", model.isResolve, null);
+                await emailService.SendEmailAsync(message);
+
+                //Save DB
                 feed.FbID = model.FbID;
                 feed.FbSubject = model.FbSubject;
                 feed.StudentName = model.StudentName;
                 feed.FbContent = model.FbContent;
-                feed.isResolve = "resolve";
+                feed.FbEmail = model.FbEmail;
+                feed.isResolve = model.isResolve;
                 feed.Date = DateTime.Now;
                 _db.Update(feed);
                 await _db.SaveChangesAsync();
