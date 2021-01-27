@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace APIServer.Migrations
 {
-    public partial class addfbEmail : Migration
+    public partial class InitialDBITM : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,7 +39,8 @@ namespace APIServer.Migrations
                 {
                     DepartmentID = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    Description = table.Column<string>(type: "text", maxLength: 500, nullable: false)
+                    Description = table.Column<string>(type: "text", maxLength: 500, nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -131,6 +132,7 @@ namespace APIServer.Migrations
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DoB = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Degree = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false),
                     DepartmentID = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
                     imgUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     tbDepartmentDepartmentID = table.Column<string>(type: "nvarchar(30)", nullable: true)

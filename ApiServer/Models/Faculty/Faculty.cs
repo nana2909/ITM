@@ -27,6 +27,7 @@ namespace APIServer.Models.Faculty
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(100)]
         public string Degree { get; set; }
+        public bool isActive { get; set; }
 
         [Required(ErrorMessage = "{0} is required")]
         [StringLength(30)]

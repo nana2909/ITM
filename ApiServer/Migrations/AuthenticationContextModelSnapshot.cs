@@ -229,6 +229,9 @@ namespace APIServer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
                     b.HasKey("DepartmentID");
 
                     b.ToTable("tbDepartment");
@@ -283,6 +286,9 @@ namespace APIServer.Migrations
 
                     b.Property<string>("imgUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("tbDepartmentDepartmentID")
                         .HasColumnType("nvarchar(30)");

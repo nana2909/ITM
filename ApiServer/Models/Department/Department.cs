@@ -30,6 +30,8 @@ namespace APIServer.Models.Department
         [StringLength(500)]
         public string Description { get; set; }
         [Required(ErrorMessage = "{0} is required")]
+
+        public bool isActive { get; set; }
         [StringLength(200)]
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace APIServer.Migrations
 {
     [DbContext(typeof(AuthenticationContext))]
-    [Migration("20210127155249_add-fbEmail")]
-    partial class addfbEmail
+    [Migration("20210127162600_Initial-DB-ITM")]
+    partial class InitialDBITM
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -231,6 +231,9 @@ namespace APIServer.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
+
                     b.HasKey("DepartmentID");
 
                     b.ToTable("tbDepartment");
@@ -285,6 +288,9 @@ namespace APIServer.Migrations
 
                     b.Property<string>("imgUrl")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("isActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("tbDepartmentDepartmentID")
                         .HasColumnType("nvarchar(30)");
