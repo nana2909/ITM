@@ -15,6 +15,7 @@
                 <th>Birthday</th>
                 <th>Degree</th>
                 <th>DepartmentID</th>
+                <th>Active</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -25,6 +26,7 @@
                     <td>{{ item.doB | date : 'mediumDate'}}</td>
                     <td>{{ item.degree }}</td>
                     <td>{{ item.departmentID }}</td>
+                    <td>{{ item.isActive? "Active" : "Retired"}}</td>
                     <td>
                        <a class="btn text-primary" routerLink="facultyEdit/{{item.facultyID}}"><i class="fa fa-edit fa-lg"></i></a>
                       <a class="btn text-danger" (click)="onDelete(item.facultyID)"><i class="fa fa-trash fa-lg"></i></a>       

@@ -1,6 +1,9 @@
 
-<div class="container mb-5 mt-5">
-    <section class="sec-wrapper">
+<div class="container setBG mb-5 mt-5">
+    <div class="header mx-8 my-8">
+        <h5 class="badge badge-dark badge-outline float-right"></h5>
+      </div>
+    <section class="sec-wrapper mt-8 pt-6">
         <fieldset class="border p-4">
             <legend class="w-auto">Student Information</legend>
             <div class="row">
@@ -25,9 +28,9 @@
                                         </form>
                                         <br>
                                         <div class="alert-details ml-4">
-                                            <small class="ml-2"> <strong>Student Email :</strong> </small><br />
-                                            <small class="ml-2"> <strong>Field : </strong> </small><br />
-                                            <small class="ml-2"> <strong>Stream : </strong> </small><br />
+                                            <small class="ml-2"> <strong>Student Email :</strong> {{userDetail.email}}</small><br />
+                                            <small class="ml-2" *ngIf="!(this.userDetail.admissionID==null)"> <strong>Field : {{userAdmission.fieldCode}} </strong> </small><br />
+                                            <small class="ml-2" *ngIf="!(this.userDetail.admissionID==null)"> <strong>Stream : {{userAdmission.streamCode}} </strong> </small><br />
                                         </div>
                                     </div>
                                 </li>
@@ -38,7 +41,7 @@
             </div>
         </fieldset>
     </section>
-    <section class="sec-wrapper">
+    <section class="sec-wrapper " *ngIf="!(this.userDetail.admissionID==null)">
         <fieldset class="border p-4">
           <legend class="w-auto">Your Subjects  </legend>
           <div class="row">
@@ -56,7 +59,7 @@
                                               </thead>
                                               <tbody>
                                                   <tr >
-                                                      <td scope="row" >{{item.SubjectName}}</td>
+                                                      <td scope="row" >{{userAdmission.specializedSubjectID}}</td>
                                               </tbody>
                                       </table>                    
                                   </div>
@@ -69,7 +72,7 @@
                                             </thead>
                                             <tbody>
                                                 <tr >
-                                                    <td scope="row" >{{item.OptionalName}}</td>
+                                                    <td scope="row" >{{userAdmission.optionalSubjectID}}</td>
                                             </tbody>
                                     </table>                    
                                 </div>
@@ -83,7 +86,7 @@
         </fieldset>  
       </section>
   
-    <section class="sec-wrapper">
+    <section class="sec-wrapper" *ngIf="!(this.userDetail.admissionID==null)">
       <fieldset class="border p-4">
         <legend class="w-auto">Schedule Table</legend>
         <div class="row">

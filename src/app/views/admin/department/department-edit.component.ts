@@ -10,12 +10,9 @@ import { AdminService } from '../../../shared/admin.service';
   styleUrls: ['./department-edit.component.css']
 })
 export class DepartmentEditComponent implements OnInit {
-
   ID:string;
   departmentForm=new FormGroup({});
   editForm:any;
-  Img:any;
-  public responseUpload: {dbPath: ''};
 
   constructor(
     public fb:FormBuilder,
@@ -30,7 +27,7 @@ export class DepartmentEditComponent implements OnInit {
       DepartmentID:[null,Validators.required],
       Name:[null,Validators.required],
       Description:[null,Validators.required],
-      ImgUrl:[null],
+      isActive:[null,Validators.required],
  
     });
     this.ID=this.currentRoute.snapshot.paramMap.get('id');
@@ -41,34 +38,28 @@ export class DepartmentEditComponent implements OnInit {
           DepartmentID:res.departmentID,
           Name:res.name,
           Description:res.description,
-          ImgUrl:res.imgUrl
+          isActive:res.isActive
         });
-        this.Img=this.departmentForm.get('ImgUrl').value;
-        console.log(this.Img);
       }
     )
     
   }
-  public uploadFinished = (event) => {
-    this.responseUpload = event;
-  }
-  public createImgPath = (serverPath: string) => {
-    return `http://localhost:51373/${serverPath}`;
-  }
   onSubmit(data){
-    this.editForm={
-      DepartmentID:data.DepartmentID,
-      Name:data.Name,
-      Description:data.Description,
-      ImgUrl:this.responseUpload.dbPath
-    }
+  this.editForm={
+    DepartmentID:data.DepartmentID,
+    Name:data.Name,
+    Description:data.Description,
+    isActive:data.isActive
+  }  
+    
    this.service.putDepartment(this.ID,this.editForm).subscribe(
     (res:any)=>{     
       if(res){            
         this.router.navigate(['/Admin/department']);
-        this.toastr.success(' Success!','Update Department successfully.');
+        this.toastr.success('Update Department successfully.',' Success!');
       } else {
-          this.toastr.error("Update" ,'Update failed!');
+        this.router.navigate(['/Admin/department']);
+          this.toastr.error( 'Update failed!',"Update");
         };
       }    
    )

@@ -9,8 +9,7 @@
               <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group mb-3">
-                      <label class="">Faculty ID</label>
-                      <input class="form-control" formControlName="FacultyID" name="FacultyID" disabled>   
+                      <input class="form-control" formControlName="FacultyID" name="FacultyID" hidden>   
                     </div>
                     <div class="form-group mb-3">
                       <label class="">Name</label>
@@ -41,15 +40,25 @@
                       </select>  
                       <label class="text-danger" *ngIf="facultyForm.get('DepartmentID')?.touched && facultyForm.get('DepartmentID')?.errors?.required">This field is mandatory.</label>
                     </div>
-                    <!-- <div class="form-group hidden mb-3"> -->
-                      <!-- <label class="">Image(Optional)</label> -->
-                      <!-- <input > -->
-                    <!-- </div> -->
+                    <div class="form-group mb-3 mr-3">
+                      <label class="mr-3"> Activity </label>
+                      <label class="radio inline mr-2"> 
+                        <input type="radio" checked="true" [value]=true formControlName="isActive" >
+                        <span> Active </span> 
+                      </label>
+                      <label class="radio inline"> 
+                        <input type="radio" [value]=false formControlName="isActive">
+                        <span>Retired </span> 
+                      </label>
+                      <!-- <input class="form-control" formControlName="isActive" name="isActive" required >    -->
+                      <label class="text-danger" *ngIf="facultyForm.get('isActive')?.touched && facultyForm.get('isActive')?.errors?.required">This field is mandatory.</label>
+                    </div>
                  </div>
               <div class="col-lg-6">
                 <fieldset class="border p-2 mx-2 mt-2">
                     <div class="col-12">
                       <legend class="">Profile Picture</legend>
+                      <small>(optional)</small>
                       <div class="form-group" >
                         <img [src]="createImgPath(this.Img)"id="profpic" class="img-thumbnail mx-2 my-2"  alt=""/>
                         <div class="mt-2">

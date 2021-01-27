@@ -35,9 +35,18 @@
                 </select>  
                 <label class="text-danger" *ngIf="service.facultyForm.get('DepartmentID')?.touched && service.facultyForm.get('DepartmentID')?.errors?.required">This field is mandatory.</label>
               </div>
-              <div class="form-group mb-3">
-                <label class="">Image(Optional)</label>
-                <input class="form-control" formControlName="ImgUrl">   
+              <div class="form-group mb-3 mr-3">
+                <label class="mr-3"> Activity </label>
+                <label class="radio inline mr-2"> 
+                  <input type="radio" checked="true" [value]=true formControlName="isActive" >
+                  <span> Active </span> 
+                </label>
+                <label class="radio inline"> 
+                  <input type="radio" [value]=false formControlName="isActive">
+                  <span>Retired </span> 
+                </label>
+                <!-- <input class="form-control" formControlName="isActive" name="isActive" required >    -->
+                <label class="text-danger" *ngIf="service.facultyForm.get('isActive')?.touched && service.facultyForm.get('isActive')?.errors?.required">This field is mandatory.</label>
               </div>
 
             <button type="submit" class="btn btn-outline-info btn-lg mx-auto d-block" [disabled]="!service.facultyForm.valid" style="letter-spacing:3px;">Create</button>

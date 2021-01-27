@@ -1,83 +1,73 @@
-<app-header
-  [fixed]="true"
-  [navbarBrandFull]="{src: 'assets/img/logo.png', width: 150, height: 150, alt: 'ITM Logo'}"
-  [sidebarToggler]="false"
-  [asideMenuToggler]="false" >
-  <ul class="nav navbar-nav ml-auto mx-2">
-    <li class="nav-item mx-2" >
-      <a class="nav-link" href="" [routerLink]="['/HomePage']">Home</a>
-    </li>
-    <li class="nav-item dropdown mx-2" dropdown placement="bottom right">
-        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-          Admission
+<div class="container navbar"  >
+  <nav class="navbar font-title navbar-expand-lg navbar-inverse navbar-dark bg-dark fixed-top ">
+    <a class="navbar-brand my-0"><img class="nav-brand" src="./../../../../assets/logo.png" width="120" height="40" alt="ITMLogo"></a>
+    <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div id="my-nav" class="collapse navbar-collapse mr-2 pr-2 w-100">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item mx-2" active>
+          <a class="nav-link"  (click)="onClick('home')">Home<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item dropdown mx-2" dropdown placement="bottom right">
+            <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">Admission</a>
+            <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+              <a class="dropdown-item" [routerLink]="['/admission']" ><i class="fa fa-bell-o"></i>New Admission</a>
+              <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>Admission Status</a>
+            </div>
+        </li>
+    
+        <li class="nav-item mx-2"  placement="bottom right">
+            <a class="nav-link" tabindex="-1" aria-disabled="true" (click)="onClick('course')" >Courses</a> 
+        </li>
+        <li class="nav-item mx-2"  placement="bottom right">
+            <a class="nav-link" tabindex="-1" aria-disabled="true"  (click)="onClick('department')">Department</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" tabindex="-1" aria-disabled="true" (click)="onClick('facilities')" >Facilities</a> 
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" tabindex="-1" aria-disabled="true" (click)="onClick('faculty')" >Faculty</a>
+        </li>
+        <li class="nav-item mx-2">
+          <a class="nav-link" tabindex="-1" aria-disabled="true" (click)="onClick('contact')">Contact Us</a>
+        </li>
+          <ng-template #elseBlock>
+            <li class="nav-item dropdown mx-2" dropdown placement="bottom right">
+                <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false"> 
+                    Account
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+                  <a class="dropdown-item" [routerLink]="['/login']"><i class="fa fa-shield"></i> Log in</a>
+                  <a class="dropdown-item" [routerLink]="['/register']"><i class="fa fa-user"></i> Creat new Account</a>
+                </div>
+            </li>  
+          </ng-template>
+        <li class="nav-item  dropdown mx-2" dropdown *ngIf="isLoggedIn$ | async as isLoggedIn; else elseBlock">
+          <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false"> 
+            Hi, {{userDetail.userName}}
         </a>
         <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
+<<<<<<< HEAD
           <a class="dropdown-item" [routerLink]="['/admission']" ><i class="fa fa-bell-o"></i>New Admission</a>
           <a class="dropdown-item" [routerLink]="['/admissionstatus']"><i class="fa fa-envelope-o"></i>Admission Status</a>
+=======
+          <a class="dropdown-item" [routerLink]="['/home']"><i class="fa fa-shield"></i> Your Account</a>
+          <a class="dropdown-item" href="#" [routerLink]="['/home/UserInformation']"><i class="fa fa-user"></i> Profile</a>
+          <a class="dropdown-item" href="#" [routerLink]="['/home/UserAdmission']"><i class="fa fa-file"></i>Admission<span class="badge badge-info"></span></a>
+          <!-- <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>FeedBack<span class="badge badge-success"></span></a> -->
+          <!-- <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning"></span></a> -->
+          <a class="dropdown-item" (click)="onLogOut()"><i class="fa fa-lock"></i> Logout</a>
+>>>>>>> 91ce9098a2e495a941624d47c940210651fb590c
         </div>
-    </li>
-
-    <li class="nav-item dropdown mx-2" dropdown placement="bottom right">
-        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-          Department
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-          <a class="dropdown-item" href="#">Economic & Business</a>
-          <a class="dropdown-item" href="#"> Arts and Sciences </a>
-          <a class="dropdown-item" href="#"> Engineering </a>
-          <a class="dropdown-item" href="#"> Fine Arts and Communication </a>
-          <a class="dropdown-item" href="#"> Education and Human Development</a>
-          <a class="dropdown-item" href="#"> Other Academic Units </a>
-        </div>
-    </li>
-    <li class="nav-item dropdown mx-2" dropdown placement="bottom right">
-        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false">
-          Courses
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-          <a class="dropdown-item" href="#">Economic & Business</a>
-          <a class="dropdown-item" href="#"> Arts and Sciences </a>
-          <a class="dropdown-item" href="#"> Engineering </a>
-          <a class="dropdown-item" href="#"> Fine Arts and Communication </a>
-          <a class="dropdown-item" href="#"> Education and Human Development</a>
-          <a class="dropdown-item" href="#"> Other Academic Unit </a>
-        </div>
-    </li>
-    <li class="nav-item mx-2">
-        Faculty
-    </li>
-    <li class="nav-item mx-2">
-        Facilities
-    </li>
-    <li class="nav-item mx-2">
-      <a class="nav-link" href="#contact" class="">Contact Us</a>
-    </li>
-  <ng-template #elseBlock>
-    <li class="nav-item dropdown mx-2" dropdown placement="bottom right">
-        <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false"> 
-            Account
-        </a>
-        <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-          <a class="dropdown-item" [routerLink]="['/login']"><i class="fa fa-shield"></i> Log in</a>
-          <a class="dropdown-item" [routerLink]="['/register']"><i class="fa fa-user"></i> Creat new Account</a>
-        </div>
-    </li>  
-  </ng-template>
-    <li class="nav-item  dropdown mx-2" dropdown *ngIf="isLoggedIn$ | async as isLoggedIn; else elseBlock">
-      <a class="nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false" dropdownToggle (click)="false"> 
-        Hi, {{userDetail.userName}}
-    </a>
-    <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
-      <a class="dropdown-item" [routerLink]="['/home']"><i class="fa fa-shield"></i> Your Account</a>
-      <a class="dropdown-item" href="#" [routerLink]="['/home/UserInformation']"><i class="fa fa-user"></i> Profile</a>
-      <a class="dropdown-item" href="#" [routerLink]="['/home/UserAdmission']"><i class="fa fa-file"></i>Admission<span class="badge badge-info"></span></a>
-      <a class="dropdown-item" href="#"><i class="fa fa-envelope-o"></i>FeedBack<span class="badge badge-success"></span></a>
-      <a class="dropdown-item" href="#"><i class="fa fa-comments"></i> Comment<span class="badge badge-warning"></span></a>
-      <a class="dropdown-item" (click)="onLogOut()"><i class="fa fa-lock"></i> Logout</a>
+        </li>
+    
+      </ul>
     </div>
-    </li>
-  </ul>
-</app-header>
+  </nav>
+</div>
+
+
 <div class="container-fluid">
     <router-outlet></router-outlet>
 </div>

@@ -41,6 +41,8 @@ export class FacilitiesEditComponent implements OnInit {
           imgUrl:res.imgUrl
       });
       this.Img=this.facilitiesForm.get('imgUrl').value;
+      console.log(this.Img);
+      console.log(this.facilitiesForm);
     }
     );
     
@@ -53,19 +55,30 @@ export class FacilitiesEditComponent implements OnInit {
     return `http://localhost:51373/${serverPath}`;
   }
   onSubmit(data){
-    this.editForm={
-      FacCode:data.FacCode,
-      FacName:data.FacName,
-      isActive:data.isActive,
-      ImgUrl:this.responseUpload.dbPath
+    if (this.responseUpload == undefined ) {
+      this.editForm={
+        FacCode:data.FacCode,
+        FacName:data.FacName,
+        isActive:data.isActive,
+        ImgUrl:data.imgUrl
+      }
+    }
+    else{
+      console.log(this.responseUpload.dbPath);
+      this.editForm={
+        FacCode:data.FacCode,
+        FacName:data.FacName,
+        isActive:data.isActive,
+        ImgUrl: this.responseUpload.dbPath,
+      }
     }
    this.service.putFacility(this.ID,this.editForm).subscribe(
      (res:any)=>{     
        if(res){            
          this.router.navigate(['/Admin/facilities']);
-         this.toastr.success(' Success!','Update Facility successfully.');
+         this.toastr.success('Update Facility successfully.',' Success!');
        } else {
-           this.toastr.error("Update" ,'Update failed!');
+           this.toastr.error( 'Update failed!','Update');
          };
        }    
    )

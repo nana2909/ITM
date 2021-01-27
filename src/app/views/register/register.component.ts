@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../shared/user.service';
@@ -9,7 +10,7 @@ import { UserService } from '../../shared/user.service';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(public service:UserService,private toastr:ToastrService) {}
+  constructor(public service:UserService,private toastr:ToastrService,private router:Router) {}
   
   ngOnInit() {
     this.service.userModel.reset();
@@ -20,6 +21,7 @@ export class RegisterComponent implements OnInit {
         if(res.succeeded){
           this.service.userModel.reset();
           this.toastr.success('New User created!','Registration successful.');
+          this.router.navigate(['login']);
         } else {
           res.errors.forEach((element: { code: any; }) => {
               switch (element.code) {

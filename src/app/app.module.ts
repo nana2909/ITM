@@ -60,7 +60,11 @@ import { AdmissionInfoComponent } from './views/admission-student/admission-info
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatInputModule} from '@angular/material/input';
+<<<<<<< HEAD
 import { AdmissionFinishComponent } from './views/admission-student/admission-finish/admission-finish.component';
+=======
+import { InterceptorService } from './shared/interceptor.service';
+>>>>>>> 91ce9098a2e495a941624d47c940210651fb590c
 const routes: Routes = [];
 @NgModule({
   imports: [
@@ -92,7 +96,7 @@ const routes: Routes = [];
     ReactiveFormsModule,
     HttpClientModule,
     MDBBootstrapModule.forRoot(),
-    RouterModule.forRoot(routes,{ useHash: true })
+    RouterModule.forRoot(routes,{ useHash: true, anchorScrolling: 'enabled' })
   ],
   declarations: [
     NavMenuComponent,
@@ -107,10 +111,8 @@ const routes: Routes = [];
     HomePageComponent,
     DashboardComponent,
     ForgotPasswordComponent,
-    ResetPasswordComponent,
-   
-    AdmissionStudentComponent,
-   
+    ResetPasswordComponent,  
+    AdmissionStudentComponent, 
     AdmissionInfoComponent,
    
     AdmissionFinishComponent,
@@ -119,7 +121,10 @@ const routes: Routes = [];
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
      [UserService,{provide: HTTP_INTERCEPTORS,useClass:AuthInterceptor, multi:true}],
-     [CookieService]
+     [CookieService],
+     {
+      provide: HTTP_INTERCEPTORS,useClass: InterceptorService,multi: true
+      }
   ],
   
   bootstrap: [ AppComponent ],

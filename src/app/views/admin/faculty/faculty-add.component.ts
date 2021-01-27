@@ -1,3 +1,4 @@
+import { error } from 'jquery';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -27,15 +28,17 @@ export class FacultyAddComponent implements OnInit {
   onSubmit(){
     this.service.addFaculty(this.service.facultyForm.value).subscribe(
       (res:any)=>{
-        this.router.navigateByUrl('/Admin/Faculty');
-        this.toastr.success('Success','Added new Faculty.');  
-      },
-      err=>{
-        if(err.status == 400)
+        if(res){
+          this.service.facultyForm.reset();
+          this.router.navigate(['/Admin/faculty']);
+          this.toastr.success('Added new Faculty.','Success');
+        } else {
           this.toastr.error('Something is wrong','Add failed.');
-        else
-          console.log(err);
+        }         
+      } , (err)=>{
+        this.toastr.error('Something is wrong, check ID!','Add failed.');  
       }
+
     )
   }
    

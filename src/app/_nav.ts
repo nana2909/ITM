@@ -75,10 +75,10 @@ export const navItems: INavData[] = [
   },
 
 
-  {
-    name: 'Log Out',
-    url: '/',
-    icon: 'icon-ban',
-    attributes: { disabled: true },
-  },
+
+
+
+
+
+
 ];

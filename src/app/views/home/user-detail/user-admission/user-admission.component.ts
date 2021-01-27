@@ -10,10 +10,9 @@ import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
   styleUrls: ['./user-admission.component.css']
 })
 export class UserAdmissionComponent implements OnInit {
-  public userDetail : any
+  public userDetail : any;
+  public userAdmission:any;
   getAdmissionForm=new FormGroup({
-    // Email:new FormControl(),
-    // AdmissionID: new FormControl(),
   });
   constructor(private router: Router,private service:UserService,
     private toast: ToastrService,
@@ -23,11 +22,18 @@ export class UserAdmissionComponent implements OnInit {
     this.getAdmissionForm=this.fb.group({
       'Email':[''],
       'AdmissionID':[''],
-    })
+    });
     this.userDetail ={
       email:'',
       admissionID:'',
-    }
+    };
+    this.userAdmission={
+      admissionID: '',
+      fieldCode:'',
+      optionalSubjectID: '',
+      specializedSubjectID: '',
+      streamCode: '',
+    };
     this.service.getUserProfile().subscribe(
       res =>{
         this.userDetail=res;
@@ -35,7 +41,15 @@ export class UserAdmissionComponent implements OnInit {
           this.getAdmissionForm.setValue({
             'AdmissionID':this.userDetail.admissionID,
             'Email':this.userDetail.email,
-          })        
+          });
+          this.service.getUserAdmission().subscribe(
+            response => {
+              this.userAdmission =response;
+            },
+            err => { 
+              console.log(err);
+            }
+          )     
         }else{
           this.getAdmissionForm.setValue({
             'AdmissionID':null,

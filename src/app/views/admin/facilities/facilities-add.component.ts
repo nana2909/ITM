@@ -22,16 +22,17 @@ export class FacilitiesAddComponent implements OnInit {
   }
   onSubmit(){
     this.service.addFacilities(this.service.facilitiesForm.value).subscribe(
-      (res:any)=>{
-        this.router.navigateByUrl('/Admin/Facilities');
-        this.toastr.success('Success','Added new Facility.');  
-      },
-      err=>{
-        if(err.status == 400)
+      (res:any)=>{     
+        if(res.failed){
           this.toastr.error('Something is wrong','Add failed.');
-        else
-          console.log(err);
-      }
+        } else {
+          this.service.facilitiesForm.reset();
+          this.router.navigate(['/Admin/facilities']);
+          this.toastr.success('Added new Facility.','Success');
+          };
+        } , (err)=>{
+          this.toastr.error('Something is wrong, check ID!','Add failed.');  
+        }  
     )
   }
 }
